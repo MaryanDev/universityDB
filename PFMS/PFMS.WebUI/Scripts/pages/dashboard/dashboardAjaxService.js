@@ -6,18 +6,29 @@
 
     function dashboardAjaxService($http) {
         var service = {
-            getPersons: getPersonsAjax
+            getEmployees: getEmployeesAjax,
+            getCustomers: getCustomersAjax
         };
 
-        function getPersonsAjax(page) {
+        function getEmployeesAjax(page) {
             var promise = $http({
                 method: "GET",
-                url: "GetPersons",
+                url: "/Dashboard/GetEmployees",
                 params: { page: page }
             });
 
             return promise;
-        }
+        };
+
+        function getCustomersAjax(page) {
+            var promise = $http({
+                method: "GET",
+                url: "/Dashboard/GetCustomers",
+                params: { page: page }
+            });
+
+            return promise;
+        };
         return service;
     }
 })(angular);

@@ -31,12 +31,15 @@ textarea {
 }
 
 #persons{
-    font-size:15pt;
+    
 }
-.container[ng-controller=dashboardController]{
-    margin-top:5%;
-}
-.container[ng-controller=dashboardController] table tr{
+.container table tr{
     cursor:pointer;
+    font-size:16pt;
 }
-
+.nav li a{
+    font-size: 16pt;
+}
+#dashboard{
+    margin-top: 5%;
+}

@@ -120,7 +120,7 @@ insert into Persons (id, FirstName, LastName, PhoneNumber, [Address], DateOfBirt
 insert into Persons (id, FirstName, LastName, PhoneNumber, [Address], DateOfBirth) values (100, 'Chris', 'Kim', '373-(191)809-6528', '45 Morrow Parkway', '7/8/1991');
 SET IDENTITY_INSERT Persons OFF
 
-SET IDENTITY_INSERT Customers ON
+
 insert into Customers (PersonId, AccountNumber) values (1, 'AT35 7404 5295 8935 5794');
 insert into Customers (PersonId, AccountNumber) values (2, 'FR14 2948 2677 40QQ NWCJ MRSX G54');
 insert into Customers (PersonId, AccountNumber) values (3, 'MU49 UQPR 8771 5893 5627 3245 317U SK');
@@ -161,9 +161,7 @@ insert into Customers (PersonId, AccountNumber) values (37, 'MK67 464J VTKS 4X6T
 insert into Customers (PersonId, AccountNumber) values (38, 'SA21 28FF OEPM ZHSY ABKI KCPX');
 insert into Customers (PersonId, AccountNumber) values (39, 'FR87 2116 7431 85TG YGB1 LR7E F74');
 insert into Customers (PersonId, AccountNumber) values (40, 'GB92 NSHC 8403 1067 1747 00');
-SET IDENTITY_INSERT Customers OFF
 
-SET IDENTITY_INSERT Employees ON
 insert into Employees (PersonId, PositionId) values (41, 3);
 insert into Employees (PersonId, PositionId) values (42, 2);
 insert into Employees (PersonId, PositionId) values (43, 2);
@@ -224,7 +222,7 @@ insert into Employees (PersonId, PositionId) values (97, 3);
 insert into Employees (PersonId, PositionId) values (98, 2);
 insert into Employees (PersonId, PositionId) values (99, 1);
 insert into Employees (PersonId, PositionId) values (100, 3);
-SET IDENTITY_INSERT Employees OFF
+
 
 SET IDENTITY_INSERT PrintingMachines ON
 INSERT INTO PrintingMachines(Id, Model, Price, MachineTypeId, EmployeeInChargeId)
@@ -241,3 +239,6 @@ INSERT INTO MachinesForRepair(Id, CostOfRepair, MachineId, RepairStartDate, Repa
 VALUES
 (1, 10000, 2, '10/07/2016', null)
 SET IDENTITY_INSERT MachinesForRepair OFF
+
+INSERT INTO AspNetUsers (Id, Hometown, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, UserName)
+VALUES ('895a1c64-5889-4027-88c6-2931cb1a5acd', NULL, 'mr.maykher@gmail.com', 0, 'ALCpaL7HIm4MONiE0fUbUKff/lDaY4AJYGF9/xJK5g7xZyR2GUcoyoDwnBfTOsDtYw==', 'fbb7e0df-731f-498a-b7e2-5ea9a31118fe', NULL, 0, 0, null, 0, 0, 'MaryanDev')

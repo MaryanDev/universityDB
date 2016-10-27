@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PFMS.Entities.DTO;
 
 namespace PFMS.WebUI.Controllers
 {
@@ -14,7 +15,7 @@ namespace PFMS.WebUI.Controllers
     public class DashboardController : Controller
     {
         private UnitOfWork _unit;
-        private int pageSize = 10;
+        private int pageSize = 15;
 
         public DashboardController()
         {
@@ -27,16 +28,26 @@ namespace PFMS.WebUI.Controllers
         }
         // GET: Dashboard
         public ActionResult Index()
-        { 
+        {
+            //_unit.PersonRepo.Delete(_unit.PersonRepo.GetSingle(p => p.FirstName == "Maryan"));
+            //_unit.Save();
             return View();
         }
 
-        public JsonResult GetPersons(int page = 1)
+        public JsonResult GetEmployees(int page = 1)
         {
-            var result = _unit.PersonRepo.Get().Skip((page - 1) * pageSize).Take(pageSize);
-            var allPages = _unit.PersonRepo.GetCountOfRecords() / pageSize;
-
-            return Json(new { allPages = allPages, persons = result, currentPage = page }, JsonRequestBehavior.AllowGet);
+            var result = _unit.EmployeeRepo.GetEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
+            var count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
+            return Json(new { allPages = count, employees = result, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
+
+        #region Helpers
+        private int GetCountOfPages(int allPages, int size)
+        {
+            var pages = allPages / size;
+            var count = allPages % size == 0 ? pages : ++pages;
+            return count;
+        }
+        #endregion
     }
 }

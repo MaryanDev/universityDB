@@ -12,6 +12,7 @@ namespace PFMS.Repositories.Concrete.UoW
     {
         private PintingFactoryDBEntities _context;
         private IPersonRepository _personRepo;
+        private IEmployeesRepository _employeeRepo;
 
         public UnitOfWork(PintingFactoryDBEntities context)
         {
@@ -34,5 +35,18 @@ namespace PFMS.Repositories.Concrete.UoW
                 return _personRepo;
             }
         }
+
+        public IEmployeesRepository EmployeeRepo
+        {
+            get
+            {
+                if (_employeeRepo == null)
+                {
+                    _employeeRepo = new SqlEmployeesRepository(_context);
+                }
+                return _employeeRepo;
+            }
+        }
+
     }
 }

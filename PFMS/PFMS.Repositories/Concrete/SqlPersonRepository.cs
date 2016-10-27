@@ -21,7 +21,7 @@ namespace PFMS.Repositories.Concrete
         //}
         public void Delete(Person entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
         }
 
         public IEnumerable<Person> Get(Func<Person, bool> criteria = null)
@@ -36,14 +36,16 @@ namespace PFMS.Repositories.Concrete
             return resultEntity;
         }
 
-        public Person Insert(Person entity)
+        public int Insert(Person entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = System.Data.Entity.EntityState.Added;
+            return entity.ID;
         }
 
         public Person Update(Person entity)
         {
-            throw new NotImplementedException();
+            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            return entity;
         }
 
         public int GetCountOfRecords(Func<Person, bool> criteria = null)

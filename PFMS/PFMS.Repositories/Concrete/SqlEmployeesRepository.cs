@@ -46,48 +46,6 @@ namespace PFMS.Repositories.Concrete
         }
         public EmpFullInfoDTO GetFullEmpInfo(Func<Employee, bool> criteria)
         {
-            //var resultEntities = criteria != null ? from emp in context.Employees
-            //                                        join person in context.Persons on emp.PersonId equals person.ID
-            //                                        join position in context.EmpPositions on emp.PositionId equals position.Id
-            //                                        where criteria(person)
-            //                                        select new EmpFullInfoDTO
-            //                                        {
-            //                                            Id = emp.PersonId,
-            //                                            Name = person.FirstName + " " + person.LastName,
-            //                                            Address = person.Address,
-            //                                            Phone = person.PhoneNumber,
-            //                                            Position = position.PositionTitle,
-            //                                            Salary = position.Salary,
-            //                                            DateOfBirth = person.DateOfBirth,
-            //                                            Machines = emp.PrintingMachines.Select(pm => new PrintingMachineDTO
-            //                                            {
-            //                                                Id = pm.Id,
-            //                                                Model = pm.Model,
-            //                                                Price = pm.Price,
-            //                                                MachineType = pm.TypesOfMachine.TypeTitle
-            //                                            })
-            //                                        } :
-            //                                        from emp in context.Employees
-            //                                        join person in context.Persons on emp.PersonId equals person.ID
-            //                                        join position in context.EmpPositions on emp.PositionId equals position.Id
-            //                                        select new EmpFullInfoDTO
-            //                                        {
-            //                                            Id = emp.PersonId,
-            //                                            Name = person.FirstName + " " + person.LastName,
-            //                                            Address = person.Address,
-            //                                            Phone = person.PhoneNumber,
-            //                                            Position = position.PositionTitle,
-            //                                            Salary = position.Salary,
-            //                                            DateOfBirth = person.DateOfBirth,
-            //                                            Machines = emp.PrintingMachines.Select(pm => new PrintingMachineDTO
-            //                                            {
-            //                                                Id = pm.Id,
-            //                                                Model = pm.Model,
-            //                                                Price = pm.Price,
-            //                                                MachineType = pm.TypesOfMachine.TypeTitle
-            //                                            })
-            //                                        };
-
             var resultEntities = context.Employees.Where(criteria).Join(context.Persons, emp => emp.PersonId, person => person.ID, (emp, person) => new { emp, person })
                 .Join(context.EmpPositions, combined => combined.emp.PositionId, position => position.Id, (combined, position) => new EmpFullInfoDTO
                 {

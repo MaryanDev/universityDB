@@ -27,8 +27,8 @@
                 controllerAs: "pmCtrl",
                 //size: "lg",
                 resolve: {
-                    person: function () {
-                        return employee;
+                    personId: function () {
+                        return employee.Id;
                     }
                 }
             });

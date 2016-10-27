@@ -1,36 +1,23 @@
 ﻿<div class="">
     <div class="modal-header text-center">
-        <h3 class="text-info">{{person.FirstName + " " + person.LastName}} Details</h3>
+        <h3 class="text-info">{{employee.Name}} Details</h3>
     </div>
     <div class="modal-body text-center">
-        <table class="table table-responsive" id="personInfoTbl">
+        <table class="table table-condensed" id="personInfoTbl">
             <tbody>
-                <tr>
-                    <td>
-                        Phone:
-                    </td>
-                    <td>
-                        {{person.Phone}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Address:
-                    </td>
-                    <td>
-                        {{person.Address}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Date of birth:
-                    </td>
-                    <td>
-                        {{person.DateOfBirth}}
-                    </td>
-                </tr>
+                <tr><td>Phone:</td><td>{{employee.Phone}}</td></tr>
+                <tr><td>Address:</td><td>{{employee.Address}}</td></tr>
+                <tr><td>Date of birth</td><td>{{employee.DateOfBirth}}</td></tr>
+                <tr><td>Position:</td><td>{{employee.Position}}</td></tr>
+                <tr><td>Salary</td><td>{{employee.Salary}}</td></tr>
             </tbody>
         </table>
+        <div ng-if="employee.Machines">
+            Machines: 
+            <ul class="list-unstyled">
+                <li ng-repeat="machine in employee.Machines">{{machine.Model}}</li>
+            </ul>
+        </div>
     </div>
     <div class="modal-footer text-center">
         <button class="input-lg btn btn-default" ng-click="closeModal()">Close</button>

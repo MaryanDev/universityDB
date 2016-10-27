@@ -34,11 +34,17 @@ namespace PFMS.WebUI.Controllers
             return View();
         }
 
-        public JsonResult GetEmployees(int page = 1)
+        public JsonResult GetEmployeesInfo(int page = 1)
         {
-            var result = _unit.EmployeeRepo.GetEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
+            var result = _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
             var count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
             return Json(new { allPages = count, employees = result, currentPage = page }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFullEmployeeInfo(int employeeId)
+        {
+            var employeeEntity = _unit.EmployeeRepo.GetFullEmpInfo(emp => emp.PersonId == employeeId);
+            return Json(employeeEntity, JsonRequestBehavior.AllowGet);
         }
 
         #region Helpers

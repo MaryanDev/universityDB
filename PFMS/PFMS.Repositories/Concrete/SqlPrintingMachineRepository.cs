@@ -26,13 +26,14 @@ namespace PFMS.Repositories.Concrete
 
         public IEnumerable<Person> Get(Func<Person, bool> criteria = null)
         {
-            var result = criteria == null ? context.Persons : context.Persons.Where(criteria);
-            return result;
+            var resultEntities = criteria == null ? context.Persons : context.Persons.Where(criteria);
+            return resultEntities;
         }
 
-        public Person GetSingle(Func<Person, bool> criteria)
+        public Person GetSingle(Func<Person, bool> criteria = null)
         {
-            throw new NotImplementedException();
+            var resultEntity = criteria == null ? context.Persons.FirstOrDefault() : context.Persons.Where(criteria).FirstOrDefault();
+            return resultEntity;
         }
 
         public Person Insert(Person entity)

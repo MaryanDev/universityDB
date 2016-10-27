@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PintingFactoryDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmpPositions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionTitle" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Salary" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachinesForRepair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CostOfRepair" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+          <Property Name="RepairStartDate" Type="datetime" Nullable="false" />
+          <Property Name="RepairFinishDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrintingMachines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Price" Type="numeric" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MachineTypeId" Type="int" Nullable="false" />
+          <Property Name="EmployeeInChargeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Cost" Type="numeric" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="ProductsToMachines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="MachineId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypesOfMachines">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeTitle" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomerToPerson">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpToPerson">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpToPosition">
+          <End Role="EmpPositions" Type="Self.EmpPositions" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpPositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachinesForRepairToMachine">
+          <End Role="PrintingMachines" Type="Self.PrintingMachines" Multiplicity="1" />
+          <End Role="MachinesForRepair" Type="Self.MachinesForRepair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachinesForRepair">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToCustomer">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToProduct">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintingMachinesToEmployees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="PrintingMachines" Type="Self.PrintingMachines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="PrintingMachines">
+              <PropertyRef Name="EmployeeInChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintingMachinesToTypes">
+          <End Role="TypesOfMachines" Type="Self.TypesOfMachines" Multiplicity="1" />
+          <End Role="PrintingMachines" Type="Self.PrintingMachines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypesOfMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintingMachines">
+              <PropertyRef Name="MachineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdToMachineToMachine">
+          <End Role="PrintingMachines" Type="Self.PrintingMachines" Multiplicity="1" />
+          <End Role="ProductsToMachines" Type="Self.ProductsToMachines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsToMachines">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdToMachineToProduct">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsToMachines" Type="Self.ProductsToMachines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsToMachines">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PintingFactoryDBModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpPositions" EntityType="Self.EmpPositions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachinesForRepair" EntityType="Self.MachinesForRepair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrintingMachines" EntityType="Self.PrintingMachines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsToMachines" EntityType="Self.ProductsToMachines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypesOfMachines" EntityType="Self.TypesOfMachines" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CustomerToPerson" Association="Self.FK_CustomerToPerson">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpToPerson" Association="Self.FK_EmpToPerson">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpToPosition" Association="Self.FK_EmpToPosition">
+            <End Role="EmpPositions" EntitySet="EmpPositions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachinesForRepairToMachine" Association="Self.FK_MachinesForRepairToMachine">
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+            <End Role="MachinesForRepair" EntitySet="MachinesForRepair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToCustomer" Association="Self.FK_OrderToCustomer">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToProduct" Association="Self.FK_OrderToProduct">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintingMachinesToEmployees" Association="Self.FK_PrintingMachinesToEmployees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintingMachinesToTypes" Association="Self.FK_PrintingMachinesToTypes">
+            <End Role="TypesOfMachines" EntitySet="TypesOfMachines" />
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdToMachineToMachine" Association="Self.FK_ProdToMachineToMachine">
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+            <End Role="ProductsToMachines" EntitySet="ProductsToMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdToMachineToProduct" Association="Self.FK_ProdToMachineToProduct">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsToMachines" EntitySet="ProductsToMachines" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PintingFactoryDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_CustomerToPerson" FromRole="Customers" ToRole="Persons" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderToProduct" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_EmpToPerson" FromRole="Employees" ToRole="Persons" />
+          <NavigationProperty Name="EmpPosition" Relationship="Self.FK_EmpToPosition" FromRole="Employees" ToRole="EmpPositions" />
+          <NavigationProperty Name="PrintingMachines" Relationship="Self.FK_PrintingMachinesToEmployees" FromRole="Employees" ToRole="PrintingMachines" />
+        </EntityType>
+        <EntityType Name="EmpPosition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_EmpToPosition" FromRole="EmpPositions" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="MachinesForRepair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CostOfRepair" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <Property Name="RepairStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RepairFinishDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PrintingMachine" Relationship="Self.FK_MachinesForRepairToMachine" FromRole="MachinesForRepair" ToRole="PrintingMachines" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_OrderToProduct" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderToCustomer" FromRole="Orders" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerToPerson" FromRole="Persons" ToRole="Customers" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmpToPerson" FromRole="Persons" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="PrintingMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="MachineTypeId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeInChargeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_PrintingMachinesToEmployees" FromRole="PrintingMachines" ToRole="Employees" />
+          <NavigationProperty Name="MachinesForRepairs" Relationship="Self.FK_MachinesForRepairToMachine" FromRole="PrintingMachines" ToRole="MachinesForRepair" />
+          <NavigationProperty Name="TypesOfMachine" Relationship="Self.FK_PrintingMachinesToTypes" FromRole="PrintingMachines" ToRole="TypesOfMachines" />
+          <NavigationProperty Name="ProductsToMachines" Relationship="Self.FK_ProdToMachineToMachine" FromRole="PrintingMachines" ToRole="ProductsToMachines" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="4" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderToCustomer" FromRole="Products" ToRole="Orders" />
+          <NavigationProperty Name="ProductsToMachines" Relationship="Self.FK_ProdToMachineToProduct" FromRole="Products" ToRole="ProductsToMachines" />
+        </EntityType>
+        <EntityType Name="ProductsToMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="MachineId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PrintingMachine" Relationship="Self.FK_ProdToMachineToMachine" FromRole="ProductsToMachines" ToRole="PrintingMachines" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProdToMachineToProduct" FromRole="ProductsToMachines" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="TypesOfMachine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeTitle" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PrintingMachines" Relationship="Self.FK_PrintingMachinesToTypes" FromRole="TypesOfMachines" ToRole="PrintingMachines" />
+        </EntityType>
+        <Association Name="FK_CustomerToPerson">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToProduct">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpToPerson">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpToPosition">
+          <End Role="EmpPositions" Type="Self.EmpPosition" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmpPositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintingMachinesToEmployees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="PrintingMachines" Type="Self.PrintingMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="PrintingMachines">
+              <PropertyRef Name="EmployeeInChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MachinesForRepairToMachine">
+          <End Role="PrintingMachines" Type="Self.PrintingMachine" Multiplicity="1" />
+          <End Role="MachinesForRepair" Type="Self.MachinesForRepair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MachinesForRepair">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderToCustomer">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrintingMachinesToTypes">
+          <End Role="TypesOfMachines" Type="Self.TypesOfMachine" Multiplicity="1" />
+          <End Role="PrintingMachines" Type="Self.PrintingMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypesOfMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrintingMachines">
+              <PropertyRef Name="MachineTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdToMachineToMachine">
+          <End Role="PrintingMachines" Type="Self.PrintingMachine" Multiplicity="1" />
+          <End Role="ProductsToMachines" Type="Self.ProductsToMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrintingMachines">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsToMachines">
+              <PropertyRef Name="MachineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdToMachineToProduct">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductsToMachines" Type="Self.ProductsToMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsToMachines">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PintingFactoryDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmpPositions" EntityType="Self.EmpPosition" />
+          <EntitySet Name="MachinesForRepairs" EntityType="Self.MachinesForRepair" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="PrintingMachines" EntityType="Self.PrintingMachine" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductsToMachines" EntityType="Self.ProductsToMachine" />
+          <EntitySet Name="TypesOfMachines" EntityType="Self.TypesOfMachine" />
+          <AssociationSet Name="FK_CustomerToPerson" Association="Self.FK_CustomerToPerson">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToProduct" Association="Self.FK_OrderToProduct">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpToPerson" Association="Self.FK_EmpToPerson">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpToPosition" Association="Self.FK_EmpToPosition">
+            <End Role="EmpPositions" EntitySet="EmpPositions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintingMachinesToEmployees" Association="Self.FK_PrintingMachinesToEmployees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MachinesForRepairToMachine" Association="Self.FK_MachinesForRepairToMachine">
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+            <End Role="MachinesForRepair" EntitySet="MachinesForRepairs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderToCustomer" Association="Self.FK_OrderToCustomer">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrintingMachinesToTypes" Association="Self.FK_PrintingMachinesToTypes">
+            <End Role="TypesOfMachines" EntitySet="TypesOfMachines" />
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdToMachineToMachine" Association="Self.FK_ProdToMachineToMachine">
+            <End Role="PrintingMachines" EntitySet="PrintingMachines" />
+            <End Role="ProductsToMachines" EntitySet="ProductsToMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdToMachineToProduct" Association="Self.FK_ProdToMachineToProduct">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsToMachines" EntitySet="ProductsToMachines" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PintingFactoryDBModelStoreContainer" CdmEntityContainer="PintingFactoryDBEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpPositions">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.EmpPosition">
+              <MappingFragment StoreEntitySet="EmpPositions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PositionTitle" ColumnName="PositionTitle" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachinesForRepairs">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.MachinesForRepair">
+              <MappingFragment StoreEntitySet="MachinesForRepair">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CostOfRepair" ColumnName="CostOfRepair" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+                <ScalarProperty Name="RepairStartDate" ColumnName="RepairStartDate" />
+                <ScalarProperty Name="RepairFinishDate" ColumnName="RepairFinishDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintingMachines">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.PrintingMachine">
+              <MappingFragment StoreEntitySet="PrintingMachines">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MachineTypeId" ColumnName="MachineTypeId" />
+                <ScalarProperty Name="EmployeeInChargeId" ColumnName="EmployeeInChargeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsToMachines">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.ProductsToMachine">
+              <MappingFragment StoreEntitySet="ProductsToMachines">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="MachineId" ColumnName="MachineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypesOfMachines">
+            <EntityTypeMapping TypeName="PintingFactoryDBModel.TypesOfMachine">
+              <MappingFragment StoreEntitySet="TypesOfMachines">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

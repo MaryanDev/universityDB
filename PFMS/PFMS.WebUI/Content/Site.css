@@ -1,0 +1,42 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#loginForm{
+   margin-top: 20%;
+}
+#loginForm input[type=submit]{
+    width:100%;
+}
+
+.activeLink{
+    background-color:lightgray;
+}
+.pagination{
+    cursor:pointer;
+}
+
+#persons{
+    font-size:15pt;
+}
+.container[ng-controller=dashboardController]{
+    margin-top:5%;
+}
+.container[ng-controller=dashboardController] table tr{
+    cursor:pointer;
+}
+

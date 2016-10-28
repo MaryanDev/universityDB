@@ -24,7 +24,7 @@ namespace PFMS.WebUI.Infrastructure
             builder.RegisterControllers(typeof(HttpApplication).Assembly);
 
             // регистрируем споставление типов
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter("context", new PintingFactoryDBEntities());
+            //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter("context", new PintingFactoryDBEntities());
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

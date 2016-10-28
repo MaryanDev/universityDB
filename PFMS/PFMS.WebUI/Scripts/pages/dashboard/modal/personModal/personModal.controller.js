@@ -2,16 +2,16 @@
     angular.module("appModule")
         .controller("personModalController", personModalController);
 
-    personModalController.$inject = ["$scope", "$uibModalInstance", "dashboardAjaxService", "personId"];
+    personModalController.$inject = ["$scope", "$uibModalInstance", "employeesAjaxService", "personId"];
 
-    function personModalController($scope, $uibModalInstance, dashboardAjaxService, personId) {
+    function personModalController($scope, $uibModalInstance, employeesAjaxService, personId) {
         $scope.employee = {}
         $scope.isEdit = false;
 
         activate();
 
         function activate() {
-            dashboardAjaxService.getFullEmpInfo(personId)
+            employeesAjaxService.getFullEmpInfo(personId)
                 .then(function (response) {
                     $scope.employee = response.data;
                 }, function errorCallback(error) {

@@ -33,32 +33,5 @@ namespace PFMS.WebUI.Controllers
             //_unit.Save();
             return View();
         }
-
-        public JsonResult GetEmployeesInfo(int page = 1)
-        {
-            var result = _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
-            var count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
-            return Json(new { allPages = count, employees = result, currentPage = page }, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetFullEmployeeInfo(int employeeId)
-        {
-            var employeeEntity = _unit.EmployeeRepo.GetFullEmpInfo(emp => emp.PersonId == employeeId);
-            return Json(employeeEntity, JsonRequestBehavior.AllowGet);
-        }
-
-        public void UpdateEmployee()
-        {
-
-        }
-
-        #region Helpers
-        private int GetCountOfPages(int allPages, int size)
-        {
-            var pages = allPages / size;
-            var count = allPages % size == 0 ? pages : ++pages;
-            return count;
-        }
-        #endregion
     }
 }

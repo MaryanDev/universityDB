@@ -10,20 +10,30 @@ namespace PFMS.Repositories.Concrete.UoW
 {
     public class UnitOfWork
     {
+        #region Context
         private PintingFactoryDBEntities _context;
+        #endregion
+        #region Private repository fields
         private IPersonRepository _personRepo;
         private IEmployeesRepository _employeeRepo;
+        private IPositionRepository _positionRepo;
+        #endregion
 
+        #region Constructors
         public UnitOfWork(PintingFactoryDBEntities context)
         {
             this._context = context;
         }
+        #endregion
 
+        #region Save changes
         public void Save()
         {
             _context.SaveChanges();
         }
+        #endregion
 
+        #region Public repository peoperties
         public IPersonRepository PersonRepo
         {
             get
@@ -48,5 +58,17 @@ namespace PFMS.Repositories.Concrete.UoW
             }
         }
 
+        public IPositionRepository PositionRepo
+        {
+            get
+            {
+                if(_positionRepo == null)
+                {
+                    _positionRepo = new SqlPostionsRepository(_context);
+                }
+                return _positionRepo;
+            }
+        }
+        #endregion
     }
 }

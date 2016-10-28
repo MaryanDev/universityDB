@@ -1,10 +1,10 @@
 ﻿(function (angular) {
     angular.module("appModule")
-        .factory("dashboardAjaxService", dashboardAjaxService);
+        .factory("employeesAjaxService", employeesAjaxService);
 
-    dashboardAjaxService.$inject = ["$http"];
+    employeesAjaxService.$inject = ["$http"];
 
-    function dashboardAjaxService($http) {
+    function employeesAjaxService($http) {
         var service = {
             getEmployees: getEmployeesAjax,
             getFullEmpInfo: getFullEmpInfoAjax,
@@ -14,7 +14,7 @@
         function getEmployeesAjax(page) {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetEmployeesInfo",
+                url: "/Employee/GetEmployeesInfo",
                 params: { page: page }
             });
 
@@ -24,7 +24,7 @@
         function getFullEmpInfoAjax(employeeId) {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetFullEmployeeInfo",
+                url: "/Employee/GetFullEmployeeInfo",
                 params: { employeeId: employeeId }
             });
 

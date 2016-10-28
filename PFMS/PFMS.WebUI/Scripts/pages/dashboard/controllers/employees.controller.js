@@ -2,16 +2,16 @@
     angular.module("appModule")
         .controller("employeesController", employeesController);
 
-    employeesController.$inject = ["$scope", "$uibModal", "dashboardAjaxService"];
+    employeesController.$inject = ["$scope", "$uibModal", "employeesAjaxService"];
 
-    function employeesController($scope, $uibModal, dashboardAjaxService) {
+    function employeesController($scope, $uibModal, employeesAjaxService) {
         $scope.employees;
         $scope.pagination = {};
 
         activate();
 
         $scope.getEmployees = function (page) {
-            dashboardAjaxService.getEmployees(page)
+            employeesAjaxService.getEmployees(page)
                 .then(function (response) {
                     initData(response);
                 }, function errorCallback(error) {
@@ -35,7 +35,7 @@
         };
 
         function activate() {
-            dashboardAjaxService.getEmployees()
+            employeesAjaxService.getEmployees()
                 .then(function (response) {
                     initData(response);
                 }, function errorCallback(error) {

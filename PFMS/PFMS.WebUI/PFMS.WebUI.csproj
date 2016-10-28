@@ -962,7 +962,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\app.Module.js" />
     <Content Include="Scripts\pages\dashboard\controllers\employees.controller.js" />
-    <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
+    <Content Include="Scripts\pages\dashboard\employees.controller.js" />
     <Content Include="Scripts\pages\dashboard\dashboardAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
@@ -978,6 +978,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1008,6 +1009,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\angular\NewFolder1\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFMS.Entities\PFMS.Entities.csproj">

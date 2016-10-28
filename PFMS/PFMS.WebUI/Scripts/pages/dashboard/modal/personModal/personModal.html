@@ -5,11 +5,11 @@
     <div class="modal-body text-center">
         <table class="table table-condensed" id="personInfoTbl">
             <tbody>
-                <tr><td>Phone:</td><td>{{employee.Phone}}</td></tr>
-                <tr><td>Address:</td><td>{{employee.Address}}</td></tr>
-                <tr><td>Date of birth</td><td>{{employee.DateOfBirth}}</td></tr>
-                <tr><td>Position:</td><td>{{employee.Position}}</td></tr>
-                <tr><td>Salary</td><td>{{employee.Salary}}</td></tr>
+                <tr><td>Phone:</td><td>{{employee.Phone}}</td><td><span class="glyphicon glyphicon-pencil"></span></td></tr>
+                <tr><td>Address:</td><td>{{employee.Address}}</td><td><span class="glyphicon glyphicon-pencil"></span></td></tr>
+                <tr><td>Date of birth</td><td>{{employee.DateOfBirth}}</td><td><span class="glyphicon glyphicon-pencil"></span></td></tr>
+                <tr><td>Position:</td><td>{{employee.Position}}</td><td><span class="glyphicon glyphicon-pencil"></span></td></tr>
+                <tr><td>Salary</td><td>{{employee.Salary}}</td><td><span class="glyphicon glyphicon-pencil"></span></td></tr>
             </tbody>
         </table>
         <div ng-if="employee.Machines">

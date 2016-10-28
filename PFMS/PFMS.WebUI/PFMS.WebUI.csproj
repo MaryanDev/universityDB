@@ -962,8 +962,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\app.Module.js" />
     <Content Include="Scripts\pages\dashboard\controllers\employees.controller.js" />
-    <Content Include="Scripts\pages\dashboard\employees.controller.js" />
-    <Content Include="Scripts\pages\dashboard\dashboardAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
+    <Content Include="Scripts\pages\dashboard\employeesAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.controller.js" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.html" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
     <Content Include="Scripts\pages\dashboard\routeConfig.js" />
@@ -994,7 +996,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\Main.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />

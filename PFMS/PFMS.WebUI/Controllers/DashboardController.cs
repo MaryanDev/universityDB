@@ -15,7 +15,6 @@ namespace PFMS.WebUI.Controllers
     public class DashboardController : Controller
     {
         private UnitOfWork _unit;
-        private int pageSize = 15;
 
         public DashboardController()
         {
@@ -27,7 +26,7 @@ namespace PFMS.WebUI.Controllers
             this._unit = unitParam;
         }
         // GET: Dashboard
-        public ActionResult Index()
+        public ActionResult Main()
         {
             //_unit.PersonRepo.Delete(_unit.PersonRepo.GetSingle(p => p.FirstName == "Maryan"));
             //_unit.Save();

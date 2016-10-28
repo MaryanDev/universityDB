@@ -60,12 +60,18 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     cursor: pointer;
     border-radius: 2px;
 }
-form[action="/Dashboard/UpdateEmployee"]{
+form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"] select{
     font-size:15pt;
 }
 #editEmp{
     margin:10px;
 }
-#editEmp span:hover{
+#editEmp span, #deleteEmp span:hover{
     cursor:pointer;
+}
+#editEmp span, #deleteEmp span{
+    margin:10px;
+}
+#confirmDeleteBtnWrapper button{
+    width:80px;
 }

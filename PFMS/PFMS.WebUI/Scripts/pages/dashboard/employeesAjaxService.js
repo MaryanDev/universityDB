@@ -8,7 +8,8 @@
         var service = {
             getEmployees: getEmployeesAjax,
             getFullEmpInfo: getFullEmpInfoAjax,
-            getCustomers: getCustomersAjax
+            getPositions: getPositionsAjax,
+            deleteEmployee: deleteEmployeeAjax
         };
 
         function getEmployeesAjax(page) {
@@ -31,11 +32,20 @@
             return promise;
         }
 
-        function getCustomersAjax(page) {
+        function getPositionsAjax() {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetCustomers",
-                params: { page: page }
+                url: "/Employee/GetEmployeesPosition"
+            });
+
+            return promise;
+        };
+
+        function deleteEmployeeAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Employee/DeleteEmployee",
+                data: { id: id }
             });
 
             return promise;

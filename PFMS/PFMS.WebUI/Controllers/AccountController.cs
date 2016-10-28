@@ -46,7 +46,7 @@ namespace PFMS.WebUI.Controllers
 
                 if (string.IsNullOrEmpty(returnUrl))
                 {
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Main", "Dashboard");
                 }
                 else
                 {

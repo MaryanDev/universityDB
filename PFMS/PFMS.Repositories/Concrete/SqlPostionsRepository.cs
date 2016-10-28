@@ -23,7 +23,7 @@ namespace PFMS.Repositories.Concrete
         public IEnumerable<EmpPosition> Get(Func<EmpPosition, bool> criteria = null)
         {
             var result = criteria == null ? context.EmpPositions : context.EmpPositions.Where(criteria);
-            return result; ;
+            return result;
         }
 
         public int GetCountOfRecords(Func<EmpPosition, bool> criteria = null)

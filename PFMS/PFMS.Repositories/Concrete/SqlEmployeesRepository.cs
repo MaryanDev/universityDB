@@ -32,13 +32,15 @@ namespace PFMS.Repositories.Concrete
             var resultEntities = criteria != null ? context.Employees.Where(criteria).Join(context.Persons, emp => emp.PersonId, per => per.ID, (emp, per) => new EmpInfoDTO
             {
                 Id = emp.PersonId,
-                Name = per.FirstName + " " + per.LastName,
+                FirstName = per.FirstName,
+                LastName = per.LastName,
                 Position = emp.EmpPosition.PositionTitle
             }) :
             context.Employees.Join(context.Persons, emp => emp.PersonId, per => per.ID, (emp, per) => new EmpInfoDTO
             {
                 Id = emp.PersonId,
-                Name = per.FirstName + " " + per.LastName,
+                FirstName = per.FirstName,
+                LastName = per.LastName,
                 Position = emp.EmpPosition.PositionTitle
             });
             return resultEntities;
@@ -50,7 +52,8 @@ namespace PFMS.Repositories.Concrete
                 .Join(context.EmpPositions, combined => combined.emp.PositionId, position => position.Id, (combined, position) => new EmpFullInfoDTO
                 {
                     Id = combined.emp.PersonId,
-                    Name = combined.person.FirstName + " " + combined.person.LastName,
+                    FirstName = combined.person.FirstName,
+                    LastName = combined.person.LastName,
                     Address = combined.person.Address,
                     Phone = combined.person.PhoneNumber,
                     Position = position.PositionTitle,

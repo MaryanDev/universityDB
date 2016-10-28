@@ -19,6 +19,10 @@ namespace PFMS.WebUI.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Main", "Dashboard");
+            }
             ViewBag.returnUrl = returnUrl;
             return View();
         }

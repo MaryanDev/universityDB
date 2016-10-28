@@ -1,8 +1,11 @@
 ﻿<div class="">
     <div class="modal-header text-center">
-        <h3 class="text-info">{{employee.Name}} Details</h3>
+        <div class="row">
+            <h3 class="text-info col-lg-10">Employee Details</h3>
+            <span id="closeModal" ng-click="closeModal()" class="col-lg-2 glyphicon glyphicon-remove"></span>
+        </div>
     </div>
-    <div class="modal-body text-center">
+    <div class="modal-body">
         <form action="/Employee/UpdateEmployee" method="post">
             <div class="row">
                 <div id="editEmp" class="col-lg-8 col-lg-push-4">
@@ -49,47 +52,16 @@
                 <span class="col-lg-8 col-md-8">{{employee.Salary}}</span>
             </div>
             <div ng-if="employee.Machines.length !== 0" class="form-group row">
-                <!--<label class="text-info col-lg-4 col-md-4">-->
+                <label class="text-info col-lg-3 col-md-3">
                 Machines
-                <!--</label>-->
-                <ul class="list-unstyled">
+                </label>
+                <ul class="list-unstyled col-lg-9 col-md-9">
                     <li class="list-group-item list-group-item-text" ng-repeat="machine in employee.Machines">{{machine.Model}}</li>
                 </ul>
             </div>
-            <input ng-show="isEdit" type="submit" value="Submit" class="form-control input-lg btn btn-success" />
+            <div class="form-group text-center">
+                <input ng-show="isEdit" type="submit" value="Submit" class="form-control input-lg btn btn-success" />
+            </div>
         </form>
-        <!--<table class="table table-condensed" id="personInfoTbl">
-            <thead>
-                <tr>
-                    <td colspan="2"><span class="glyphicon glyphicon-pencil" ng-click="editEmployee()"></span></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Phone:</td>
-                    <td><span ng-hide="isEdit">{{employee.Phone}}</span><input type="text" ng-show="isEdit"/></td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td>{{employee.Address}}</td>
-                </tr>
-                <tr>
-                    <td>Date of birth</td>
-                    <td>{{employee.DateOfBirth}}</td>
-                </tr>
-                <tr>
-                    <td>Position:</td>
-                    <td>{{employee.Position}}</td>
-                </tr>
-                <tr>
-                    <td>Salary</td>
-                    <td>{{employee.Salary}}</td>
-                </tr>
-            </tbody>
-        </table>-->
-
-    </div>
-    <div class="modal-footer text-center">
-        <button class="input-lg btn btn-default" ng-click="closeModal()">Close</button>
     </div>
 </div>

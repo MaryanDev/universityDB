@@ -6,7 +6,7 @@
 
     function personModalController($scope, $uibModalInstance, dashboardAjaxService, personId) {
         $scope.employee = {}
-        //$scope.person = person;
+        $scope.isEdit = false;
 
         activate();
 
@@ -21,6 +21,10 @@
 
         $scope.closeModal = function () {
             $uibModalInstance.close();
+        };
+
+        $scope.editEmployee = function () {
+            $scope.isEdit = !$scope.isEdit;
         };
     };
 })(angular);

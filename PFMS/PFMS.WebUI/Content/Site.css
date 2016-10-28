@@ -60,3 +60,12 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     cursor: pointer;
     border-radius: 2px;
 }
+form[action="/Dashboard/UpdateEmployee"]{
+    font-size:15pt;
+}
+#editEmp{
+    margin:10px;
+}
+#editEmp span:hover{
+    cursor:pointer;
+}

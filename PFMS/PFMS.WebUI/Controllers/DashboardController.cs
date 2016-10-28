@@ -47,6 +47,11 @@ namespace PFMS.WebUI.Controllers
             return Json(employeeEntity, JsonRequestBehavior.AllowGet);
         }
 
+        public void UpdateEmployee()
+        {
+
+        }
+
         #region Helpers
         private int GetCountOfPages(int allPages, int size)
         {

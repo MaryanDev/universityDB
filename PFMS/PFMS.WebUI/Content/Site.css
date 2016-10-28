@@ -17,13 +17,37 @@ textarea {
     max-width: 280px;
 }
 
-#loginForm {
+/*#loginForm {
     margin-top: 20%;
+    background-color:white;
+}*/
+
+#loginWrapper {
+    margin-top: 25%;
+    background-color:white;
+    /*border: 4px solid blue;*/
+    border-radius: 10px;
+    padding:20px 30px 20px 30px;
+}
+#loginWrapper ul{
+    list-style:none;
+    font-size: 12pt;
+}
+#loginWrapper span{
+    font-size: 12pt;
 }
 
-    #loginForm input[type=submit] {
-        width: 100%;
-    }
+#loginWrapper .form-group{
+    margin-top:10%;
+}
+
+#loginForm input[type=submit] {
+    width: 100%;
+}
+
+.loginLabel{
+    font-size:15pt;
+}
 
 .activeLink {
     background-color: lightgray;
@@ -60,18 +84,23 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     cursor: pointer;
     border-radius: 2px;
 }
-form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"] select{
-    font-size:15pt;
+
+form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"] select {
+    font-size: 15pt;
 }
-#editEmp{
-    margin:10px;
+
+#editEmp {
+    margin: 10px;
 }
-#editEmp span, #deleteEmp span:hover{
-    cursor:pointer;
-}
-#editEmp span, #deleteEmp span{
-    margin:10px;
-}
-#confirmDeleteBtnWrapper button{
-    width:80px;
+
+    #editEmp span, #deleteEmp span:hover {
+        cursor: pointer;
+    }
+
+    #editEmp span, #deleteEmp span {
+        margin: 10px;
+    }
+
+#confirmDeleteBtnWrapper button {
+    width: 80px;
 }

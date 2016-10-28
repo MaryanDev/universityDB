@@ -7,7 +7,7 @@
     </thead>
     <tbody class="text-info">
         <tr ng-repeat="employee in employees" ng-click="showDetailsInModal(employee)">
-            <td>{{employee.Name}}</td>
+            <td>{{employee.FirstName + " " + employee.LastName}}</td>
             <td>{{employee.Position}}</td>
         </tr>
     </tbody>

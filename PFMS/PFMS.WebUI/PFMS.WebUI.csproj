@@ -963,7 +963,9 @@
     <Content Include="Scripts\pages\app.Module.js" />
     <Content Include="Scripts\pages\dashboard\controllers\employees.controller.js" />
     <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
-    <Content Include="Scripts\pages\dashboard\dashboardAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\employeesAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.controller.js" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.html" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
     <Content Include="Scripts\pages\dashboard\routeConfig.js" />
@@ -978,6 +980,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -993,7 +996,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\Main.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -1008,6 +1011,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\angular\NewFolder1\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFMS.Entities\PFMS.Entities.csproj">

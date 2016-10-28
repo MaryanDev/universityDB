@@ -1,20 +1,21 @@
 ﻿(function (angular) {
     angular.module("appModule")
-        .factory("dashboardAjaxService", dashboardAjaxService);
+        .factory("employeesAjaxService", employeesAjaxService);
 
-    dashboardAjaxService.$inject = ["$http"];
+    employeesAjaxService.$inject = ["$http"];
 
-    function dashboardAjaxService($http) {
+    function employeesAjaxService($http) {
         var service = {
             getEmployees: getEmployeesAjax,
             getFullEmpInfo: getFullEmpInfoAjax,
-            getCustomers: getCustomersAjax
+            getPositions: getPositionsAjax,
+            deleteEmployee: deleteEmployeeAjax
         };
 
         function getEmployeesAjax(page) {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetEmployeesInfo",
+                url: "/Employee/GetEmployeesInfo",
                 params: { page: page }
             });
 
@@ -24,18 +25,27 @@
         function getFullEmpInfoAjax(employeeId) {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetFullEmployeeInfo",
+                url: "/Employee/GetFullEmployeeInfo",
                 params: { employeeId: employeeId }
             });
 
             return promise;
         }
 
-        function getCustomersAjax(page) {
+        function getPositionsAjax() {
             var promise = $http({
                 method: "GET",
-                url: "/Dashboard/GetCustomers",
-                params: { page: page }
+                url: "/Employee/GetEmployeesPosition"
+            });
+
+            return promise;
+        };
+
+        function deleteEmployeeAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Employee/DeleteEmployee",
+                data: { id: id }
             });
 
             return promise;

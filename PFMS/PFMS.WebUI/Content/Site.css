@@ -93,13 +93,19 @@ form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"]
     margin: 10px;
 }
 
-    #editEmp span, #deleteEmp span:hover {
-        cursor: pointer;
-    }
+#editEmp span, #deleteEmp span:hover {
+    cursor: pointer;
+}
 
-    #editEmp span, #deleteEmp span {
-        margin: 10px;
-    }
+#editEmp span, #deleteEmp span {
+    margin: 10px;
+}
+#closeModal{
+    float:right;
+    font-size: 15pt;
+    cursor:pointer;
+    margin-top:3%;
+}
 
 #confirmDeleteBtnWrapper button {
     width: 80px;

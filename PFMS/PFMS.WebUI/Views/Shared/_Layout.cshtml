@@ -19,7 +19,7 @@
     @RenderSection("HeadScripts", false)
 </head>
 <body ng-app="appModule">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top" style="background-color:white">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,11 +27,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PFMS", "Main", "Dashboard", new { area = ""}, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                    <li>@Html.ActionLink("Dashboard", "Main", "Dashboard")</li>
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Log out", "Logout", "Account")</li>

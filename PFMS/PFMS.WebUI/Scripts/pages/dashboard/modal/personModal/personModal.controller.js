@@ -15,7 +15,7 @@
             employeesAjaxService.getFullEmpInfo(personId)
                 .then(function (response) {
                     $scope.employee = response.data;
-                    $scope.employee.DateOfBirth = new Date($scope.employee.DateOfBirth);
+                    $scope.employee.DateOfBirth = new Date(response.data.DateOfBirth);
                 }, function errorCallback(error) {
                     console.error(error);
                 });

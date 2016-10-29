@@ -38,8 +38,8 @@
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: "/Scripts/pages/dashboard/modal/personModal/personModal.html",
-                controller: "addNewModalController",
-                controllerAs: "addCtrl",
+                controller: "createEmployeeModalController",
+                controllerAs: "createCtrl",
                 //size: "lg",
             });
         }

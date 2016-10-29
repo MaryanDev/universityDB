@@ -36,10 +36,10 @@ namespace PFMS.Repositories.Concrete
             return resultEntity;
         }
 
-        public int Insert(Person entity)
+        public Person Insert(Person entity)
         {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Added;
-            return entity.ID;
+            context.Set<Person>().Add(entity);
+            return entity;
         }
 
         public Person Update(Person entity)

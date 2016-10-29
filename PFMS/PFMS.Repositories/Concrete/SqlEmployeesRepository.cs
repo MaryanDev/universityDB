@@ -76,10 +76,10 @@ namespace PFMS.Repositories.Concrete
             return resultEntity;
         }
 
-        public int Insert(Employee entity)
+        public Employee Insert(Employee entity)
         {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Added;
-            return entity.PersonId;
+            context.Set<Employee>().Add(entity);
+            return entity;
         }
 
         public Employee Update(Employee entity)

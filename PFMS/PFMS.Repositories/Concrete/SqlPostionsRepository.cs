@@ -37,10 +37,10 @@ namespace PFMS.Repositories.Concrete
             return resultEntity;
         }
 
-        public int Insert(EmpPosition entity)
+        public EmpPosition Insert(EmpPosition entity)
         {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Added;
-            return entity.Id;
+            context.Set<EmpPosition>().Add(entity);
+            return entity;
         }
 
         public EmpPosition Update(EmpPosition entity)

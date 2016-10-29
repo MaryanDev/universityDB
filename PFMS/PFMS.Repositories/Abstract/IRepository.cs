@@ -11,7 +11,7 @@ namespace PFMS.Repositories.Abstract
         IEnumerable<TEntity> Get(Func<TEntity, bool> criteria = null);
         TEntity GetSingle(Func<TEntity, bool> criteria);
         void Delete(TEntity entity);
-        int Insert(TEntity entity);
+        TEntity Insert(TEntity entity);
         int GetCountOfRecords(Func<TEntity, bool> criteria = null);
         TEntity Update(TEntity entity);
     }

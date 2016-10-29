@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="modal-body">
-        <form action="{{postUrl}}" method="post">
+        <form id="personModalForm" action="{{postUrl}}" method="post">
             <input type="hidden" name="Id" value="{{employee.Id}}" />
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">FirstName</label>
@@ -34,11 +34,11 @@
                     <option ng-repeat="position in positions">{{position.PositionTitle}}</option>
                 </select>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
                 <label class="text-info col-lg-4 col-md-4">Salary</label>
                 <span class="col-lg-8 col-md-8">{{employee.Salary}}</span>
             </div>
-            <div ng-if="employee.Machines.length !== 0" class="form-group row">
+            <div ng-if="employee.Machines.length !== 0 && mode == 'edit/deleteMode'" class="form-group row">
                 <label class="text-info col-lg-3 col-md-3">
                 Machines
                 </label>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-            <div class="form-group row text-center" ng-if="mode == 'addMode'">
+            <div class="form-group row text-center" ng-if="mode == 'createMode'">
                 <input type="submit" value="Create" class="form-control input-lg btn btn-success" />
             </div>
         </form>

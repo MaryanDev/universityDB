@@ -6,6 +6,7 @@
         </tr>
     </thead>
     <tbody class="text-info">
+        <tr id="addEmployeeRow"><td colspan="2" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
         <tr ng-repeat="employee in employees" ng-click="showDetailsInModal(employee)">
             <td>{{employee.FirstName + " " + employee.LastName}}</td>
             <td>{{employee.Position}}</td>

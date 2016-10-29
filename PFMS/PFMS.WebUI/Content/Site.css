@@ -17,10 +17,6 @@ textarea {
     max-width: 280px;
 }
 
-/*#loginForm {
-    margin-top: 20%;
-    background-color:white;
-}*/
 
 #loginWrapper {
     margin-top: 25%;
@@ -80,9 +76,13 @@ textarea {
 }
 
 span[class="glyphicon glyphicon-pencil"]:hover {
-    /*background-color: lightgray;*/
     cursor: pointer;
     border-radius: 2px;
+}
+
+#addEmployeeRow td:hover{
+    background-color:lightgray;
+    color: lawngreen;
 }
 
 form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"] select {
@@ -110,3 +110,5 @@ form[action="/Employee/UpdateEmployee"], form[action="/Employee/UpdateEmployee"]
 #confirmDeleteBtnWrapper button {
     width: 80px;
 }
+
+

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace PFMS.WebUI.Controllers
 {
     [Authorize]
-    public class EmployeeController : Controller
+    public class PersonController : Controller
     {
         #region Provate fields
         private UnitOfWork _unit;
@@ -18,12 +18,12 @@ namespace PFMS.WebUI.Controllers
         #endregion
 
         #region Constructors
-        public EmployeeController()
+        public PersonController()
         {
             _unit = new UnitOfWork(new PintingFactoryDBEntities());
         }
 
-        public EmployeeController(UnitOfWork unitParam)
+        public PersonController(UnitOfWork unitParam)
         {
             this._unit = unitParam;
         }

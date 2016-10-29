@@ -2,22 +2,29 @@
     angular.module("appModule")
         .controller("createEmployeeModalController", createEmployeeModalController);
 
-    createEmployeeModalController.$inject = ["$scope", "employeesAjaxService", "$uibModalInstance", "$uibModal"];
+    createEmployeeModalController.$inject = ["$scope", "personAjaxService", "$uibModalInstance", "$uibModal", "personMode"];
 
-    function createEmployeeModalController($scope, employeesAjaxService, $uibModalInstance, $uibModal) {
+    function createEmployeeModalController($scope, personAjaxService, $uibModalInstance, $uibModal, personMode) {
         $scope.mode = "createMode";
-        $scope.postUrl = "/Employee/CreateEmployee";
+        $scope.personMode = personMode;
+        $scope.postUrl;
         $scope.positions;
 
         activate();
 
         function activate() {
-            employeesAjaxService.getPositions()
-                .then(function (response) {
-                    $scope.positions = response.data;
-                }, function errorCallback(error) {
-                    console.error(error);
-                });
+            if ($scope.personMode == "employeeMode") {
+                $scope.postUrl = "/Person/CreateEmployee";
+                personAjaxService.getPositions()
+                    .then(function (response) {
+                        $scope.positions = response.data;
+                    }, function errorCallback(error) {
+                        console.error(error);
+                    });
+            }
+            else if ($scope.personMode == "customerMode") {
+                $scope.postUrl = "/Person/CreateCustomer";
+            }
         }
 
         $scope.closeModal = function () {

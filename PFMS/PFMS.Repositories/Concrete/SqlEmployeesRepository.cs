@@ -58,7 +58,7 @@ namespace PFMS.Repositories.Concrete
                     Phone = combined.person.PhoneNumber,
                     Position = position.PositionTitle,
                     Salary = position.Salary,
-                    DateOfBirth = combined.person.DateOfBirth.ToShortDateString(),
+                    DateOfBirth = combined.person.DateOfBirth.ToString("MM/dd/yyyy"),
                     Machines = combined.emp.PrintingMachines.Select(pm => new PrintingMachineDTO
                     {
                         Id = pm.Id,

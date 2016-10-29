@@ -5,6 +5,9 @@
     personModalController.$inject = ["$scope", "$uibModalInstance", "$uibModal", "employeesAjaxService", "personId"];
 
     function personModalController($scope, $uibModalInstance, $uibModal, employeesAjaxService, personId) {
+        $scope.mode = "edit/deleteMode";
+        $scope.postUrl = "/Employee/UpdateEmployee";
+
         $scope.employee = {}
         $scope.positions;
         $scope.isEdit = false;
@@ -15,7 +18,7 @@
             employeesAjaxService.getFullEmpInfo(personId)
                 .then(function (response) {
                     $scope.employee = response.data;
-                    $scope.employee.DateOfBirth = new Date($scope.employee.DateOfBirth);
+                    $scope.employee.DateOfBirth = new Date(response.data.DateOfBirth);
                 }, function errorCallback(error) {
                     console.error(error);
                 });

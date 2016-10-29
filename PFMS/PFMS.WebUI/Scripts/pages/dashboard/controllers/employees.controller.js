@@ -34,6 +34,16 @@
             });
         };
 
+        $scope.showAddDialog = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/personModal/personModal.html",
+                controller: "addNewModalController",
+                controllerAs: "addCtrl",
+                //size: "lg",
+            });
+        }
+
         function activate() {
             employeesAjaxService.getEmployees()
                 .then(function (response) {

@@ -5,6 +5,9 @@
     personModalController.$inject = ["$scope", "$uibModalInstance", "$uibModal", "employeesAjaxService", "personId"];
 
     function personModalController($scope, $uibModalInstance, $uibModal, employeesAjaxService, personId) {
+        $scope.mode = "edit/deleteMode";
+        $scope.postUrl = "/Employee/UpdateEmployee";
+
         $scope.employee = {}
         $scope.positions;
         $scope.isEdit = false;

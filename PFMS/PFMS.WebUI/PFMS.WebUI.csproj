@@ -966,7 +966,7 @@
     <Content Include="Scripts\pages\dashboard\employeesAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.html" />
-    <Content Include="Scripts\pages\dashboard\modal\personModal\addNewModal.controller.js" />
+    <Content Include="Scripts\pages\dashboard\modal\personModal\createEmployeeModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
     <Content Include="Scripts\pages\dashboard\routeConfig.js" />

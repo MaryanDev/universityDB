@@ -77,6 +77,28 @@ namespace PFMS.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult CreateEmployee(EmpFullInfoDTO employeeToCreate)
+        {
+            var createdPerson = _unit.PersonRepo.Insert(new Person
+            {
+                FirstName = employeeToCreate.FirstName,
+                LastName = employeeToCreate.LastName,
+                PhoneNumber = employeeToCreate.Phone,
+                DateOfBirth = Convert.ToDateTime(employeeToCreate.DateOfBirth),
+                Address = employeeToCreate.Address
+            });
+            _unit.Save();
+            _unit.EmployeeRepo.Insert(new Employee
+            {
+                PersonId = createdPerson.ID,
+                PositionId = _unit.PositionRepo.GetSingle(pos => pos.PositionTitle == employeeToCreate.Position).Id
+            });
+            _unit.Save();
+
+            return Redirect("/Dashboard/Main");
+        }
+
+        [HttpPost]
         public void DeleteEmployee(int id)
         {
             var empToDelete = _unit.EmployeeRepo.GetSingle(emp => emp.PersonId == id);

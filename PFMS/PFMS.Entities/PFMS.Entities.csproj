@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractDTO\BaseEmpInfoDTO.cs" />
+    <Compile Include="AbstractDTO\BaseFullEmpInfoDTO.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>PF_Entities.tt</DependentUpon>
     </Compile>

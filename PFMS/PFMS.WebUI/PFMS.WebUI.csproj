@@ -961,16 +961,16 @@
     <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\app.Module.js" />
-    <Content Include="Scripts\pages\dashboard\controllers\employees.controller.js" />
+    <Content Include="Scripts\pages\dashboard\controllers\person.controller.js" />
     <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
-    <Content Include="Scripts\pages\dashboard\employeesAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\personAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.html" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\createEmployeeModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
     <Content Include="Scripts\pages\dashboard\routeConfig.js" />
-    <Content Include="Scripts\pages\dashboard\templates\employees.html" />
+    <Content Include="Scripts\pages\dashboard\templates\persons.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -981,7 +981,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

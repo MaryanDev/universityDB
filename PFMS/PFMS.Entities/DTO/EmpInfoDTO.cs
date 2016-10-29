@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PFMS.Entities.AbstractDTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace PFMS.Entities.DTO
 {
-    public class EmpInfoDTO
+    public class EmpInfoDTO : BaseEmpInfoDTO
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string Position { get; set; }
     }
 }

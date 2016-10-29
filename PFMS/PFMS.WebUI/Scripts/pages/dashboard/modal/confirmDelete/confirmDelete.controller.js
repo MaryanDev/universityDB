@@ -2,10 +2,10 @@
     angular.module("appModule")
         .controller("confirmDeleteController", confirmDeleteController);
 
-    confirmDeleteController.$inject = ["$scope", "$uibModalInstance", "empName"];
+    confirmDeleteController.$inject = ["$scope", "$uibModalInstance", "personName"];
 
-    function confirmDeleteController($scope, $uibModalInstance, empName) {
-        $scope.employeeName = empName;
+    function confirmDeleteController($scope, $uibModalInstance, personName) {
+        $scope.personName = personName;
 
         $scope.ok = function () {
             $uibModalInstance.close(true);

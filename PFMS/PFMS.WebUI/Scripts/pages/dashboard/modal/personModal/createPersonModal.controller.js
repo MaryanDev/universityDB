@@ -40,7 +40,7 @@
                                 console.info('employee created');
                                 var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
                                 notificationInstance.result.then(function () {
-                                    location.assign("/Dashboard/Main/employee");
+                                    location.assign("/Dashboard/Main");
                                 });
                             })
                             .error(function (error) {

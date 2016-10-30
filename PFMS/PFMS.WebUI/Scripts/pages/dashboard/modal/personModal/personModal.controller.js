@@ -63,7 +63,7 @@
                                 notificationModalInstance
                                     .result
                                     .then(function () {
-                                    location.assign("/Dashboard/Main/employee");
+                                    location.assign("/Dashboard/Main");
                                 });
 
                             })
@@ -96,7 +96,7 @@
                                 notificationModalInstance
                                     .result
                                     .then(function () {
-                                    location.assign("/Dashboard/Main/employee");
+                                    location.assign("/Dashboard/Main");
                                 });
 
                             })

@@ -2,10 +2,11 @@
     angular.module("appModule")
         .controller("personController", personController);
 
-    personController.$inject = ["$scope", "$uibModal", "popUpModalService", "personAjaxService", "mode"];
+    personController.$inject = ["$scope","$routeParams", "$uibModal", "popUpModalService", "personAjaxService", "mode"];
 
-    function personController($scope, $uibModal, popUpModalService, personAjaxService, mode) {
+    function personController($scope, $routeParams, $uibModal, popUpModalService, personAjaxService, mode) {
         $scope.mode = mode;
+        $scope.personId;
         console.log(mode);
 
         $scope.persons;
@@ -36,8 +37,16 @@
         }
 
         function activate() {
+            $scope.personId = parseInt($routeParams.id) || null;
+            console.log($routeParams.id + " " + $scope.personId);
+            if ($routeParams.id !== undefined && $scope.personId === null) {
+                location.assign("/");
+            }
+            else if ((!Number.isInteger($scope.personId) || $scope.personId <= 0) && $scope.personId !== null) {
+                location.assign("/");
+            }
             if ($scope.mode == "employeeMode") {
-                personAjaxService.getEmployees()
+                personAjaxService.getEmployees(1, $scope.personId)
                     .then(function (response) {
                         initData(response);
                     }, function errorCallback(error) {

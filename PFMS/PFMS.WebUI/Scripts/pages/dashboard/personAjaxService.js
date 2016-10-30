@@ -14,11 +14,11 @@
             deleteEmployee: deleteEmployeeAjax
         };
 
-        function getEmployeesAjax(page) {
+        function getEmployeesAjax(page, id) {
             var promise = $http({
                 method: "GET",
                 url: "/Person/GetEmployeesInfo",
-                params: { page: page }
+                params: { page: page, personId: id }
             });
 
             return promise;

@@ -31,9 +31,12 @@ namespace PFMS.WebUI.Controllers
         #endregion
 
         #region JsonActionMethods
-        public JsonResult GetEmployeesInfo(int page = 1)
+        public JsonResult GetEmployeesInfo(int page = 1, int? personId = null)
         {
-            var result = _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
+            var result = personId == null ? 
+                _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize)
+                :
+                _unit.EmployeeRepo.GetSimpleEmpInfo(emp => emp.PersonId == personId);
             var count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
             return Json(new { allPages = count, employees = result, currentPage = page }, JsonRequestBehavior.AllowGet);
         }

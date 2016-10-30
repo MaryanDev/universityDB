@@ -15,6 +15,7 @@
 
         activate();
 
+        //ACTIVATE
         function activate() {
             if ($scope.personMode == "employeeMode") {
                 //$scope.postUrl = "/Person/UpdateEmployee";
@@ -40,39 +41,38 @@
             }
         }
 
+        //CLOSE MODAL
         $scope.closeModal = function () {
             $uibModalInstance.close();
         };
 
+        //UPDATE PERSON
         $scope.modifyPerson = function (person) {
-            if (personMode == "employeeMode") {
-                personAjaxService.updateEmployee(person)
-                    .success(function (response) {
-                        console.log('emplyee updated');
-                        location.assign("/Dashboard/Main/employee");
-                    })
-                    .error(function (error) {
-                        console.error(error);
-                    });
-            }
-            else if (personMode == "customerMode") {
-                //todo
-            }
+            var modalInstance = openConfirmModal($scope.person.FirstName + " " + $scope.person.LastName, "updateMode");
+
+            modalInstance.result
+                .then(function () {
+                    if (personMode == "employeeMode") {
+                        personAjaxService.updateEmployee(person)
+                            .success(function (response) {
+                                console.log('emplyee updated');
+                                location.assign("/Dashboard/Main/employee");
+                            })
+                            .error(function (error) {
+                                console.error(error);
+                            });
+                    }
+                    else if (personMode == "customerMode") {
+                        //todo
+                    }
+                }, function () {
+                    return;
+                });
         }
 
+        //DELETE PERSON
         $scope.deletePerson = function (id) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: "/Scripts/pages/dashboard/modal/confirmDelete/confirmDelete.html",
-                controller: "confirmDeleteController",
-                controllerAs: "cdCtrl",
-                size: "sm",
-                resolve: {
-                    personName: function () {
-                        return $scope.person.FirstName + " " + $scope.person.LastName;
-                    }
-                }
-            });
+            var modalInstance = openConfirmModal($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
 
             modalInstance.result
                 .then(function () {
@@ -92,7 +92,26 @@
                 }, function () {
                     return;
                 });
-            
         };
+
+        function openConfirmModal(name, mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/confirmModal/confirmModal.html",
+                controller: "confirmModalController",
+                controllerAs: "cdCtrl",
+                size: "sm",
+                resolve: {
+                    personName: function () {
+                        return name;
+                    },
+                    mode: function () {
+                        return mode;
+                    }
+                }
+            });
+
+            return modalInstance;
+        }
     };
 })(angular);

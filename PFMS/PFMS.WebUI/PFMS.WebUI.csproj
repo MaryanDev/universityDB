@@ -964,8 +964,8 @@
     <Content Include="Scripts\pages\dashboard\controllers\person.controller.js" />
     <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
     <Content Include="Scripts\pages\dashboard\personAjaxService.js" />
-    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.controller.js" />
-    <Content Include="Scripts\pages\dashboard\modal\confirmDelete\confirmDelete.html" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmModal\confirmModal.controller.js" />
+    <Content Include="Scripts\pages\dashboard\modal\confirmModal\confirmModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\createPersonModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />

@@ -110,5 +110,16 @@ span[class="glyphicon glyphicon-pencil"]:hover {
 #confirmDeleteBtnWrapper button {
     width: 80px;
 }
-
+.deleteConfirm{
+    background-color:red;
+    color: white;
+}
+.updateConfirm{
+    background-color: lightblue;
+    color: white;
+}
+.createConfirm{
+    background-color: lightgreen;
+    color: white;
+}
 

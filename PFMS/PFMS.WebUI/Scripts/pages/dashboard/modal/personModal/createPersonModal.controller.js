@@ -28,19 +28,40 @@
         }
 
         $scope.modifyPerson = function (person) {
-            if (personMode == "employeeMode") {
-                personAjaxService.createEmployee(person)
-                    .success(function (response) {
-                        console.info('employee created');
-                        location.assign("/Dashboard/Main/employee");
-                    })
-                    .error(function (error) {
-                        console.error(error);
-                    })
-            }
-            else if (personMode == "customerMode") {
-                //todo
-            }
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/confirmModal/confirmModal.html",
+                controller: "confirmModalController",
+                controllerAs: "cdCtrl",
+                size: "sm",
+                resolve: {
+                    personName: function () {
+                        return $scope.person.FirstName + " " + $scope.person.LastName;
+                    },
+                    mode: function () {
+                        return "createMode";
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function () {
+                    if (personMode == "employeeMode") {
+                        personAjaxService.createEmployee(person)
+                            .success(function (response) {
+                                console.info('employee created');
+                                location.assign("/Dashboard/Main/employee");
+                            })
+                            .error(function (error) {
+                                console.error(error);
+                            })
+                    }
+                    else if (personMode == "customerMode") {
+                        //todo
+                    }
+                }, function () {
+                    return;
+                });
         }
 
         $scope.closeModal = function () {

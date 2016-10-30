@@ -14,7 +14,7 @@
 
         function activate() {
             if ($scope.personMode == "employeeMode") {
-                $scope.postUrl = "/Person/CreateEmployee";
+                //$scope.postUrl = "/Person/CreateEmployee";
                 personAjaxService.getPositions()
                     .then(function (response) {
                         $scope.positions = response.data;
@@ -23,7 +23,23 @@
                     });
             }
             else if ($scope.personMode == "customerMode") {
-                $scope.postUrl = "/Person/CreateCustomer";
+                //$scope.postUrl = "/Person/CreateCustomer";
+            }
+        }
+
+        $scope.modifyPerson = function (person) {
+            if (personMode == "employeeMode") {
+                personAjaxService.createEmployee(person)
+                    .success(function (response) {
+                        console.info('employee created');
+                        location.assign("/Dashboard/Main/employee");
+                    })
+                    .error(function (error) {
+                        console.error(error);
+                    })
+            }
+            else if (personMode == "customerMode") {
+                //todo
             }
         }
 

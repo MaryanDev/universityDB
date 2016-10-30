@@ -17,7 +17,7 @@
 
         function activate() {
             if ($scope.personMode == "employeeMode") {
-                $scope.postUrl = "/Person/UpdateEmployee";
+                //$scope.postUrl = "/Person/UpdateEmployee";
 
                 personAjaxService.getFullEmpInfo(personId)
                     .then(function (response) {
@@ -34,8 +34,8 @@
                         console.error(error);
                     });
             }
-            if ($scope.personMode == "customerMode") {
-                $scope.postUrl = "/Person/UpdateCustomer";
+            else if ($scope.personMode == "customerMode") {
+                //$scope.postUrl = "/Person/UpdateCustomer";
                 //todo
             }
         }
@@ -43,6 +43,22 @@
         $scope.closeModal = function () {
             $uibModalInstance.close();
         };
+
+        $scope.modifyPerson = function (person) {
+            if (personMode == "employeeMode") {
+                personAjaxService.updateEmployee(person)
+                    .success(function (response) {
+                        console.log('emplyee updated');
+                        location.assign("/Dashboard/Main/employee");
+                    })
+                    .error(function (error) {
+                        console.error(error);
+                    });
+            }
+            else if (personMode == "customerMode") {
+                //todo
+            }
+        }
 
         $scope.deletePerson = function (id) {
             var modalInstance = $uibModal.open({

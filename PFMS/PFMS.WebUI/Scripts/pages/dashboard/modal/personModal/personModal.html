@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="modal-body">
-        <form id="personModalForm" action="{{postUrl}}" method="post">
+        <form id="personModalForm" ng-submit="modifyPerson(person)">
             <input type="hidden" name="Id" value="{{person.Id}}" />
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">FirstName</label>

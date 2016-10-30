@@ -9,6 +9,8 @@
             getEmployees: getEmployeesAjax,
             getFullEmpInfo: getFullEmpInfoAjax,
             getPositions: getPositionsAjax,
+            updateEmployee: updateEmployeeAjax,
+            createEmployee: createEmployeeAjax,
             deleteEmployee: deleteEmployeeAjax
         };
 
@@ -40,6 +42,26 @@
 
             return promise;
         };
+
+        function updateEmployeeAjax(employee) {
+            var promise = $http({
+                method: "POST",
+                url: "/Person/UpdateEmployee",
+                data: { empToUpdate: employee }
+            });
+
+            return promise;
+        };
+
+        function createEmployeeAjax(employee) {
+            var promise = $http({
+                method: "POST",
+                url: "/Person/CreateEmployee",
+                data: { employeeToCreate: employee }
+            });
+
+            return promise;
+        }
 
         function deleteEmployeeAjax(id) {
             var promise = $http({

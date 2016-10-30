@@ -4,6 +4,7 @@ using PFMS.Repositories.Concrete.UoW;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -73,7 +74,7 @@ namespace PFMS.WebUI.Controllers
             });
             _unit.Save();
 
-            return Redirect("/Dashboard/Main");
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         [HttpPost]

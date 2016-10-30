@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PFMS.Entities.AbstractDTO
 {
-    public abstract class BaseFullEmpInfoDTO : BaseEmpInfoDTO
+    public abstract class BaseFullPersonInfoDTO : BasePersonInfoDTO
     {
         public string Phone { get; set; }
         public string Address { get; set; }

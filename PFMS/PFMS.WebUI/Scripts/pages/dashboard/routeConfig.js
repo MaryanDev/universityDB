@@ -13,6 +13,17 @@
                         }
                     }
                 })
+                .
+                when("/employees/:id", {
+                    templateUrl: "/Scripts/pages/dashboard/templates/persons.html",
+                    controller: "personController",
+                    controllerAs: "emp",
+                    resolve: {
+                        mode: function () {
+                            return "employeeMode";
+                        }
+                    }
+                })
                 .when("/customers", {
                     templateUrl: "/Scripts/pages/dashboard/templates/persons.html",
                     controller: "personController",

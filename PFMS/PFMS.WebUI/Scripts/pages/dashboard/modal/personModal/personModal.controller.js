@@ -2,9 +2,9 @@
     angular.module("appModule")
         .controller("personModalController", personModalController);
 
-    personModalController.$inject = ["$scope", "$uibModalInstance", "$uibModal", "personAjaxService", "personId", "personMode"];
+    personModalController.$inject = ["$scope", "$uibModalInstance", "personAjaxService", "popUpModalService", "personId", "personMode"];
 
-    function personModalController($scope, $uibModalInstance, $uibModal, personAjaxService, personId, personMode) {
+    function personModalController($scope, $uibModalInstance, personAjaxService, popUpModalService, personId, personMode) {
         $scope.mode = "edit/deleteMode";
         $scope.personMode = personMode;
         $scope.postUrl;
@@ -15,9 +15,10 @@
 
         activate();
 
+        //ACTIVATE
         function activate() {
             if ($scope.personMode == "employeeMode") {
-                $scope.postUrl = "/Person/UpdateEmployee";
+                //$scope.postUrl = "/Person/UpdateEmployee";
 
                 personAjaxService.getFullEmpInfo(personId)
                     .then(function (response) {
@@ -34,29 +35,54 @@
                         console.error(error);
                     });
             }
-            if ($scope.personMode == "customerMode") {
-                $scope.postUrl = "/Person/UpdateCustomer";
+            else if ($scope.personMode == "customerMode") {
+                //$scope.postUrl = "/Person/UpdateCustomer";
                 //todo
             }
         }
 
+        //CLOSE MODAL
         $scope.closeModal = function () {
             $uibModalInstance.close();
         };
 
-        $scope.deletePerson = function (id) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: "/Scripts/pages/dashboard/modal/confirmDelete/confirmDelete.html",
-                controller: "confirmDeleteController",
-                controllerAs: "cdCtrl",
-                size: "sm",
-                resolve: {
-                    personName: function () {
-                        return $scope.person.FirstName + " " + $scope.person.LastName;
+        //UPDATE PERSON
+        $scope.modifyPerson = function (person) {
+            var modalInstance
+                = popUpModalService.openConfirm(person.FirstName + " " + person.LastName, "updateMode");
+
+            modalInstance.result
+                .then(function () {
+                    if (personMode == "employeeMode") {
+                        personAjaxService.updateEmployee(person)
+                            .success(function (response) {
+                                console.log('emplyee updated');
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification(person.FirstName + " " + person.LastName, "updateMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                    location.assign("/Dashboard/Main/employee");
+                                });
+
+                            })
+                            .error(function (error) {
+                                console.error(error);
+                            });
                     }
-                }
-            });
+                    else if (personMode == "customerMode") {
+                        //todo
+                    }
+                }, function () {
+                    return;
+                });
+        }
+
+        //DELETE PERSON
+        $scope.deletePerson = function (id) {
+            var modalInstance =
+                popUpModalService.openConfirm($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
 
             modalInstance.result
                 .then(function () {
@@ -64,7 +90,15 @@
                         personAjaxService.deleteEmployee(id)
                             .success(function (response) {
                                 console.log('success');
-                                location.assign("/Dashboard/Main");
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                    location.assign("/Dashboard/Main/employee");
+                                });
+
                             })
                             .error(function (error) {
                                 console.error(error);
@@ -76,7 +110,6 @@
                 }, function () {
                     return;
                 });
-            
         };
     };
 })(angular);

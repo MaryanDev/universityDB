@@ -2,9 +2,9 @@
     angular.module("appModule")
         .controller("personModalController", personModalController);
 
-    personModalController.$inject = ["$scope", "$uibModalInstance", "$uibModal", "personAjaxService", "personId", "personMode"];
+    personModalController.$inject = ["$scope", "$uibModalInstance", "personAjaxService", "popUpModalService", "personId", "personMode"];
 
-    function personModalController($scope, $uibModalInstance, $uibModal, personAjaxService, personId, personMode) {
+    function personModalController($scope, $uibModalInstance, personAjaxService, popUpModalService, personId, personMode) {
         $scope.mode = "edit/deleteMode";
         $scope.personMode = personMode;
         $scope.postUrl;
@@ -48,7 +48,8 @@
 
         //UPDATE PERSON
         $scope.modifyPerson = function (person) {
-            var modalInstance = openConfirmModal($scope.person.FirstName + " " + $scope.person.LastName, "updateMode");
+            var modalInstance
+                = popUpModalService.openConfirm(person.FirstName + " " + person.LastName, "updateMode");
 
             modalInstance.result
                 .then(function () {
@@ -56,7 +57,15 @@
                         personAjaxService.updateEmployee(person)
                             .success(function (response) {
                                 console.log('emplyee updated');
-                                location.assign("/Dashboard/Main/employee");
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification(person.FirstName + " " + person.LastName, "updateMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                    location.assign("/Dashboard/Main/employee");
+                                });
+
                             })
                             .error(function (error) {
                                 console.error(error);
@@ -72,7 +81,8 @@
 
         //DELETE PERSON
         $scope.deletePerson = function (id) {
-            var modalInstance = openConfirmModal($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
+            var modalInstance =
+                popUpModalService.openConfirm($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
 
             modalInstance.result
                 .then(function () {
@@ -80,7 +90,15 @@
                         personAjaxService.deleteEmployee(id)
                             .success(function (response) {
                                 console.log('success');
-                                location.assign("/Dashboard/Main");
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                    location.assign("/Dashboard/Main/employee");
+                                });
+
                             })
                             .error(function (error) {
                                 console.error(error);
@@ -93,25 +111,5 @@
                     return;
                 });
         };
-
-        function openConfirmModal(name, mode) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: "/Scripts/pages/dashboard/modal/confirmModal/confirmModal.html",
-                controller: "confirmModalController",
-                controllerAs: "cdCtrl",
-                size: "sm",
-                resolve: {
-                    personName: function () {
-                        return name;
-                    },
-                    mode: function () {
-                        return mode;
-                    }
-                }
-            });
-
-            return modalInstance;
-        }
     };
 })(angular);

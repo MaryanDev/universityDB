@@ -2,9 +2,9 @@
     angular.module("appModule")
         .controller("createEmployeeModalController", createEmployeeModalController);
 
-    createEmployeeModalController.$inject = ["$scope", "personAjaxService", "$uibModalInstance", "$uibModal", "personMode"];
+    createEmployeeModalController.$inject = ["$scope", "personAjaxService", "popUpModalService", "$uibModalInstance", "personMode"];
 
-    function createEmployeeModalController($scope, personAjaxService, $uibModalInstance, $uibModal, personMode) {
+    function createEmployeeModalController($scope, personAjaxService, popUpModalService, $uibModalInstance, personMode) {
         $scope.mode = "createMode";
         $scope.personMode = personMode;
         $scope.postUrl;
@@ -12,6 +12,7 @@
 
         activate();
 
+        //ACTIVATE
         function activate() {
             if ($scope.personMode == "employeeMode") {
                 //$scope.postUrl = "/Person/CreateEmployee";
@@ -27,22 +28,9 @@
             }
         }
 
+        //CREATE PERSON
         $scope.modifyPerson = function (person) {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: "/Scripts/pages/dashboard/modal/confirmModal/confirmModal.html",
-                controller: "confirmModalController",
-                controllerAs: "cdCtrl",
-                size: "sm",
-                resolve: {
-                    personName: function () {
-                        return $scope.person.FirstName + " " + $scope.person.LastName;
-                    },
-                    mode: function () {
-                        return "createMode";
-                    }
-                }
-            });
+            var modalInstance = popUpModalService.openConfirm(person.FirstName + " " + person.LastName, "createMode");
 
             modalInstance.result
                 .then(function () {
@@ -50,7 +38,10 @@
                         personAjaxService.createEmployee(person)
                             .success(function (response) {
                                 console.info('employee created');
-                                location.assign("/Dashboard/Main/employee");
+                                var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
+                                notificationInstance.result.then(function () {
+                                    location.assign("/Dashboard/Main/employee");
+                                });
                             })
                             .error(function (error) {
                                 console.error(error);
@@ -64,6 +55,7 @@
                 });
         }
 
+        //CLOSE MODAL
         $scope.closeModal = function () {
             $uibModalInstance.close();
         };

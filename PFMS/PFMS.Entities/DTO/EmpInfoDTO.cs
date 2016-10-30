@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PFMS.Entities.DTO
 {
-    public class EmpInfoDTO : BaseEmpInfoDTO
+    public class EmpInfoDTO : BasePersonInfoDTO
     {
         public string Position { get; set; }
     }

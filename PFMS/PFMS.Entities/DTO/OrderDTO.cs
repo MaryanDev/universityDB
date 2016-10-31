@@ -10,5 +10,6 @@ namespace PFMS.Entities.DTO
     {
         public int Id { get; set; }
         public string ProductTitle { get; set; }
+        public int Quantity { get; set; }
     }
 }

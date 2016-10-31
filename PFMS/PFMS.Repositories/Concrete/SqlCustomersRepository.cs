@@ -68,5 +68,29 @@ namespace PFMS.Repositories.Concrete
             context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             return entity;
         }
+
+        public CustomerFullInfoDTO GetFullCustomerInfo(Func<Customer, bool> criteria)
+        {
+            var resultEntity = context.Customers.Where(criteria).Join(context.Persons, cus => cus.PersonId, person => person.ID, (cus, person) => new { cus, person })
+                .Join(context.Orders, combined => combined.cus.PersonId, order => order.CustomerId, (combined, order) => new { combined, order })
+                .Join(context.Products, combined1 => combined1.order.ProductId, prod => prod.Id, (combined1, prod) => new CustomerFullInfoDTO
+                {
+                    Id = combined1.combined.cus.PersonId,
+                    FirstName = combined1.combined.person.FirstName,
+                    LastName = combined1.combined.person.LastName,
+                    DateOfBirth = combined1.combined.person.DateOfBirth.ToString("MM/dd/yyyy"),
+                    Phone = combined1.combined.person.PhoneNumber,
+                    Address = combined1.combined.person.Address,
+                    AccountNumber = combined1.combined.cus.AccountNumber,
+                    Orders = combined1.combined.cus.Orders.Select(pr => new OrderDTO
+                    {
+                        Id = prod.Id,
+                        ProductTitle = prod.Title,
+                        Quantity = combined1.order.Quantity
+                    })
+                });
+
+            return resultEntity.FirstOrDefault();
+        }
     }
 }

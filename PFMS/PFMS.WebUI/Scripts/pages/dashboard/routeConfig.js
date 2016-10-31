@@ -33,6 +33,15 @@
                         }
                     }
                 })
+                .when("/customers/:id", {
+                    templateUrl: "/Scripts/pages/dashboard/templates/persons.html",
+                    controller: "personController",
+                    resolve: {
+                        mode: function () {
+                            return "customerMode";
+                        }
+                    }
+                })
                 .otherwise({ redirectTo: "/employees" });
         });
 })(angular);

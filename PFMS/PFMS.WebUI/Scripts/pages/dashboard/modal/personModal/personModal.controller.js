@@ -39,6 +39,14 @@
             }
             else if ($scope.personMode == "customerMode") {
                 //$scope.postUrl = "/Person/UpdateCustomer";
+                personAjaxService.getFullCustomerInfo(personId)
+                    .then(function (response) {
+                        $scope.person = response.data;
+                        $scope.person.DateOfBirth = new Date(response.data.DateOfBirth);
+                        $scope.isLoading = false;
+                    }, function errorCallback(error) {
+                        console.error(error);
+                    });
                 //todo
             }
         }

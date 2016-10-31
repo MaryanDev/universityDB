@@ -2,7 +2,7 @@
     angular.module("appModule")
         .controller("personController", personController);
 
-    personController.$inject = ["$scope","$routeParams", "$uibModal", "popUpModalService", "personAjaxService", "mode"];
+    personController.$inject = ["$scope", "$routeParams", "$uibModal", "popUpModalService", "personAjaxService", "mode"];
 
     function personController($scope, $routeParams, $uibModal, popUpModalService, personAjaxService, mode) {
         $scope.isLoading = true;
@@ -48,10 +48,21 @@
             $scope.personId = parseInt($routeParams.id) || null;
             console.log($routeParams.id + " " + $scope.personId);
             if ($routeParams.id !== undefined && $scope.personId === null) {
-                location.assign("/");
+                if ($scope.mode == "employeeMode") {
+                    location.assign("/");
+                }
+                else if ($scope.mode == "customerMode") {
+                    location.assign("/Dashboard/Main/#/customers");
+                }
+
             }
             else if ((!Number.isInteger($scope.personId) || $scope.personId <= 0) && $scope.personId !== null) {
-                location.assign("/");
+                if ($scope.mode == "employeeMode") {
+                    location.assign("/");
+                }
+                else if ($scope.mode == "customerMode") {
+                    location.assign("/Dashboard/Main/#/customers");
+                }
             }
             if ($scope.mode == "employeeMode") {
                 personAjaxService.getEmployees(1, $scope.personId)
@@ -73,7 +84,7 @@
         };
 
         function initData(response) {
-            $scope.persons = $scope.mode == "employeeMode" ?  response.data.employees : response.data.customers;
+            $scope.persons = $scope.mode == "employeeMode" ? response.data.employees : response.data.customers;
             $scope.pagination.allPages = new Array(response.data.allPages);
             $scope.pagination.currentPage = response.data.currentPage;
             $scope.isLoading = false;

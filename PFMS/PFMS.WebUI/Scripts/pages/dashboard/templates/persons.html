@@ -89,7 +89,7 @@
             <tr ng-repeat="person in persons" ng-click="showDetailsInModal(person)">
                 <td>{{person.FirstName + " " + person.LastName}}</td>
                 <td ng-if="mode == 'employeeMode'">{{person.Position}}</td>
-                <td ng-if="mode == 'customerMode'">{{person.Account}}</td>
+                <td ng-if="mode == 'customerMode'">{{person.AccountNumber}}</td>
             </tr>
         </tbody>
     </table>

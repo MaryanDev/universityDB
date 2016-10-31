@@ -51,11 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractDTO\BaseEmpInfoDTO.cs" />
-    <Compile Include="AbstractDTO\BaseFullEmpInfoDTO.cs" />
+    <Compile Include="AbstractDTO\BasePersonInfoDTO.cs" />
+    <Compile Include="AbstractDTO\BaseFullPersonInfoDTO.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>PF_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\CustomerInfoDTO.cs" />
     <Compile Include="DTO\EmpFullInfoDTO.cs" />
     <Compile Include="DTO\EmpInfoDTO.cs" />
     <Compile Include="DTO\PrintingMachineDTO.cs" />

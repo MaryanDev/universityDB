@@ -26,6 +26,12 @@
                     });
             }
             if ($scope.mode == "customerMode") {
+                personAjaxService.getCustomers(page)
+                    .then(function (response) {
+                        initData(response);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    });
                 //todo
             }
         };
@@ -57,6 +63,12 @@
             }
             if ($scope.mode == "customerMode") {
                 //todo calll customers methods
+                personAjaxService.getCustomers(1, $scope.personId)
+                    .then(function (response) {
+                        initData(response);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    });
             }
         };
 

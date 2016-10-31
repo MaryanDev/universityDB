@@ -11,7 +11,9 @@
             getPositions: getPositionsAjax,
             updateEmployee: updateEmployeeAjax,
             createEmployee: createEmployeeAjax,
-            deleteEmployee: deleteEmployeeAjax
+            deleteEmployee: deleteEmployeeAjax,
+
+            getCustomers: getCustomersAjax
         };
 
         function getEmployeesAjax(page, id) {
@@ -72,6 +74,16 @@
 
             return promise;
         };
+
+        function getCustomersAjax(page, id) {
+            var promise = $http({
+                method: "GET",
+                url: "/Person/GetCustomersInfo",
+                params: { page: page, personId: id }
+            });
+
+            return promise;
+        }
         return service;
     }
 })(angular);

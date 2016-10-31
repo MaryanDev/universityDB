@@ -44,8 +44,8 @@ namespace PFMS.Repositories.Concrete
                 Position = emp.EmpPosition.PositionTitle
             });
             return resultEntities;
-
         }
+
         public EmpFullInfoDTO GetFullEmpInfo(Func<Employee, bool> criteria)
         {
             var resultEntities = context.Employees.Where(criteria).Join(context.Persons, emp => emp.PersonId, person => person.ID, (emp, person) => new { emp, person })

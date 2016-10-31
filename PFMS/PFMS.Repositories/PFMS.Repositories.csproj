@@ -54,6 +54,7 @@
     <Compile Include="Abstract\IEmployeesRepository.cs" />
     <Compile Include="Abstract\IPersonRepository.cs" />
     <Compile Include="Abstract\IPositionRepository.cs" />
+    <Compile Include="Abstract\IProductsRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\SqlCustomersRepository.cs" />
     <Compile Include="Concrete\SqlEmployeesRepository.cs" />

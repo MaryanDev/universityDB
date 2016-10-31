@@ -56,9 +56,11 @@
     <Compile Include="Customer.cs">
       <DependentUpon>PF_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\CustomerFullInfoDTO.cs" />
     <Compile Include="DTO\CustomerInfoDTO.cs" />
     <Compile Include="DTO\EmpFullInfoDTO.cs" />
     <Compile Include="DTO\EmpInfoDTO.cs" />
+    <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\PrintingMachineDTO.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>PF_Entities.tt</DependentUpon>

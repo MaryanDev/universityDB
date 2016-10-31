@@ -17,6 +17,7 @@ namespace PFMS.Repositories.Concrete.UoW
         private IPersonRepository _personRepo;
         private IEmployeesRepository _employeeRepo;
         private IPositionRepository _positionRepo;
+        private ICustomersRepository _customerRepo;
         #endregion
 
         #region Constructors
@@ -67,6 +68,18 @@ namespace PFMS.Repositories.Concrete.UoW
                     _positionRepo = new SqlPostionsRepository(_context);
                 }
                 return _positionRepo;
+            }
+        }
+
+        public ICustomersRepository CustomerRepo
+        {
+            get
+            {
+                if(_customerRepo == null)
+                {
+                    _customerRepo = new SqlCustomersRepository(_context);
+                }
+                return _customerRepo;
             }
         }
         #endregion

@@ -5,6 +5,7 @@
     personModalController.$inject = ["$scope", "$uibModalInstance", "personAjaxService", "popUpModalService", "personId", "personMode"];
 
     function personModalController($scope, $uibModalInstance, personAjaxService, popUpModalService, personId, personMode) {
+        $scope.isLoading = true;
         $scope.mode = "edit/deleteMode";
         $scope.personMode = personMode;
         $scope.postUrl;
@@ -24,6 +25,7 @@
                     .then(function (response) {
                         $scope.person = response.data;
                         $scope.person.DateOfBirth = new Date(response.data.DateOfBirth);
+                        $scope.isLoading = false;
                     }, function errorCallback(error) {
                         console.error(error);
                     });

@@ -30,14 +30,21 @@ namespace PFMS.WebUI.Controllers
         }
         #endregion
 
-        #region JsonActionMethods
+        #region Json Employee Methods
         public JsonResult GetEmployeesInfo(int page = 1, int? personId = null)
         {
-            var result = personId == null ? 
-                _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize)
-                :
-                _unit.EmployeeRepo.GetSimpleEmpInfo(emp => emp.PersonId == personId);
-            var count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
+            IEnumerable<EmpInfoDTO> result;
+            int count;
+            if(personId == null)
+            {
+                result = _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
+                count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
+            }
+            else
+            {
+                result = _unit.EmployeeRepo.GetSimpleEmpInfo(emp => emp.PersonId == personId);
+                count = 0;
+            }
             return Json(new { allPages = count, employees = result, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
 
@@ -115,6 +122,24 @@ namespace PFMS.WebUI.Controllers
         }
         #endregion
 
+        #region Json Customers Methods
+        public JsonResult GetCustomersInfo(int page = 1, int? personId = null)
+        {
+            IEnumerable<CustomerInfoDTO> result;
+            int count;
+            if (personId == null)
+            {
+                result = _unit.CustomerRepo.GetSimpleCustomerInfo().Skip((page - 1) * pageSize).Take(pageSize);
+                count = GetCountOfPages(_unit.CustomerRepo.GetCountOfRecords(), pageSize);
+            }
+            else
+            {
+                result = _unit.CustomerRepo.GetSimpleCustomerInfo(cus => cus.PersonId == personId);
+                count = 0;
+            }
+            return Json(new { allPages = count, customers = result, currentPage = page }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         #region Helpers
         private int GetCountOfPages(int allPages, int size)
         {

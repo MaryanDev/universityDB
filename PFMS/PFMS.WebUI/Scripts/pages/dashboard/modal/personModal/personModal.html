@@ -1,4 +1,81 @@
-﻿<div class="">
+﻿<div ng-if="isLoading">
+    <div class="kart-loader">
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+    </div><div class="kart-loader">
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+        <div class="sheath">
+            <div class="segment"></div>
+        </div>
+    </div>
+</div>
+<div class="">
     <div class="modal-header text-center">
         <div class="row">
             <h3 ng-if="personMode == 'employeeMode'" class="text-info col-lg-10">Employee Details</h3>
@@ -6,7 +83,7 @@
             <span id="closeModal" ng-click="closeModal()" class="col-lg-2 glyphicon glyphicon-remove"></span>
         </div>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" ng-if="!isLoading">
         <form id="personModalForm" ng-submit="modifyPerson(person)">
             <input type="hidden" name="Id" value="{{person.Id}}" />
             <div class="form-group row">

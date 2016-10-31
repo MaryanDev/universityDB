@@ -5,6 +5,7 @@
     personController.$inject = ["$scope","$routeParams", "$uibModal", "popUpModalService", "personAjaxService", "mode"];
 
     function personController($scope, $routeParams, $uibModal, popUpModalService, personAjaxService, mode) {
+        $scope.isLoading = true;
         $scope.mode = mode;
         $scope.personId;
         console.log(mode);
@@ -15,6 +16,7 @@
         activate();
 
         $scope.getPersons = function (page) {
+            $scope.isLoading = true;
             if ($scope.mode == "employeeMode") {
                 personAjaxService.getEmployees(page)
                     .then(function (response) {
@@ -62,6 +64,7 @@
             $scope.persons = $scope.mode == "employeeMode" ?  response.data.employees : response.data.customers;
             $scope.pagination.allPages = new Array(response.data.allPages);
             $scope.pagination.currentPage = response.data.currentPage;
+            $scope.isLoading = false;
         };
     };
 })(angular);

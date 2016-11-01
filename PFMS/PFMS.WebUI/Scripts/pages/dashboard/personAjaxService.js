@@ -14,7 +14,9 @@
             deleteEmployee: deleteEmployeeAjax,
 
             getCustomers: getCustomersAjax,
-            getFullCustomerInfo: getFullCustomerInfoAjax
+            getFullCustomerInfo: getFullCustomerInfoAjax,
+            createCustomer: createCustomerAjax,
+            deleteCustomer: deleteCustomerAjax
         };
 
         function getEmployeesAjax(page, id) {
@@ -91,6 +93,26 @@
                 method: "GET",
                 url: "/Person/GetFullCustomerInfo",
                 params: { customerId: customerId }
+            });
+
+            return promise;
+        }
+
+        function createCustomerAjax(customer) {
+            var promise = $http({
+                method: "POST",
+                url: "/Person/CreateCustomer",
+                data: { customerToCreate: customer }
+            });
+
+            return promise;
+        }
+
+        function deleteCustomerAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Person/DeleteCustomer",
+                data: { id: id }
             });
 
             return promise;

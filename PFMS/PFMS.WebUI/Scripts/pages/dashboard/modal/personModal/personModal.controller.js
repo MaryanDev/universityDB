@@ -154,7 +154,24 @@
                                 console.error(error);
                             });
                     }
-                    if ($scope.personMode == "customerMode") {
+                    else if ($scope.personMode == "customerMode") {
+                        personAjaxService.deleteCustomer(id)
+                            .success(function (response) {
+                                console.log('success');
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification($scope.person.FirstName + " " + $scope.person.LastName, "deleteMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                        location.assign("/Dashboard/Main#/customers");
+                                    });
+
+                            })
+                            .error(function (error) {
+                                //todo show notification that deleting was not successfull
+                                console.error(error);
+                            });
                         //todo
                     }
                 }, function () {

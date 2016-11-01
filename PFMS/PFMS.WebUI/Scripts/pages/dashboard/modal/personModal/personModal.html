@@ -89,7 +89,7 @@
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">FirstName</label>
                 <div class="text-info col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ dangerInput: !validation.isFirstNameValid }" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
                     <span class="text-danger" ng-if="!validation.isFirstNameValid">Invalid first name</span>
                 </div>
             </div>

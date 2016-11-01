@@ -14,7 +14,7 @@
         function validateName(name) {
             var regExp = /^[A-Za-zА-Яа-яІі]+$/;
             var withoutNumbers = regExp.test(name);
-            if (name.length < 2 || name.length > 50 || !withoutNumbers || name === undefined || name === null)
+            if (name === undefined || name === null || name.length < 2 || name.length > 50 || !withoutNumbers)
                 return false;
             else {
                 return true;
@@ -23,7 +23,7 @@
 
         function validateDate(dateToValidate) {
             var date = new Date(dateToValidate);
-            if (date > Date.now() || date === undefined || date === null) {
+            if (date === undefined || date === null || date > Date.now()) {
                 return false;
             }
             else {
@@ -32,7 +32,7 @@
         };
 
         function validateAccountNumber(account) {
-            if (account.length < 10 || account.length > 100 || account ===  undefined || account == null) {
+            if (account === undefined || account == null || account.length < 10 || account.length > 100) {
                 return false;
             }
             else {
@@ -43,7 +43,7 @@
         function validatePhone(phone) {
             var regExp = /^[0-9()+' '-]+$/;
             var validPhone = regExp.test(phone);
-            if (phone.length < 4 || phone.length > 50 || !validPhone || phone === undefined || phone === null) {
+            if (phone === undefined || phone === null || phone.length < 4 || phone.length > 50 || !validPhone) {
                 return false;
             }
             else {
@@ -52,13 +52,13 @@
         }
 
         function validateAddress(address) {
-            if (address.length < 5 || address.length > 100 || address === undefined || address ===  null) {
+            if (address === undefined || address === null || address.length < 5 || address.length > 100) {
                 return false;
             }
             else {
                 return true;
             }
-        }
+        };
 
         return service;
     }

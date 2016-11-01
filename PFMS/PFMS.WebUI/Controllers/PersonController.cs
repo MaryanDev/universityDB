@@ -106,11 +106,11 @@ namespace PFMS.WebUI.Controllers
             });
             _unit.Save();
 
-            return Redirect("/Dashboard/Main");
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         [HttpPost]
-        public void DeleteEmployee(int id)
+        public ActionResult DeleteEmployee(int id)
         {
             var empToDelete = _unit.EmployeeRepo.GetSingle(emp => emp.PersonId == id);
             _unit.EmployeeRepo.Delete(empToDelete);
@@ -119,6 +119,8 @@ namespace PFMS.WebUI.Controllers
             var personToDelete = _unit.PersonRepo.GetSingle(person => person.ID == id);
             _unit.PersonRepo.Delete(personToDelete);
             _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
         #endregion
 
@@ -144,6 +146,42 @@ namespace PFMS.WebUI.Controllers
         {
             var customerEntity = _unit.CustomerRepo.GetFullCustomerInfo(cus => cus.PersonId == customerId);
             return Json(customerEntity, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult CreateCustomer(CustomerFullInfoDTO customerToCreate)
+        {
+            var createdPerson = _unit.PersonRepo.Insert(new Person
+            {
+                FirstName = customerToCreate.FirstName,
+                LastName = customerToCreate.LastName,
+                PhoneNumber = customerToCreate.Phone,
+                DateOfBirth = Convert.ToDateTime(customerToCreate.DateOfBirth),
+                Address = customerToCreate.Address
+            });
+            _unit.Save();
+            _unit.CustomerRepo.Insert(new Customer
+            {
+                PersonId = createdPerson.ID,
+                AccountNumber = customerToCreate.AccountNumber
+            });
+            _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCustomer(int id)
+        {
+            var customerToDelete = _unit.CustomerRepo.GetSingle(cus => cus.PersonId == id);
+            _unit.CustomerRepo.Delete(customerToDelete);
+            _unit.Save();
+
+            var personToDelete = _unit.PersonRepo.GetSingle(person => person.ID == id);
+            _unit.PersonRepo.Delete(personToDelete);
+            _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
         #endregion
         #region Helpers

@@ -89,6 +89,19 @@ namespace PFMS.Repositories.Concrete
                         Quantity = combined1.order.Quantity
                     })
                 });
+            if (resultEntity.FirstOrDefault() == null)
+            {
+                resultEntity = context.Customers.Where(criteria).Join(context.Persons, cus => cus.PersonId, person => person.ID, (cus, person) => new CustomerFullInfoDTO
+                {
+                    Id = cus.PersonId,
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    DateOfBirth = person.DateOfBirth.ToString("MM/dd/yyyy"),
+                    Phone = person.PhoneNumber,
+                    Address = person.Address,
+                    AccountNumber = cus.AccountNumber
+                });
+            }
 
             return resultEntity.FirstOrDefault();
         }

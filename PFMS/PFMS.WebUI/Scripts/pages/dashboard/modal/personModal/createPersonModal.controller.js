@@ -73,6 +73,17 @@
                             })
                     }
                     else if (personMode == "customerMode") {
+                        personAjaxService.createCustomer(person)
+                            .success(function (response) {
+                                console.info('customer created');
+                                var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
+                                notificationInstance.result.then(function () {
+                                    location.assign("/Dashboard/Main#/customers");
+                                });
+                            })
+                            .error(function (error) {
+                                console.error(error);
+                            })
                         //todo
                     }
                 }, function () {

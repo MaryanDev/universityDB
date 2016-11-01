@@ -54,7 +54,6 @@
                 else if ($scope.mode == "customerMode") {
                     location.assign("/Dashboard/Main/#/customers");
                 }
-
             }
             else if ((!Number.isInteger($scope.personId) || $scope.personId <= 0) && $scope.personId !== null) {
                 if ($scope.mode == "employeeMode") {
@@ -72,6 +71,7 @@
                         console.log(error);
                     });
             }
+
             if ($scope.mode == "customerMode") {
                 //todo calll customers methods
                 personAjaxService.getCustomers(1, $scope.personId)

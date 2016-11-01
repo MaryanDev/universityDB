@@ -974,6 +974,7 @@
     <Content Include="Scripts\pages\dashboard\popUpModalService.js" />
     <Content Include="Scripts\pages\dashboard\routeConfig.js" />
     <Content Include="Scripts\pages\dashboard\templates\persons.html" />
+    <Content Include="Scripts\pages\dashboard\validationService.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />

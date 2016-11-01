@@ -4,7 +4,11 @@
 
     function validationService() {
         var service = {
-            validateName: validateName
+            validateName: validateName,
+            validateDate: validateDate,
+            validatePhone: validatePhone,
+            validateAddress: validateAddress,
+            validateAccountNumber: validateAccountNumber
         };
 
         function validateName(name) {
@@ -40,6 +44,15 @@
             var regExp = /^[0-9()+' '-]+$/;
             var validPhone = regExp.test(phone);
             if (phone.length < 4 || phone.length > 50 || !validPhone) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function validateAddress(address) {
+            if (address.length < 5 || address.length > 100) {
                 return false;
             }
             else {

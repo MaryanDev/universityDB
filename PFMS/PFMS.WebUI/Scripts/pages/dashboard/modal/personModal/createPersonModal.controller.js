@@ -2,13 +2,38 @@
     angular.module("appModule")
         .controller("createEmployeeModalController", createEmployeeModalController);
 
-    createEmployeeModalController.$inject = ["$scope", "personAjaxService", "popUpModalService", "$uibModalInstance", "personMode"];
+    createEmployeeModalController.$inject = ["$scope", "personAjaxService", "popUpModalService", "validationService", "$uibModalInstance", "personMode"];
 
-    function createEmployeeModalController($scope, personAjaxService, popUpModalService, $uibModalInstance, personMode) {
+    function createEmployeeModalController($scope, personAjaxService, popUpModalService, validationService, $uibModalInstance, personMode) {
         $scope.mode = "createMode";
         $scope.personMode = personMode;
         $scope.postUrl;
         $scope.positions;
+
+        $scope.person = {};
+
+        $scope.validation = {}
+
+        $scope.validateFirstName = function () {
+            console.log($scope.person.FirstName);
+            $scope.validation.isFirstNameValid = validationService.validateName($scope.person.FirstName);
+        };
+        $scope.validateLastName = function () {
+            $scope.validation.isLastNameValid = validationService.validateName($scope.person.LastName);
+        }
+        $scope.validatePhone = function () {
+            $scope.validation.isPhoneValid = validationService.validatePhone($scope.person.Phone);
+        };
+        $scope.validateDate = function () {
+            $scope.validation.isDateOfBirthValid = validationService.validateDate($scope.person.DateOfBirth);
+        };
+        $scope.validateAddress = function () {
+            $scope.validation.isAddressValid = validationService.validateAddress($scope.person.Address);
+        };
+        $scope.validateAccount = function () {
+            $scope.validation.isAccountValid = validationService.validateAccountNumber($scope.person.AccountNumber);
+        };
+
 
         activate();
 

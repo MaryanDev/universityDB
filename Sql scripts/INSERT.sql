@@ -240,5 +240,202 @@ VALUES
 (1, 10000, 2, '10/07/2016', null)
 SET IDENTITY_INSERT MachinesForRepair OFF
 
+SET IDENTITY_INSERT Products ON
+INSERT INTO Products(Id, Title, Cost)
+VALUES
+(1, 'Book', 100),
+(2, 'Magazine', 80),
+(3, 'Newspaper', 50),
+(4, 'Brochure', 35),
+(5, 'Poster', 140),
+(6, 'Billboard', 300),
+(7, 'Blue print', 70),
+(8, 'Cup print', 30),
+(9, 'Notebook', 45),
+(10, 'T-shirt print', 70),
+(11, 'Packages XS', 20),
+(12, 'Packages S', 30),
+(13, 'Packages M', 40),
+(14, 'Packages L', 50),
+(15, 'Packages XL', 60),
+(16, 'Packages XXL', 80)
+SET IDENTITY_INSERT Products OFF
+
+SET IDENTITY_INSERT Orders ON
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (1, 76, 4, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (2, 79, 32, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (3, 104, 20, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (4, 104, 9, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (5, 112, 10, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (6, 68, 25, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (7, 24, 29, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (8, 53, 34, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (9, 76, 33, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (10, 119, 6, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (11, 9, 21, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (12, 15, 6, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (13, 105, 37, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (14, 149, 19, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (15, 135, 7, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (16, 65, 9, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (17, 137, 16, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (18, 136, 16, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (19, 144, 38, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (20, 42, 1, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (21, 20, 8, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (22, 122, 17, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (23, 102, 21, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (24, 96, 26, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (25, 95, 2, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (26, 77, 21, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (27, 127, 23, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (28, 118, 9, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (29, 103, 24, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (30, 101, 34, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (31, 62, 5, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (32, 38, 14, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (33, 143, 10, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (34, 121, 39, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (35, 68, 24, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (36, 19, 17, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (37, 84, 20, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (38, 107, 18, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (39, 14, 20, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (40, 142, 15, 4);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (41, 119, 26, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (42, 67, 39, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (43, 48, 26, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (44, 71, 21, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (45, 48, 39, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (46, 68, 17, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (47, 123, 15, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (48, 12, 29, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (49, 83, 14, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (50, 86, 6, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (51, 55, 36, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (52, 97, 16, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (53, 62, 25, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (54, 34, 1, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (55, 123, 37, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (56, 2, 19, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (57, 92, 39, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (58, 93, 2, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (59, 119, 19, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (60, 59, 40, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (61, 15, 2, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (62, 78, 8, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (63, 86, 11, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (64, 1, 37, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (65, 121, 18, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (66, 16, 22, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (67, 109, 17, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (68, 98, 25, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (69, 143, 11, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (70, 133, 25, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (71, 51, 38, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (72, 14, 6, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (73, 54, 39, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (74, 37, 2, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (75, 2, 3, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (76, 56, 6, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (77, 43, 36, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (78, 62, 5, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (79, 9, 25, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (80, 100, 31, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (81, 11, 2, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (82, 117, 25, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (83, 131, 18, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (84, 74, 11, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (85, 65, 34, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (86, 98, 11, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (87, 113, 1, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (88, 1, 12, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (89, 108, 6, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (90, 9, 7, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (91, 131, 18, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (92, 9, 7, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (93, 145, 37, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (94, 91, 21, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (95, 134, 25, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (96, 137, 28, 16);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (97, 15, 21, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (98, 145, 28, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (99, 82, 38, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (100, 2, 21, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (101, 72, 1, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (102, 37, 19, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (103, 102, 12, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (104, 45, 33, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (105, 33, 18, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (106, 83, 35, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (107, 56, 36, 15);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (108, 30, 16, 11);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (109, 147, 22, 4);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (110, 83, 31, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (111, 28, 5, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (112, 10, 30, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (113, 58, 33, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (114, 121, 5, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (115, 16, 31, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (116, 52, 5, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (117, 86, 14, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (118, 90, 16, 4);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (119, 3, 10, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (120, 139, 22, 2);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (121, 17, 35, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (122, 18, 4, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (123, 108, 4, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (124, 44, 12, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (125, 4, 15, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (126, 109, 1, 4);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (127, 99, 28, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (128, 62, 35, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (129, 1, 4, 9);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (130, 94, 1, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (131, 53, 36, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (132, 87, 25, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (133, 17, 2, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (134, 107, 4, 12);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (135, 72, 6, 5);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (136, 83, 22, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (137, 118, 8, 7);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (138, 144, 14, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (139, 53, 37, 13);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (140, 64, 18, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (141, 92, 8, 8);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (142, 80, 10, 4);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (143, 93, 3, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (144, 147, 13, 1);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (145, 18, 21, 10);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (146, 4, 32, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (147, 144, 26, 3);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (148, 82, 4, 14);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (149, 109, 14, 6);
+insert into Orders (Id, Quantity, CustomerId, ProductId) values (150, 10, 1, 6);
+
+SET IDENTITY_INSERT Orders OFF
+
+
+SET IDENTITY_INSERT ProductsToMachines ON
+INSERT INTO ProductsToMachines(Id, MachineId, ProductId)
+VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5),
+(6, 2, 6),
+(7, 3, 7),
+(8, 3, 8),
+(9, 3, 9),
+(10, 4, 10),
+(11, 4, 11),
+(12, 4, 12),
+(13, 5, 13),
+(14, 5, 14),
+(15, 5, 15),
+(16, 5, 16)
+SET IDENTITY_INSERT ProductsToMachines OFF
+
 INSERT INTO AspNetUsers (Id, Hometown, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, UserName)
 VALUES ('895a1c64-5889-4027-88c6-2931cb1a5acd', NULL, 'mr.maykher@gmail.com', 0, 'ALCpaL7HIm4MONiE0fUbUKff/lDaY4AJYGF9/xJK5g7xZyR2GUcoyoDwnBfTOsDtYw==', 'fbb7e0df-731f-498a-b7e2-5ea9a31118fe', NULL, 0, 0, null, 0, 0, 'MaryanDev')

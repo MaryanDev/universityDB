@@ -230,11 +230,11 @@ FOREIGN KEY (PositionId) REFERENCES EmpPositions(Id);
 
 ALTER TABLE Orders
 ADD CONSTRAINT FK_OrderToCustomer
-FOREIGN KEY (CustomerId) REFERENCES Products(Id);
+FOREIGN KEY (CustomerId) REFERENCES Customers(PersonId);
 
 ALTER TABLE Orders
 ADD CONSTRAINT FK_OrderToProduct
-FOREIGN KEY (ProductId) REFERENCES Customers(PersonId);
+FOREIGN KEY (ProductId) REFERENCES Products(Id);
 
 ALTER TABLE ProductsToMachines
 ADD CONSTRAINT FK_ProdToMachineToProduct

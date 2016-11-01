@@ -84,49 +84,69 @@
         </div>
     </div>
     <div class="modal-body" ng-if="!isLoading">
-        <form id="personModalForm" ng-submit="modifyPerson(person)">
+        <form id="personModalForm" name="personForm" ng-submit="modifyPerson(person)">
             <input type="hidden" name="Id" value="{{person.Id}}" />
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">FirstName</label>
-                <input type="text" class="form-control input-lg" ng-model="person.FirstName" name="FirstName" required />
+                <div class="text-info col-lg-8 col-md-8">
+                    <input type="text" class="form-control input-lg" ng-class="{ dangerInput: !validation.isFirstNameValid }" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
+                    <span class="text-danger" ng-if="!validation.isFirstNameValid">Invalid first name</span>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">LastName</label>
-                <input type="text" class="form-control input-lg" ng-model="person.LastName" name="LastName" required />
+                <div class="col-lg-8 col-md-8">
+                    <input type="text" class="form-control input-lg" ng-model="person.LastName" ng-change="validateLastName()" name="LastName" required />
+                    <span class="text-danger"  ng-if="!validation.isLastNameValid">Invalid last name</span>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Phone</label>
-                <input type="text" class="form-control input-lg" ng-model="person.Phone" name="Phone" required/>
+                <div class="col-lg-8 col-md-8">
+                    <input type="text" class="form-control input-lg" ng-model="person.Phone" ng-change="validatePhone()" name="Phone" required />
+                    <span class="text-danger"  ng-if="!validation.isPhoneValid">Invalid phone number</span>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Address</label>
-                <input type="text" class="form-control input-lg" ng-model="person.Address" name="Address" required />
+                <div class="col-lg-8 col-md-8">
+                    <input type="text" class="form-control input-lg" ng-model="person.Address" ng-change="validateAddress()" name="Address" required />
+                    <span class="text-danger"  ng-if="!validation.isAddressValid">Invalid address</span>
+                </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Date of birth</label>
-                <input type="date" class="form-control input-lg" ng-model="person.DateOfBirth" name="DateOfBirth" required />
+                <div class="col-lg-8 col-md-8">
+                    <input type="date" class="form-control input-lg" ng-model="person.DateOfBirth" ng-change="validateDate()" name="DateOfBirth" required />
+                    <span class="text-danger"  ng-if="!validation.isDateOfBirthValid">Invalid date of birth</span>
+                </div>
             </div>
             <div class="form-group row" ng-if="personMode == 'employeeMode'">
                 <label class="text-info col-lg-4 col-md-4">Position</label>
-                <select class="form-control input-group-lg" ng-model="person.Position" name="Position">
-                    <option ng-repeat="position in positions">{{position.PositionTitle}}</option>
-                </select>
+                <div class="col-lg-8 col-md-8">
+                    <select class="form-control input-group-lg" ng-model="person.Position" name="Position">
+                        <option ng-repeat="position in positions">{{position.PositionTitle}}</option>
+                    </select>
+                </div>
             </div>
             <div class="form-group row" ng-if="mode == 'edit/deleteMode' && personMode == 'employeeMode'">
                 <label class="text-info col-lg-4 col-md-4">Salary</label>
                 <span class="col-lg-8 col-md-8">{{person.Salary}}</span>
             </div>
             <div ng-if="person.Machines.length !== 0 && mode == 'edit/deleteMode' && personMode == 'employeeMode'" class="form-group row">
-                <label class="text-info col-lg-3 col-md-3">
+                <label class="text-info col-lg-4 col-md-4">
                 Machines
                 </label>
-                <ul class="list-unstyled col-lg-9 col-md-9">
+                <ul class="list-unstyled col-lg-8 col-md-8">
                     <li class="list-group-item list-group-item-text" ng-repeat="machine in person.Machines">{{machine.Model}}</li>
                 </ul>
             </div>
             <div class="form-group row" ng-if="personMode == 'customerMode'">
                 <label class="text-info col-lg-4 col-md-4">Account</label>
-                <input type="text" class="form-control input-lg" ng-model="person.Account" name="Account" required />
+                <div class="col-lg-8 col-md-8">
+                    <input type="text" class="form-control input-lg" ng-model="person.AccountNumber" ng-change="validateAccount()" name="Account" required />
+                    <span class="text-danger" ng-if="!validation.isAccountValid">Invalid account number</span>
+                </div>
             </div>
             <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
                 <div class="col-lg-8">

@@ -139,6 +139,12 @@ namespace PFMS.WebUI.Controllers
             }
             return Json(new { allPages = count, customers = result, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetFullCustomerInfo(int customerId)
+        {
+            var customerEntity = _unit.CustomerRepo.GetFullCustomerInfo(cus => cus.PersonId == customerId);
+            return Json(customerEntity, JsonRequestBehavior.AllowGet);
+        }
         #endregion
         #region Helpers
         private int GetCountOfPages(int allPages, int size)

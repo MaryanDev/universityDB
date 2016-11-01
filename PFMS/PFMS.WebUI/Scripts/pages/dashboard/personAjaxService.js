@@ -13,7 +13,8 @@
             createEmployee: createEmployeeAjax,
             deleteEmployee: deleteEmployeeAjax,
 
-            getCustomers: getCustomersAjax
+            getCustomers: getCustomersAjax,
+            getFullCustomerInfo: getFullCustomerInfoAjax
         };
 
         function getEmployeesAjax(page, id) {
@@ -80,6 +81,16 @@
                 method: "GET",
                 url: "/Person/GetCustomersInfo",
                 params: { page: page, personId: id }
+            });
+
+            return promise;
+        }
+
+        function getFullCustomerInfoAjax(customerId) {
+            var promise = $http({
+                method: "GET",
+                url: "/Person/GetFullCustomerInfo",
+                params: { customerId: customerId }
             });
 
             return promise;

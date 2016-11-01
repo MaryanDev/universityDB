@@ -10,6 +10,7 @@ namespace PFMS.Repositories.Abstract
 {
     public interface ICustomersRepository : IRepository<Customer>
     {
+        CustomerFullInfoDTO GetFullCustomerInfo(Func<Customer, bool> criteria);
         IEnumerable<CustomerInfoDTO> GetSimpleCustomerInfo(Func<Customer, bool> criteria = null);
     }
 }

@@ -89,35 +89,35 @@
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">FirstName</label>
                 <div class="text-info col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-class="{ dangerInput: !validation.isFirstNameValid }" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isFirstNameValid }" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
                     <span class="text-danger" ng-if="!validation.isFirstNameValid">Invalid first name</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">LastName</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-model="person.LastName" ng-change="validateLastName()" name="LastName" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isLastNameValid }" ng-model="person.LastName" ng-change="validateLastName()" name="LastName" required />
                     <span class="text-danger"  ng-if="!validation.isLastNameValid">Invalid last name</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Phone</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-model="person.Phone" ng-change="validatePhone()" name="Phone" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isPhoneValid }" ng-model="person.Phone" ng-change="validatePhone()" name="Phone" required />
                     <span class="text-danger"  ng-if="!validation.isPhoneValid">Invalid phone number</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Address</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-model="person.Address" ng-change="validateAddress()" name="Address" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isAddressValid }" ng-model="person.Address" ng-change="validateAddress()" name="Address" required />
                     <span class="text-danger"  ng-if="!validation.isAddressValid">Invalid address</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Date of birth</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="date" class="form-control input-lg" ng-model="person.DateOfBirth" ng-change="validateDate()" name="DateOfBirth" required />
+                    <input type="date" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isDateOfBirthValid }" ng-model="person.DateOfBirth" ng-change="validateDate()" name="DateOfBirth" required />
                     <span class="text-danger"  ng-if="!validation.isDateOfBirthValid">Invalid date of birth</span>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 <label class="text-info col-lg-4 col-md-4">Position</label>
                 <div class="col-lg-8 col-md-8">
                     <select class="form-control input-group-lg" ng-model="person.Position" name="Position">
-                        <option ng-repeat="position in positions">{{position.PositionTitle}}</option>
+                        <option ng-repeat="position in positions track by $index" ng-selected="{'selected': $index == 0 }">{{position.PositionTitle}}</option>
                     </select>
                 </div>
             </div>
@@ -144,7 +144,7 @@
             <div class="form-group row" ng-if="personMode == 'customerMode'">
                 <label class="text-info col-lg-4 col-md-4">Account</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="text" class="form-control input-lg" ng-model="person.AccountNumber" ng-change="validateAccount()" name="Account" required />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isAccountValid }" ng-model="person.AccountNumber" ng-change="validateAccount()" name="Account" required />
                     <span class="text-danger" ng-if="!validation.isAccountValid">Invalid account number</span>
                 </div>
             </div>

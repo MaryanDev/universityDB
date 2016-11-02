@@ -171,6 +171,29 @@ namespace PFMS.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateCustomer(CustomerFullInfoDTO customerToUpdate)
+        {
+            _unit.PersonRepo.Update(new Person
+            {
+                ID = customerToUpdate.Id,
+                FirstName = customerToUpdate.FirstName,
+                LastName = customerToUpdate.LastName,
+                Address = customerToUpdate.Address,
+                DateOfBirth = Convert.ToDateTime(customerToUpdate.DateOfBirth),
+                PhoneNumber = customerToUpdate.Phone
+            });
+            _unit.Save();
+            _unit.CustomerRepo.Update(new Customer
+            {
+                PersonId = customerToUpdate.Id,
+                AccountNumber = customerToUpdate.AccountNumber
+            });
+            _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
         public ActionResult DeleteCustomer(int id)
         {
             var customerToDelete = _unit.CustomerRepo.GetSingle(cus => cus.PersonId == id);
@@ -184,6 +207,7 @@ namespace PFMS.WebUI.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
         #endregion
+
         #region Helpers
         private int GetCountOfPages(int allPages, int size)
         {

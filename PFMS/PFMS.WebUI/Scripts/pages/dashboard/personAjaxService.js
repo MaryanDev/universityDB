@@ -16,7 +16,8 @@
             getCustomers: getCustomersAjax,
             getFullCustomerInfo: getFullCustomerInfoAjax,
             createCustomer: createCustomerAjax,
-            deleteCustomer: deleteCustomerAjax
+            deleteCustomer: deleteCustomerAjax,
+            updateCustomer: updateCustomerAjax
         };
 
         function getEmployeesAjax(page, id) {
@@ -117,6 +118,17 @@
 
             return promise;
         }
+
+        function updateCustomerAjax(customer) {
+            var promise = $http({
+                method: "POST",
+                url: "/Person/UpdateCustomer",
+                data: { customerToUpdate: customer }
+            });
+
+            return promise;
+        };
+
         return service;
     }
 })(angular);

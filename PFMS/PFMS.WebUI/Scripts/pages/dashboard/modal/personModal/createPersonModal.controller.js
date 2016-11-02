@@ -17,23 +17,42 @@
         $scope.validateFirstName = function () {
             console.log($scope.person.FirstName);
             $scope.validation.isFirstNameValid = validationService.validateName($scope.person.FirstName);
+            validateForm();
         };
         $scope.validateLastName = function () {
             $scope.validation.isLastNameValid = validationService.validateName($scope.person.LastName);
+            validateForm();
         }
         $scope.validatePhone = function () {
             $scope.validation.isPhoneValid = validationService.validatePhone($scope.person.Phone);
+            validateForm();
         };
         $scope.validateDate = function () {
             $scope.validation.isDateOfBirthValid = validationService.validateDate($scope.person.DateOfBirth);
+            validateForm();
         };
         $scope.validateAddress = function () {
             $scope.validation.isAddressValid = validationService.validateAddress($scope.person.Address);
+            validateForm();
         };
         $scope.validateAccount = function () {
             $scope.validation.isAccountValid = validationService.validateAccountNumber($scope.person.AccountNumber);
+            validateForm();
         };
 
+        function validateForm() {
+            var commonValuesValid = $scope.validation.isFirstNameValid &&
+                                                $scope.validation.isLastNameValid &&
+                                                $scope.validation.isPhoneValid &&
+                                                $scope.validation.isDateOfBirthValid &&
+                                                $scope.validation.isAddressValid;
+            if ($scope.personMode == "employeeMode") {
+                $scope.validation.isFormValid = commonValuesValid;
+            }
+            else if ($scope.personMode == "customerMode") {
+                $scope.validation.isFormValid = commonValuesValid && $scope.validation.isAccountValid;
+            }
+        };
 
         activate();
 
@@ -78,7 +97,7 @@
                                 console.info('customer created');
                                 var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
                                 notificationInstance.result.then(function () {
-                                    location.assign("/Dashboard/Main#/customers");
+                                    location.assign("/Dashboard/Main/#customers");
                                 });
                             })
                             .error(function (error) {

@@ -142,6 +142,24 @@
                             });
                     }
                     else if (personMode == "customerMode") {
+                        personAjaxService.updateCustomer(person)
+                            .success(function (response) {
+                                console.log('customer updated');
+
+                                var notificationModalInstance =
+                                    popUpModalService.openNotification(person.FirstName + " " + person.LastName, "updateMode");
+                                notificationModalInstance
+                                    .result
+                                    .then(function () {
+                                        $scope.closeModal();
+                                        location.assign("/Dashboard/Main/#customers");
+                                    });
+
+                            })
+                            .error(function (error) {
+                                console.error(error);
+                            });
+
                         //todo
                     }
                 }, function () {

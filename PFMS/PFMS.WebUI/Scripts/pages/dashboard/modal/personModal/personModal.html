@@ -87,8 +87,8 @@
         <form id="personModalForm" name="personForm" ng-submit="modifyPerson(person)">
             <input type="hidden" name="Id" value="{{person.Id}}" />
             <div class="form-group row">
-                <label class="text-info col-lg-4 col-md-4">FirstName</label>
-                <div class="text-info col-lg-8 col-md-8">
+                <label class="text-info col-lg-4 col-md-4 col-sm-12">FirstName</label>
+                <div class="text-info col-lg-8 col-md-8 col-sm-12">
                     <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isFirstNameValid }" ng-model="person.FirstName" ng-change="validateFirstName()" name="FirstName" required />
                     <span class="text-danger" ng-if="!validation.isFirstNameValid">Invalid first name</span>
                 </div>
@@ -149,10 +149,10 @@
                 </div>
             </div>
             <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-sm-12">
                     <input type="submit" value="Update" ng-disabled="!validation.isFormValid" class="form-control input-lg btn btn-info" />
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-sm-12">
                     <input type="button" class="btn btn-lg btn-danger" ng-click="deletePerson(person.Id)" value="Delete">
                 </div>
                 <div class="col-lg-1"></div>

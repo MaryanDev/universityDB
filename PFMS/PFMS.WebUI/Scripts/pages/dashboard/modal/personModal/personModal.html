@@ -125,7 +125,7 @@
                 <label class="text-info col-lg-4 col-md-4">Position</label>
                 <div class="col-lg-8 col-md-8">
                     <select class="form-control input-group-lg" ng-model="person.Position" name="Position">
-                        <option ng-repeat="position in positions track by $index" ng-selected="{'selected': $index == 0 }">{{position.PositionTitle}}</option>
+                        <option ng-repeat="position in positions track by $index">{{position.PositionTitle}}</option>
                     </select>
                 </div>
             </div>
@@ -150,7 +150,7 @@
             </div>
             <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
                 <div class="col-lg-8">
-                    <input type="submit" value="Update" class="form-control input-lg btn btn-info" />
+                    <input type="submit" value="Update" ng-disabled="!validation.isFormValid" class="form-control input-lg btn btn-info" />
                 </div>
                 <div class="col-lg-3">
                     <input type="button" class="btn btn-lg btn-danger" ng-click="deletePerson(person.Id)" value="Delete">
@@ -158,7 +158,7 @@
                 <div class="col-lg-1"></div>
             </div>
             <div class="form-group row text-center" ng-if="mode == 'createMode'">
-                <input type="submit" value="Create" class="form-control input-lg btn btn-success" />
+                <input type="submit" ng-disabled="!validation.isFormValid" value="Create" class="form-control input-lg btn btn-success" />
             </div>
         </form>
     </div>

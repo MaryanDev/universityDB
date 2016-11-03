@@ -20,7 +20,7 @@
             <tr class="empty"></tr>
         </thead>
         <tbody>
-            <tr id="productWrapper" class="row" ng-repeat-start="product in products">
+            <tr id="productWrapper" class="row" ng-repeat-start="product in products" ng-click="showDetailsInModal(product)">
                 <td class="col-lg-6 text-info">{{product.Title}}</td>
                 <td class="col-lg-3">{{product.Cost}}</td>
                 <td class="col-lg-3 text-success">{{product.Orders}}</td>

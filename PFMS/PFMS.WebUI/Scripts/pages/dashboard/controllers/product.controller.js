@@ -2,9 +2,9 @@
     angular.module("appModule")
         .controller("productsController", productsController);
 
-    productsController.$inject = ["$scope", "productAjaxService"];
+    productsController.$inject = ["$scope", "productAjaxService", "popUpModalService"];
 
-    function productsController($scope, productAjaxService) {
+    function productsController($scope, productAjaxService, popUpModalService) {
         $scope.products = [];
         activate();
 
@@ -16,5 +16,9 @@
                     console.error(error);
                 });
         };
+
+        $scope.showDetailsInModal = function (product) {
+            popUpModalService.openProductDetails(product, "edit/deleteMode");
+        }
     };
 })(angular);

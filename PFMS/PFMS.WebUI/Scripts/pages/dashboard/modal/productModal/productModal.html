@@ -1,0 +1,37 @@
+﻿<div>
+    <div class="modal-header text-info text-center">
+        <div class="row">
+            <h3 class="col-lg-10">Product Details</h3>
+            <span id="closeModal" ng-click="closeModal()" class="col-lg-2 glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
+    <div class="modal-body text-info">
+        <form ng-submit="modifyProduct" style="font-size: 15pt;">
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Title</label>
+                </div>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control input-lg" ng-model="product.Title" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Cost</label>
+                </div>
+                <div class="col-lg-8">
+                    <input type="number" class="form-control input-lg" ng-model="product.Cost" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row form-group">
+        <div class="col-lg-8 text-right">
+            <input type="submit" class="btn btn-lg btn-info form-control input-lg" value="Update" />
+        </div>
+        <div class="col-lg-3">
+            <input type="button" class="btn btn-lg btn-danger form-control input-lg" value="Delete" ng-click="deleteProduct(product.Id)" />
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>

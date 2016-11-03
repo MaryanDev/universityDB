@@ -207,12 +207,7 @@ namespace PFMS.WebUI.Controllers
         #endregion
 
         #region Helpers
-        private int GetCountOfPages(int allPages, int size)
-        {
-            var pages = allPages / size;
-            var count = allPages % size == 0 ? pages : ++pages;
-            return count;
-        }
+        
         #endregion
     }
 }

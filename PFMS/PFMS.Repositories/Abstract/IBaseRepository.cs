@@ -13,7 +13,5 @@ namespace PFMS.Repositories.Abstract
         TEntity GetSingle<TEntity>(Func<TEntity, bool> criteria = null) where TEntity : class;
         TEntity Insert<TEntity>(TEntity entity) where TEntity : class;
         TEntity Update<TEntity>(TEntity entity) where TEntity : class;
-
-
     }
 }

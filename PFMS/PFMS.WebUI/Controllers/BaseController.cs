@@ -11,5 +11,11 @@ namespace PFMS.WebUI.Controllers
     {
         protected UnitOfWork _unit;
         protected int pageSize = 15;
+        protected int GetCountOfPages(int allPages, int size)
+        {
+            var pages = allPages / size;
+            var count = allPages % size == 0 ? pages : ++pages;
+            return count;
+        }
     }
 }

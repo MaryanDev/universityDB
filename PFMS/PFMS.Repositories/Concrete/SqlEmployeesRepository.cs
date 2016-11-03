@@ -10,21 +10,11 @@ using PFMS.Entities.DTO;
 
 namespace PFMS.Repositories.Concrete
 {
-    public class SqlEmployeesRepository : BaseRepository, IEmployeesRepository
+    public class SqlEmployeesRepository : BaseRepository<Employee>, IEmployeesRepository
     {
         public SqlEmployeesRepository(PintingFactoryDBEntities context) : base(context)
         {
 
-        }
-        public void Delete(Employee entity)
-        {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
-        }
-
-        public IEnumerable<Employee> Get(Func<Employee, bool> criteria = null)
-        {
-            var result = criteria == null ? context.Employees : context.Employees.Where(criteria);
-            return result;
         }
 
         public IEnumerable<EmpInfoDTO> GetSimpleEmpInfo(Func<Employee, bool> criteria = null)
@@ -68,29 +58,6 @@ namespace PFMS.Repositories.Concrete
                     })
                 });
             return resultEntities.SingleOrDefault();
-        }
-
-        public Employee GetSingle(Func<Employee, bool> criteria)
-        {
-            var resultEntity = criteria == null ? context.Employees.FirstOrDefault() : context.Employees.Where(criteria).FirstOrDefault();
-            return resultEntity;
-        }
-
-        public Employee Insert(Employee entity)
-        {
-            context.Set<Employee>().Add(entity);
-            return entity;
-        }
-
-        public Employee Update(Employee entity)
-        {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-            return entity;
-        }
-
-        public int GetCountOfRecords(Func<Employee, bool> criteria = null)
-        {
-            return criteria == null ? context.Employees.Count() : context.Employees.Where(criteria).Count();
         }
     }
 }

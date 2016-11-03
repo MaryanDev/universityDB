@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PFMS.Repositories.Abstract
 {
-    public interface IProductsRepository: IRepository<Product>
+    public interface IProductsRepository/*: IRepository<Product>*/
     {
     }
 }

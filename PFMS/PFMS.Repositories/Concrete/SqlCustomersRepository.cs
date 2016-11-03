@@ -9,7 +9,7 @@ using PFMS.Entities.DTO;
 
 namespace PFMS.Repositories.Concrete
 {
-    public class SqlCustomersRepository : BaseRepository, ICustomersRepository
+    public class SqlCustomersRepository : BaseRepository<Customer>, ICustomersRepository
     {
         public SqlCustomersRepository(PintingFactoryDBEntities context) : base(context)
         {
@@ -33,40 +33,6 @@ namespace PFMS.Repositories.Concrete
                 AccountNumber = cus.AccountNumber
             });
             return resultEntities;
-        }
-
-        public void Delete(Customer entity)
-        {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
-        }
-
-        public IEnumerable<Customer> Get(Func<Customer, bool> criteria = null)
-        {
-            var result = criteria == null ? context.Customers : context.Customers.Where(criteria);
-            return result;
-        }
-
-        public int GetCountOfRecords(Func<Customer, bool> criteria = null)
-        {
-            return criteria == null ? context.Customers.Count() : context.Customers.Where(criteria).Count();
-        }
-
-        public Customer GetSingle(Func<Customer, bool> criteria)
-        {
-            var resultEntity = criteria == null ? context.Customers.FirstOrDefault() : context.Customers.Where(criteria).FirstOrDefault();
-            return resultEntity;
-        }
-
-        public Customer Insert(Customer entity)
-        {
-            context.Set<Customer>().Add(entity);
-            return entity;
-        }
-
-        public Customer Update(Customer entity)
-        {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-            return entity;
         }
 
         public CustomerFullInfoDTO GetFullCustomerInfo(Func<Customer, bool> criteria)

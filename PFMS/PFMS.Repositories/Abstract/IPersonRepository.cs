@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PFMS.Repositories.Abstract
 {
-    public interface IPersonRepository : IRepository<Person>
+    public interface IPersonRepository/* : IRepository<Person>*/
     {
         
     }

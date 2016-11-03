@@ -1,5 +1,6 @@
 ﻿using PFMS.Entities;
 using PFMS.Repositories.Abstract;
+using PFMS.Repositories.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,12 @@ namespace PFMS.Repositories.Concrete.UoW
         private PintingFactoryDBEntities _context;
         #endregion
         #region Private repository fields
-        private IPersonRepository _personRepo;
-        private IEmployeesRepository _employeeRepo;
-        private IPositionRepository _positionRepo;
-        private ICustomersRepository _customerRepo;
-        private IProductsRepository _productRepo;
-        private IOrderRepository _orderRepo;
+        private SqlPersonRepository _personRepo;
+        private SqlEmployeesRepository _employeeRepo;
+        private SqlPositionsRepository _positionRepo;
+        private SqlCustomersRepository _customerRepo;
+        private SqlProductsRepository _productRepo;
+        private SqlOrderRepository _orderRepo;
         #endregion
 
         #region Constructors
@@ -37,7 +38,7 @@ namespace PFMS.Repositories.Concrete.UoW
         #endregion
 
         #region Public repository peoperties
-        public IPersonRepository PersonRepo
+        public SqlPersonRepository PersonRepo
         {
             get
             {
@@ -49,7 +50,7 @@ namespace PFMS.Repositories.Concrete.UoW
             }
         }
 
-        public IEmployeesRepository EmployeeRepo
+        public SqlEmployeesRepository EmployeeRepo
         {
             get
             {
@@ -61,19 +62,19 @@ namespace PFMS.Repositories.Concrete.UoW
             }
         }
 
-        public IPositionRepository PositionRepo
+        public SqlPositionsRepository PositionRepo
         {
             get
             {
                 if(_positionRepo == null)
                 {
-                    _positionRepo = new SqlPostionsRepository(_context);
+                    _positionRepo = new SqlPositionsRepository(_context);
                 }
                 return _positionRepo;
             }
         }
 
-        public ICustomersRepository CustomerRepo
+        public SqlCustomersRepository CustomerRepo
         {
             get
             {
@@ -85,7 +86,7 @@ namespace PFMS.Repositories.Concrete.UoW
             }
         }
 
-        public IProductsRepository ProductRepo
+        public SqlProductsRepository ProductRepo
         {
             get
             {
@@ -97,7 +98,7 @@ namespace PFMS.Repositories.Concrete.UoW
             }
         }
 
-        public IOrderRepository OrderRepo
+        public SqlOrderRepository OrderRepo
         {
             get
             {

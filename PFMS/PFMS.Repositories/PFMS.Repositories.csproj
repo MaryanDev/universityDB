@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\BaseRepository.cs" />
+    <Compile Include="Abstract\IBaseRepository.cs" />
     <Compile Include="Abstract\ICustomersRepository.cs" />
     <Compile Include="Abstract\IEmployeesRepository.cs" />
     <Compile Include="Abstract\IOrderRepository.cs" />

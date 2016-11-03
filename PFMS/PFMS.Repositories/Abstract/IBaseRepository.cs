@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PFMS.Repositories.Abstract
 {
-    public interface IBaseRepository<T>
+    public interface IBaseRepository
     {
         void Delete<TEntity>(Func<TEntity, bool> criteria) where TEntity : class;
         IEnumerable<TEntity> Get<TEntity>(Func<TEntity, bool> criteria = null) where TEntity : class;

@@ -111,11 +111,11 @@ namespace PFMS.WebUI.Controllers
         public ActionResult DeleteEmployee(int id)
         {
             var empToDelete = _unit.EmployeeRepo.GetSingle(emp => emp.PersonId == id);
-            _unit.EmployeeRepo.Delete(empToDelete);
+            _unit.EmployeeRepo.Delete(emp => emp.PersonId == id);
             _unit.Save();
 
             var personToDelete = _unit.PersonRepo.GetSingle(person => person.ID == id);
-            _unit.PersonRepo.Delete(personToDelete);
+            _unit.PersonRepo.Delete(per => per.ID == id);
             _unit.Save();
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -195,11 +195,11 @@ namespace PFMS.WebUI.Controllers
         public ActionResult DeleteCustomer(int id)
         {
             var customerToDelete = _unit.CustomerRepo.GetSingle(cus => cus.PersonId == id);
-            _unit.CustomerRepo.Delete(customerToDelete);
+            _unit.CustomerRepo.Delete(cust => cust.PersonId == id);
             _unit.Save();
 
             var personToDelete = _unit.PersonRepo.GetSingle(person => person.ID == id);
-            _unit.PersonRepo.Delete(personToDelete);
+            _unit.PersonRepo.Delete(per => per.ID == id);
             _unit.Save();
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);

@@ -52,14 +52,17 @@
     <Compile Include="Abstract\BaseRepository.cs" />
     <Compile Include="Abstract\ICustomersRepository.cs" />
     <Compile Include="Abstract\IEmployeesRepository.cs" />
+    <Compile Include="Abstract\IOrderRepository.cs" />
     <Compile Include="Abstract\IPersonRepository.cs" />
     <Compile Include="Abstract\IPositionRepository.cs" />
     <Compile Include="Abstract\IProductsRepository.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Concrete\SqlCustomersRepository.cs" />
     <Compile Include="Concrete\SqlEmployeesRepository.cs" />
+    <Compile Include="Concrete\SqlOrderRepository.cs" />
     <Compile Include="Concrete\SqlPersonRepository.cs" />
     <Compile Include="Concrete\SqlPostionsRepository.cs" />
+    <Compile Include="Concrete\SqlProductsRepository.cs" />
     <Compile Include="Concrete\UoW\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

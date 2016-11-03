@@ -11,11 +11,9 @@ using System.Web.Mvc;
 namespace PFMS.WebUI.Controllers
 {
     [Authorize]
-    public class PersonController : Controller
+    public class PersonController : BaseController
     {
         #region Provate fields
-        private UnitOfWork _unit;
-        private int pageSize = 15;
         #endregion
 
         #region Constructors

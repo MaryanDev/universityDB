@@ -18,6 +18,8 @@ namespace PFMS.Repositories.Concrete.UoW
         private IEmployeesRepository _employeeRepo;
         private IPositionRepository _positionRepo;
         private ICustomersRepository _customerRepo;
+        private IProductsRepository _productRepo;
+        private IOrderRepository _orderRepo;
         #endregion
 
         #region Constructors
@@ -82,6 +84,31 @@ namespace PFMS.Repositories.Concrete.UoW
                 return _customerRepo;
             }
         }
+
+        public IProductsRepository ProductRepo
+        {
+            get
+            {
+                if(_productRepo == null)
+                {
+                    _productRepo = new SqlProductsRepository(_context);
+                }
+                return _productRepo;
+            }
+        }
+
+        public IOrderRepository OrderRepo
+        {
+            get
+            {
+                if (_orderRepo == null)
+                {
+                    _orderRepo = new SqlOrderRepository(_context);
+                }
+                return _orderRepo;
+            }
+        }
+
         #endregion
     }
 }

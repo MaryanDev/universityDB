@@ -9,7 +9,8 @@
             openConfirm: openConfirmModal,
             openNotification: openNotificationModal,
             openPersonDetails: openPersonDetailsModal,
-            openCreatePersonForm: openCreatePersonFormModal
+            openCreatePersonForm: openCreatePersonFormModal,
+            openProductDetails: openProductDetailsModal
         };
 
         return service;
@@ -82,6 +83,23 @@
                 controllerAs: "createCtrl",
                 resolve: {
                     personMode: function () {
+                        return mode;
+                    }
+                }
+            });
+        };
+
+        function openProductDetailsModal(product, mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/productModal/productModal.html",
+                controller: "productModalController",
+                //size: "sm",
+                resolve: {
+                    product: function () {
+                        return product;
+                    },
+                    mode: function () {
                         return mode;
                     }
                 }

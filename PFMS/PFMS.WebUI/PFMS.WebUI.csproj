@@ -962,19 +962,23 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\app.Module.js" />
     <Content Include="Scripts\pages\dashboard\controllers\person.controller.js" />
-    <Content Include="Scripts\pages\dashboard\dashboard.controller.js" />
+    <Content Include="Scripts\pages\dashboard\controllers\product.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.html" />
-    <Content Include="Scripts\pages\dashboard\personAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.controller.js" />
+    <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.html" />
+    <Content Include="Scripts\pages\dashboard\services\personAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmModal\confirmModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmModal\confirmModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\createPersonModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\personModal\personModal.html" />
-    <Content Include="Scripts\pages\dashboard\popUpModalService.js" />
-    <Content Include="Scripts\pages\dashboard\routeConfig.js" />
+    <Content Include="Scripts\pages\dashboard\services\popUpModalService.js" />
+    <Content Include="Scripts\pages\dashboard\config\routeConfig.js" />
+    <Content Include="Scripts\pages\dashboard\services\productAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\templates\persons.html" />
-    <Content Include="Scripts\pages\dashboard\validationService.js" />
+    <Content Include="Scripts\pages\dashboard\templates\products.html" />
+    <Content Include="Scripts\pages\dashboard\services\validationService.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -984,8 +988,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1016,7 +1022,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\angular\NewFolder1\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Employee\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFMS.Entities\PFMS.Entities.csproj">

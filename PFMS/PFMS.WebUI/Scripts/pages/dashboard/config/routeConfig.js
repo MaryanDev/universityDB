@@ -42,6 +42,13 @@
                         }
                     }
                 })
+                .when("/products", {
+                    templateUrl: "/Scripts/pages/dashboard/templates/products.html",
+                    controller: "productsController",
+                    resolve: {
+
+                    }
+                })
                 .otherwise({ redirectTo: "/employees" });
         });
 })(angular);

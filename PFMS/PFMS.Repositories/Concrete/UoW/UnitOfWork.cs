@@ -21,6 +21,7 @@ namespace PFMS.Repositories.Concrete.UoW
         private SqlCustomersRepository _customerRepo;
         private SqlProductsRepository _productRepo;
         private SqlOrderRepository _orderRepo;
+        private SqlProductsToMachinesRepository _prodMachineRepo;
         #endregion
 
         #region Constructors
@@ -107,6 +108,18 @@ namespace PFMS.Repositories.Concrete.UoW
                     _orderRepo = new SqlOrderRepository(_context);
                 }
                 return _orderRepo;
+            }
+        }
+
+        public SqlProductsToMachinesRepository ProdMachineRepo
+        {
+            get
+            {
+                if(_prodMachineRepo == null)
+                {
+                    _prodMachineRepo = new SqlProductsToMachinesRepository(_context);
+                }
+                return _prodMachineRepo;
             }
         }
 

@@ -8,7 +8,8 @@
         var service = {
             getProducts: getProductsAjax,
             updateProduct: updateProductAjax,
-            createProduct: createProductAjax
+            createProduct: createProductAjax,
+            deleteProduct: deleteProductAjax
         }
 
         function getProductsAjax() {
@@ -35,6 +36,16 @@
                 method: "POST",
                 url: "/Product/CreateProduct",
                 data: { productToCreate: product }
+            });
+
+            return promise;
+        }
+
+        function deleteProductAjax(id) {
+            var promise = $http({
+                method: "POST",
+                url: "/Product/DeleteProduct",
+                data: { id: id }
             });
 
             return promise;

@@ -31,12 +31,14 @@ namespace PFMS.WebUI.Controllers
         public ActionResult UpdateProduct(Product productToUpdate)
         {
             _unit.ProductRepo.Update(productToUpdate);
+            _unit.Save();
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
         public ActionResult CreateProduct(Product productToCreate)
         {
             _unit.ProductRepo.Insert(productToCreate);
+            _unit.Save();
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

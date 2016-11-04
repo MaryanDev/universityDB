@@ -2,10 +2,10 @@
     angular.module("appModule")
         .controller("notificationModalController", notificationModalController)
 
-    notificationModalController.$inject = ["$scope", "$uibModalInstance", "personName", "mode"];
+    notificationModalController.$inject = ["$scope", "$uibModalInstance", "title", "mode"];
 
-    function notificationModalController($scope, $uibModalInstance, personName, mode) {
-        $scope.personName = personName;
+    function notificationModalController($scope, $uibModalInstance, title, mode) {
+        $scope.title = title;
         $scope.mode = mode;
 
         $scope.ok = function () {

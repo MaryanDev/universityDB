@@ -20,5 +20,9 @@
         $scope.showDetailsInModal = function (product) {
             popUpModalService.openProductDetails(product, "edit/deleteMode");
         }
+
+        $scope.showAddDialog = function () {
+            popUpModalService.openCreateProductForm("createMode");
+        }
     };
 })(angular);

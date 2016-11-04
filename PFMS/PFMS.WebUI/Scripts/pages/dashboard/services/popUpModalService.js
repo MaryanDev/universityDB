@@ -10,12 +10,13 @@
             openNotification: openNotificationModal,
             openPersonDetails: openPersonDetailsModal,
             openCreatePersonForm: openCreatePersonFormModal,
-            openProductDetails: openProductDetailsModal
+            openProductDetails: openProductDetailsModal,
+            openCreateProductForm: openCreateProductFormModal
         };
 
         return service;
 
-        function openConfirmModal(name, mode) {
+        function openConfirmModal(title, mode) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: "/Scripts/pages/dashboard/modal/confirmModal/confirmModal.html",
@@ -23,8 +24,8 @@
                 controllerAs: "cdCtrl",
                 size: "sm",
                 resolve: {
-                    personName: function () {
-                        return name;
+                    title: function () {
+                        return title;
                     },
                     mode: function () {
                         return mode;
@@ -35,7 +36,7 @@
             return modalInstance;
         };
 
-        function openNotificationModal(name, mode) {
+        function openNotificationModal(title, mode) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: "/Scripts/pages/dashboard/modal/notificationModal/notificationModal.html",
@@ -43,8 +44,8 @@
                 controllerAs: "notifyCtrl",
                 size: "sm",
                 resolve: {
-                    personName: function () {
-                        return name;
+                    title: function () {
+                        return title;
                     },
                     mode: function () {
                         return mode;
@@ -105,6 +106,23 @@
                 }
             });
         };
+
+        function openCreateProductFormModal(mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/productModal/productModal.html",
+                controller: "productModalController",
+                //size: "sm",
+                resolve: {
+                    product: function(){
+                        return {};
+                    },
+                    mode: function () {
+                        return mode;
+                    }
+                }
+            });
+        }
     }
 
 })(angular);

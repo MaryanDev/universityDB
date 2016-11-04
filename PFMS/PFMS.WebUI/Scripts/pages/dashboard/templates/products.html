@@ -20,6 +20,7 @@
             <tr class="empty"></tr>
         </thead>
         <tbody>
+            <tr id="addProductRow"><td colspan="4" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
             <tr id="productWrapper" class="row" ng-repeat-start="product in products" ng-click="showDetailsInModal(product)">
                 <td class="col-lg-6 text-info">{{product.Title}}</td>
                 <td class="col-lg-3">{{product.Cost}}</td>

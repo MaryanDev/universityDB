@@ -80,9 +80,13 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     border-radius: 2px;
 }
 
-#addEmployeeRow td:hover{
+#addEmployeeRow td:hover, #addProductRow td:hover{
     background-color:lightgray;
     color: lawngreen;
+}
+
+#addProductRow{
+    background-color: white;
 }
 
 #personModalForm, #personModalForm select {

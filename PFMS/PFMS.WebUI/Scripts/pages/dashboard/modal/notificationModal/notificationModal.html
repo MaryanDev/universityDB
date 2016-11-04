@@ -4,9 +4,9 @@
       updateConfirm: mode == 'updateMode',
       createConfirm: mode == 'createMode'
      }">
-    <h3 class="h3" ng-if="mode == 'deleteMode'">Person {{personName}} was successfully deleted!</h3>
-    <h3 class="h3" ng-if="mode == 'createMode'">Person {{personName}} was successfully created!</h3>
-    <h3 class="h3" ng-if="mode == 'updateMode'">Person {{personName}} was succesfully updated!</h3>
+    <h3 class="h3" ng-if="mode == 'deleteMode'">{{title}} was successfully deleted!</h3>
+    <h3 class="h3" ng-if="mode == 'createMode'">{{title}} was successfully created!</h3>
+    <h3 class="h3" ng-if="mode == 'updateMode'">{{title}} was succesfully updated!</h3>
     <div id="confirmDeleteBtnWrapper" class="row text-center">
         <div>
             <button class="btn btn-default btn-lg" ng-click="ok()">Ok</button>

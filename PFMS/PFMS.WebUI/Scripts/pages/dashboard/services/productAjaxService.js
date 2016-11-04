@@ -39,6 +39,7 @@
 
             return promise;
         }
+
         return service;
     }
 })(angular);

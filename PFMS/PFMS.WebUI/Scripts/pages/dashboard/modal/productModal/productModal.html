@@ -12,7 +12,8 @@
                     <label>Title</label>
                 </div>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control input-lg" ng-model="product.Title" />
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isTitleValid }" ng-change="validateTitle()" ng-model="product.Title" />
+                    <span class="text-danger" ng-if="!validation.isTitleValid">Invalid title</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -20,18 +21,23 @@
                     <label>Cost</label>
                 </div>
                 <div class="col-lg-8">
-                    <input type="number" class="form-control input-lg" ng-model="product.Cost" />
+                    <input type="number" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isCostValid }" ng-change="validateCost()" ng-model="product.Cost" />
+                    <span class="text-danger" ng-if="!validation.isCostValid">Invalid cost</span>
                 </div>
             </div>
+
+            <div class="row form-group" ng-if="mode=='edit/deleteMode'">
+                <div class="col-lg-8 text-right">
+                    <input type="submit" class="btn btn-lg btn-info form-control input-lg" ng-disabled="!validation.isFormValid" value="Update" ng-click="updateProduct(product)" />
+                </div>
+                <div class="col-lg-3">
+                    <input type="button" class="btn btn-lg btn-danger form-control input-lg" value="Delete" ng-click="deleteProduct(product.Id)" />
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="form-group row text-center" ng-if="mode == 'createMode'">
+                <input type="submit" value="Create" ng-click="createProduct(product)" ng-disabled="!validation.isFormValid" class="form-control input-lg btn btn-success" />
+            </div>
         </form>
-    </div>
-    <div class="row form-group">
-        <div class="col-lg-8 text-right">
-            <input type="submit" class="btn btn-lg btn-info form-control input-lg" value="Update" ng-click="updateProduct(product)" />
-        </div>
-        <div class="col-lg-3">
-            <input type="button" class="btn btn-lg btn-danger form-control input-lg" value="Delete" ng-click="deleteProduct(product.Id)" />
-        </div>
-        <div class="col-lg-1"></div>
     </div>
 </div>

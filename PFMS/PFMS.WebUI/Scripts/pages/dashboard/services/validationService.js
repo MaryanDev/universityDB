@@ -8,7 +8,9 @@
             validateDate: validateDate,
             validatePhone: validatePhone,
             validateAddress: validateAddress,
-            validateAccountNumber: validateAccountNumber
+            validateAccountNumber: validateAccountNumber,
+            validateTitle: validateTitle,
+            validateCost: vaalidateCost
         };
 
         function validateName(name) {
@@ -59,6 +61,24 @@
                 return true;
             }
         };
+
+        function validateTitle(title) {
+            if (title === undefined || title === null || title.length < 2 || title.length > 70) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        };
+
+        function vaalidateCost(cost) {
+            if (cost === undefined || cost === null || cost < 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         return service;
     }

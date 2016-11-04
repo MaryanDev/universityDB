@@ -41,5 +41,33 @@ namespace PFMS.WebUI.Controllers
             _unit.Save();
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(Product productToDelete)
+        {
+            var ordersToDelete = _unit.OrderRepo.Get(o => o.ProductId == productToDelete.Id);
+            if(ordersToDelete.Count() != 0)
+            {
+                foreach(var order in ordersToDelete)
+                {
+                    _unit.OrderRepo.Delete(order);
+                    _unit.Save();
+                }
+            }
+            var itemsToDelete = _unit.ProdMachineRepo.Get(pmt => pmt.ProductId == productToDelete.Id);
+            if(itemsToDelete.Count() != 0)
+            {
+                foreach(var item in itemsToDelete)
+                {
+                    _unit.ProdMachineRepo.Delete(item);
+                    _unit.Save();
+                }
+            }
+            
+            _unit.ProductRepo.Delete(productToDelete);
+            _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
     }
 }

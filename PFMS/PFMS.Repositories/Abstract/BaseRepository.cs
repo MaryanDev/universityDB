@@ -17,9 +17,10 @@ namespace PFMS.Repositories.Abstract
             this.context = context;
         }
 
-        public virtual void Delete(Func<TEntity, bool> criteria) 
+        public virtual void Delete(TEntity entity) 
         {
-            context.Set<TEntity>().Remove(context.Set<TEntity>().SingleOrDefault<TEntity>(criteria));
+            //context.Set<TEntity>().Remove(context.Set<TEntity>().SingleOrDefault<TEntity>(criteria));
+            context.Set<TEntity>().Remove(entity);
         }
 
         public virtual IEnumerable<TEntity> Get(Func<TEntity, bool> criteria = null)

@@ -73,6 +73,26 @@
                 return;
             });
         }
+
+        $scope.deleteProduct = function (id) {
+            var modalInstance = popUpModalService.openConfirm(product.Title, "deleteMode");
+
+            modalInstance.result.then(function () {
+                productAjaxService.deleteProduct(product.Id)
+                .success(function (response) {
+                    console.log("product deleted");
+                    popUpModalService.openNotification(product.Title, "deleteMode").result.then(function () {
+                        $scope.closeModal();
+                        location.assign("/Dashboard/Main/#products");
+                    });
+                })
+                .error(function (error) {
+                    console.error(error);
+                })
+            }, function () {
+                return;
+            });
+        }
     };
 
 })(angular);

@@ -84,6 +84,7 @@
                                 console.info('employee created');
                                 var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
                                 notificationInstance.result.then(function () {
+                                    $scope.closeModal();
                                     location.assign("/Dashboard/Main");
                                 });
                             })
@@ -97,6 +98,7 @@
                                 console.info('customer created');
                                 var notificationInstance = popUpModalService.openNotification(person.FirstName + " " + person.LastName, "createMode");
                                 notificationInstance.result.then(function () {
+                                    $scope.closeModal();
                                     location.assign("/Dashboard/Main/#customers");
                                 });
                             })

@@ -230,16 +230,20 @@ FOREIGN KEY (PositionId) REFERENCES EmpPositions(Id);
 
 ALTER TABLE Orders
 ADD CONSTRAINT FK_OrderToCustomer
-FOREIGN KEY (CustomerId) REFERENCES Customers(PersonId);
+FOREIGN KEY (CustomerId) REFERENCES Customers(PersonId)
+ON DELETE CASCADE
 
 ALTER TABLE Orders
 ADD CONSTRAINT FK_OrderToProduct
-FOREIGN KEY (ProductId) REFERENCES Products(Id);
+FOREIGN KEY (ProductId) REFERENCES Products(Id)
+ON DELETE CASCADE
 
 ALTER TABLE ProductsToMachines
 ADD CONSTRAINT FK_ProdToMachineToProduct
-FOREIGN KEY(ProductId) REFERENCES Products(Id);
+FOREIGN KEY(ProductId) REFERENCES Products(Id)
+ON DELETE CASCADE
 
 ALTER TABLE ProductsToMachines
 ADD CONSTRAINT FK_ProdToMachineToMachine
-FOREIGN KEY(MachineId) REFERENCES PrintingMachines(Id);
+FOREIGN KEY(MachineId) REFERENCES PrintingMachines(Id)
+ON DELETE CASCADE

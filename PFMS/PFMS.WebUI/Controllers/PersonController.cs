@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -194,18 +195,18 @@ namespace PFMS.WebUI.Controllers
         [HttpPost]
         public ActionResult DeleteCustomer(int id)
         {
-            var ordersToDelete = _unit.OrderRepo.Get(o => o.CustomerId == id);
-            if (ordersToDelete.Count() != 0)
-            {
-                foreach (var order in ordersToDelete)
-                {
-                    _unit.OrderRepo.Delete(order);
-                    _unit.Save();
-                }
-            }
-            _unit.Save();
+            //var ordersToDelete = _unit.OrderRepo.Get(o => o.CustomerId == id);
+            //if (ordersToDelete.Count() != 0)
+            //{
+            //    foreach (var order in ordersToDelete)
+            //    {
+            //        _unit.OrderRepo.Delete(order);
+            //        _unit.Save();
+            //    }
+            //}
+            //_unit.Save();
 
-            var newOrders = _unit.OrderRepo.Get(o => o.CustomerId == id);
+            //var newOrders = _unit.OrderRepo.Get(o => o.CustomerId == id);
 
             var customerToDelete = _unit.CustomerRepo.GetSingle(cus => cus.PersonId == id);
             _unit.CustomerRepo.Delete(customerToDelete);

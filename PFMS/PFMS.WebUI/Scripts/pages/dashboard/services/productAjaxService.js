@@ -41,11 +41,11 @@
             return promise;
         }
 
-        function deleteProductAjax(id) {
+        function deleteProductAjax(productToDelete) {
             var promise = $http({
                 method: "POST",
                 url: "/Product/DeleteProduct",
-                data: { id: id }
+                data: { productToDelete: productToDelete }
             });
 
             return promise;

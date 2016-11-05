@@ -133,7 +133,8 @@ span[class="glyphicon glyphicon-pencil"]:hover {
 
 
 #productWrapper{
-    padding: 10px;
+    /*padding: 50px;*/
+    height: 75px;
     font-size: 16pt;
     background-color:white;
 }

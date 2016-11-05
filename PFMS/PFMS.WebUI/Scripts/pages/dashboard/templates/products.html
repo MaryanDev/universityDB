@@ -1,16 +1,6 @@
-﻿<div id="productViewWrapper">
-    <!--<div id="productWrapper" class="row panel panel-default" ng-repeat="product in products">
-        <div class="col-lg-6">
-            <label class="text-info" id="productTitle">{{product.Title}}</label>
-        </div>
-        <div id="costWrapper" class="text-center col-lg-3">
-            <label class="text-primary">Cost :{{product.Cost}}</label>
-        </div>
-        <div class="col-lg-3">
-            <label class="text-success" id="orders">Orders :{{product.Orders}}</label>
-        </div>
-    </div>-->
-    <table class="table">
+﻿<div id="productViewWrapper" class="panel panel-body"  style="min-height: 100px;border-radius:0px;">
+    <loading-animation ng-if="isLoading"></loading-animation>
+    <table class="table" ng-if="!isLoading" style="vertical-align: central;">
         <thead style="background-color:white">
             <tr class="row">
                 <th class="col-lg-6">Title</th>
@@ -21,12 +11,12 @@
         </thead>
         <tbody>
             <tr id="addProductRow"><td colspan="4" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
-            <tr id="productWrapper" class="row" ng-repeat-start="product in products" ng-click="showDetailsInModal(product)">
+            <tr id="productWrapper" class="row" ng-repeat="product in products" ng-click="showDetailsInModal(product)">
                 <td class="col-lg-6 text-info">{{product.Title}}</td>
                 <td class="col-lg-3">{{product.Cost}}</td>
                 <td class="col-lg-3 text-success">{{product.Orders}}</td>
             </tr>
-            <tr class="empty" ng-repeat-end=""></tr>
+            <!--<tr class="empty" ng-repeat-end=""></tr>-->
         </tbody>
     </table>
 </div>

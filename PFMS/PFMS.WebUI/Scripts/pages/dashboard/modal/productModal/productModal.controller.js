@@ -74,11 +74,11 @@
             });
         }
 
-        $scope.deleteProduct = function (id) {
+        $scope.deleteProduct = function (product) {
             var modalInstance = popUpModalService.openConfirm(product.Title, "deleteMode");
 
             modalInstance.result.then(function () {
-                productAjaxService.deleteProduct(product.Id)
+                productAjaxService.deleteProduct(product)
                 .success(function (response) {
                     console.log("product deleted");
                     popUpModalService.openNotification(product.Title, "deleteMode").result.then(function () {

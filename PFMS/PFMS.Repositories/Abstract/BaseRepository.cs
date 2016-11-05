@@ -20,6 +20,7 @@ namespace PFMS.Repositories.Abstract
         public virtual void Delete(TEntity entity) 
         {
             //context.Set<TEntity>().Remove(context.Set<TEntity>().SingleOrDefault<TEntity>(criteria));
+            context.Set<TEntity>().Attach(entity);
             context.Set<TEntity>().Remove(entity);
         }
 

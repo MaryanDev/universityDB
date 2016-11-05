@@ -6,12 +6,14 @@
 
     function productsController($scope, productAjaxService, popUpModalService) {
         $scope.products = [];
+        $scope.isLoading = true;
         activate();
 
         function activate() {
             productAjaxService.getProducts()
                 .then(function (response) {
                     $scope.products = response.data;
+                    $scope.isLoading = false;
                 }, function errorCalback(error) {
                     console.error(error);
                 });

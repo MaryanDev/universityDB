@@ -1,4 +1,5 @@
 ﻿using PFMS.Entities;
+using PFMS.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace PFMS.Repositories.Abstract
 {
     public interface IOrderRepository
     {
+        IEnumerable<OrderFullInfoDTO> GetFullOrdersInfo(Func<Order, bool> criteria = null);
     }
 }

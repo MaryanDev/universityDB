@@ -49,6 +49,10 @@
 
                     }
                 })
+                .when("/orders", {
+                    templateUrl: "/Scripts/pages/dashboard/templates/orders.html",
+                    controller: "ordersController"
+                })
                 .otherwise({ redirectTo: "/employees" });
         });
 })(angular);

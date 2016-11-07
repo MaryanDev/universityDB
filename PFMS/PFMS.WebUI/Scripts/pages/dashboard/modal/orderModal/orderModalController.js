@@ -2,12 +2,14 @@
     angular.module("appModule")
         .controller("orderModalController", orderModalController);
 
-    orderModalController.$inject = ["$scope", "orderAjaxService", "validationService", "popUpModalService", "$uibModalInstance"];
+    orderModalController.$inject = ["$scope", "orderAjaxService", "validationService", "popUpModalService", "$uibModalInstance", "mode"];
 
-    function orderModalController($scope, orderAjaxService, validationService, popUpModalService, $uibModalInstance) {
+    function orderModalController($scope, orderAjaxService, validationService, popUpModalService, $uibModalInstance, mode) {
         $scope.matchingCustomers = [];
         $scope.matchingProducts = [];
         $scope.order = {};
+        $scope.errorMessage;
+        $scope.mode = mode;
 
         $scope.closeModal = function () {
             $uibModalInstance.close(false);
@@ -48,13 +50,26 @@
             $scope.order.CustomersLastName = splitted[1];
             console.log(order);
 
-            orderAjaxService.createOrder(order)
+            var modalInstance = popUpModalService.openConfirm("order", $scope.mode);
+
+            modalInstance.result.then(function () {
+                orderAjaxService.createOrder(order)
                 .success(function (response) {
                     console.log("order created");
+                    $scope.errorMessage = "";
+                    popUpModalService.openNotification("order", $scope.mode).result.then(function () {
+                        $scope.closeModal();
+                        location.assign("/Dashboard/Main/#orders");
+                    });
                 })
                 .error(function (error) {
-                    console.error(error);
+                    console.log(error);
+                    $scope.errorMessage = "The customer or product was not found";
                 });
+            },
+            function () {
+                return;
+            }) 
         }
     }
 })(angular);

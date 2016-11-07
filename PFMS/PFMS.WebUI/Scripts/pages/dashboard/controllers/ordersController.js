@@ -32,6 +32,10 @@
             popUpModalService.openCreateOrderForm("createMode");
         }
 
+        $scope.showDetailsInModal = function (order) {
+            popUpModalService.openOrderDetails(order, "edit/deleteMode");
+        }
+
         function initData(response) {
             $scope.orders = response.data.orders;
             $scope.pagination.allPages = new Array(response.data.allPages);

@@ -969,6 +969,7 @@
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\orderModal\orderModal.html" />
+    <Content Include="Scripts\pages\dashboard\modal\orderModal\createOrderController.js" />
     <Content Include="Scripts\pages\dashboard\modal\orderModal\orderModalController.js" />
     <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.html" />

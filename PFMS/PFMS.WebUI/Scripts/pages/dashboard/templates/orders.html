@@ -17,7 +17,7 @@
                         <span class="glyphicon glyphicon-plus">Add</span>
                     </td>
                 </tr>
-                <tr ng-repeat="order in orders">
+                <tr ng-repeat="order in orders" ng-click="showDetailsInModal(order)">
                     <td>{{order.Id}}</td>
                     <td>{{order.CustomersFirstName + ' ' + order.CustomersLastName}}</td>
                     <td>{{order.Product}}</td>

@@ -12,7 +12,8 @@
             openCreatePersonForm: openCreatePersonFormModal,
             openProductDetails: openProductDetailsModal,
             openCreateProductForm: openCreateProductFormModal,
-            openCreateOrderForm: openCreateOrderFormModal
+            openCreateOrderForm: openCreateOrderFormModal,
+            openOrderDetails: openOrderDetailsModal
         };
 
         return service;
@@ -125,16 +126,40 @@
             });
         }
 
-        function openCreateOrderFormModal() {
+        function openCreateOrderFormModal(mode) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: "/Scripts/pages/dashboard/modal/orderModal/orderModal.html",
-                controller: "orderModalController",
-                size: "lg"
+                controller: "createOrderController",
+                size: "lg",
+                resolve: {
+                    mode: function () {
+                        return mode;
+                    }
+                }
             });
 
             return modalInstance;
         }
+
+        function openOrderDetailsModal(order, mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/orderModal/orderModal.html",
+                controller: "orderModalController",
+                size: "lg",
+                resolve: {
+                    order: function () {
+                        return order;
+                    },
+                    mode: function () {
+                        return mode;
+                    }
+                }
+            })
+
+            return modalInstance;
+        };
     }
 
 })(angular);

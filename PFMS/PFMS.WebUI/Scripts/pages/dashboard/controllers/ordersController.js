@@ -29,7 +29,11 @@
         }
 
         $scope.showAddDialog = function () {
-            popUpModalService.openCreateOrderForm();
+            popUpModalService.openCreateOrderForm("createMode");
+        }
+
+        $scope.showDetailsInModal = function (order) {
+            popUpModalService.openOrderDetails(order, "edit/deleteMode");
         }
 
         function initData(response) {

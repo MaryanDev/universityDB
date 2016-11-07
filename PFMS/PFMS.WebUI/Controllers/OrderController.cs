@@ -28,18 +28,60 @@ namespace PFMS.WebUI.Controllers
         [HttpPost]
         public ActionResult CreateOrder(OrderFullInfoDTO orderToCreate)
         {
-            var customerId = _unit.CustomerRepo.GetSingle(cust => cust.Person.FirstName == orderToCreate.CustomersFirstName
-                && cust.Person.LastName == orderToCreate.CustomersLastName).PersonId;
-            var productId = _unit.ProductRepo.GetSingle(prod => prod.Title == orderToCreate.Product).Id;
-
-            _unit.OrderRepo.Insert(new Order
+            try
             {
-                CustomerId = customerId,
-                ProductId = productId,
-                Quantity = orderToCreate.Quantity
-            });
-            _unit.Save();
+                var customerId = _unit.CustomerRepo.GetSingle(cust => cust.Person.FirstName == orderToCreate.CustomersFirstName
+                    && cust.Person.LastName == orderToCreate.CustomersLastName).PersonId;
+                var productId = _unit.ProductRepo.GetSingle(prod => prod.Title == orderToCreate.Product).Id;
 
+                _unit.OrderRepo.Insert(new Order
+                {
+                    CustomerId = customerId,
+                    ProductId = productId,
+                    Quantity = orderToCreate.Quantity
+                });
+                _unit.Save();
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch
+            {
+                //return Json("The customer or product was not found, please select right info", JsonRequestBehavior.AllowGet);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "The customer or product was not found, please select right info");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrder(OrderFullInfoDTO orderToUpdate)
+        {
+            try
+            {
+                var customerId = _unit.CustomerRepo.GetSingle(cust => cust.Person.FirstName == orderToUpdate.CustomersFirstName
+                    && cust.Person.LastName == orderToUpdate.CustomersLastName).PersonId;
+                var productId = _unit.ProductRepo.GetSingle(prod => prod.Title == orderToUpdate.Product).Id;
+
+                _unit.OrderRepo.Update(new Order
+                {
+                    CustomerId = customerId,
+                    ProductId = productId,
+                    Quantity = orderToUpdate.Quantity
+                });
+                _unit.Save();
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch
+            {
+                //return Json("The customer or product was not found, please select right info", JsonRequestBehavior.AllowGet);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "The customer or product was not found, please select right info");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteOrder(OrderFullInfoDTO orderToDelete)
+        {
+            _unit.OrderRepo.Delete(_unit.OrderRepo.GetSingle(o => o.Id == orderToDelete.Id));
+            _unit.Save();
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }

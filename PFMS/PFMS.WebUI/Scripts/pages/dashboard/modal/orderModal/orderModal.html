@@ -17,6 +17,7 @@
                 </datalist>
             </div>
         </div>
+
         <div class="form-group row">
             <label class="col-lg-4">Product</label>
             <div class="col-lg-8">
@@ -32,14 +33,25 @@
                 <input type="number" ng-model="order.Quantity" class="input-lg form-control" required />
             </div>
         </div>
+        <div class="form-group row text-center" style="font-size: 15pt" ng-if="errorMessage">
+            <span class="text-danger">{{errorMessage}}</span>
+        </div>
         <!--<div class="form-group row">
             <label class="col-lg-4">Total price</label>
             <div class="col-lg-8 text-center">
                 <label>{{order.product.Cost * order.quantity}}</label>
             </div>
         </div>-->
-        <div class="form-group row text-center">
+        <div class="form-group row text-center" ng-if="mode == 'createMode'">
             <input type="submit" value="Create" ng-click="createOrder(order)" class="btn btn-success input-lg form-control" />
+        </div>
+        <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
+            <div class="col-lg-8">
+                <input type="submit" ng-click="updateOrder(order)" value="Update" class="input-lg btn btn-info form-control" />
+            </div>
+            <div class="col-lg-4">
+                <input type="submit" ng-click="deleteOrder(order)" value="Delete" class="input-lg btn btn-danger form-control"/>
+            </div>
         </div>
     </form>
 </div>

@@ -11,7 +11,8 @@
             openPersonDetails: openPersonDetailsModal,
             openCreatePersonForm: openCreatePersonFormModal,
             openProductDetails: openProductDetailsModal,
-            openCreateProductForm: openCreateProductFormModal
+            openCreateProductForm: openCreateProductFormModal,
+            openCreateOrderForm: openCreateOrderFormModal
         };
 
         return service;
@@ -122,6 +123,17 @@
                     }
                 }
             });
+        }
+
+        function openCreateOrderFormModal() {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/orderModal/orderModal.html",
+                controller: "orderModalController",
+                size: "lg"
+            });
+
+            return modalInstance;
         }
     }
 

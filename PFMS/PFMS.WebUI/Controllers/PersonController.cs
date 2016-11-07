@@ -195,19 +195,6 @@ namespace PFMS.WebUI.Controllers
         [HttpPost]
         public ActionResult DeleteCustomer(int id)
         {
-            //var ordersToDelete = _unit.OrderRepo.Get(o => o.CustomerId == id);
-            //if (ordersToDelete.Count() != 0)
-            //{
-            //    foreach (var order in ordersToDelete)
-            //    {
-            //        _unit.OrderRepo.Delete(order);
-            //        _unit.Save();
-            //    }
-            //}
-            //_unit.Save();
-
-            //var newOrders = _unit.OrderRepo.Get(o => o.CustomerId == id);
-
             var customerToDelete = _unit.CustomerRepo.GetSingle(cus => cus.PersonId == id);
             _unit.CustomerRepo.Delete(customerToDelete);
             _unit.Save();
@@ -218,10 +205,24 @@ namespace PFMS.WebUI.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+        [HttpGet]
+        public JsonResult GetCustomersByName(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                var matchingResult = _unit.CustomerRepo.GetSimpleCustomerInfo(cust => (cust.Person.FirstName + " " + cust.Person.LastName).ToLower().Contains(name.ToLower()));
+                return Json(matchingResult, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+        }
         #endregion
 
         #region Helpers
-        
+
         #endregion
     }
 }

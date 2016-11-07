@@ -2,9 +2,9 @@
     angular.module("appModule")
         .controller("ordersController", ordersController);
 
-    ordersController.$inject = ["$scope", "orderAjaxService"];
+    ordersController.$inject = ["$scope", "orderAjaxService", "popUpModalService"];
 
-    function ordersController($scope, orderAjaxService) {
+    function ordersController($scope, orderAjaxService, popUpModalService) {
         $scope.orders = [];
         $scope.pagination = {};
         $scope.isLoading = true;
@@ -26,6 +26,10 @@
                 }, function errorCallback(error) {
                     console.error(error);
                 });
+        }
+
+        $scope.showAddDialog = function () {
+            popUpModalService.openCreateOrderForm();
         }
 
         function initData(response) {

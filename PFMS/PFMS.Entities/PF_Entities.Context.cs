@@ -27,7 +27,7 @@ namespace PFMS.Entities
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<Customer>().HasOptional(o => o.Orders).WithOptionalDependent().WillCascadeOnDelete();
         }
     
         public virtual DbSet<Customer> Customers { get; set; }

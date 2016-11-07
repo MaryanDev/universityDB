@@ -50,5 +50,26 @@ namespace PFMS.WebUI.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+        [HttpGet]
+        public JsonResult GetProductsByTitle(string title)
+        {
+            if (!string.IsNullOrEmpty(title))
+            {
+                var matchingProducts = _unit.ProductRepo.Get(prod => prod.Title.ToLower().Contains(title.ToLower()))
+                    .Select(p => new
+                    {
+                        Id = p.Id,
+                        Cost = p.Cost,
+                        Title = p.Title
+                    });
+                return Json(matchingProducts, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
     }
 }

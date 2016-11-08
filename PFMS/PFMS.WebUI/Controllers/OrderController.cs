@@ -54,27 +54,24 @@ namespace PFMS.WebUI.Controllers
         [HttpPost]
         public ActionResult UpdateOrder(OrderFullInfoDTO orderToUpdate)
         {
-            try
-            {
-                var customerId = _unit.CustomerRepo.GetSingle(cust => cust.Person.FirstName == orderToUpdate.CustomersFirstName
-                    && cust.Person.LastName == orderToUpdate.CustomersLastName).PersonId;
-                var productId = _unit.ProductRepo.GetSingle(prod => prod.Title == orderToUpdate.Product).Id;
 
-                _unit.OrderRepo.Update(new Order
-                {
-                    CustomerId = customerId,
-                    ProductId = productId,
-                    Quantity = orderToUpdate.Quantity
-                });
-                _unit.Save();
+            var customerId = _unit.CustomerRepo.GetSingle(cust => cust.Person.FirstName == orderToUpdate.CustomersFirstName
+                && cust.Person.LastName == orderToUpdate.CustomersLastName).PersonId;
+            var productId = _unit.ProductRepo.GetSingle(prod => prod.Title == orderToUpdate.Product).Id;
 
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            catch
-            {
-                //return Json("The customer or product was not found, please select right info", JsonRequestBehavior.AllowGet);
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "The customer or product was not found, please select right info");
-            }
+            var order = _unit.OrderRepo.GetSingle(o => o.Id == orderToUpdate.Id);
+            order.CustomerId = customerId;
+            order.ProductId = productId;
+            order.Quantity = orderToUpdate.Quantity;
+
+            _unit.OrderRepo.Update(order);
+            _unit.Save();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            //return Json("The customer or product was not found, please select right info", JsonRequestBehavior.AllowGet);
+            return new HttpStatusCodeResult(HttpStatusCode.NotFound, "The customer or product was not found, please select right info");
+
         }
 
         [HttpPost]

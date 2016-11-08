@@ -57,6 +57,24 @@
             function () {
                 return;
             })
+        }
+
+        $scope.deleteOrder = function (order) {
+            var modalInstanse = popUpModalService.openConfirm("Order " + order.Id, "deleteMode");
+
+            modalInstanse.result.then(function () {
+                orderAjaxService.deleteOrder(order)
+                    .then(function (response) {
+                        popUpModalService.openNotification("Order " + order.Id, "deleteMode").result
+                            .then(function () {
+                                $scope.closeModal();
+                                $scope.errorMessage = "";
+                                location.assign("/Dashboard/Main/#orders");
+                            });
+                    });
+            }, function () {
+                return;
+            })
 
         }
 

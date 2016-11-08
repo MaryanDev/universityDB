@@ -46,7 +46,7 @@ namespace PFMS.Repositories.Concrete
                     });
             }
 
-            return result.ToList();
+            return result;
         }
     }
 }

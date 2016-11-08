@@ -1,7 +1,41 @@
 ﻿<div id="content" class="panel panel-body" style="min-height:100px;">
     <loading-animation ng-if="isLoading"></loading-animation>
-    <div ng-if="!isLoading">
-        <table class="table table-responsive table-striped">
+    <div id="searchPanel" class="text-info">
+        <form class="navbar-form" ng-submit="searchForResults(search)">
+            <div class="container searchPanelArea">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-md-6 form-group row">
+                        <label class="col-lg-4 col-sm-4 col-md-4">First Name</label>
+                        <input class="col-lg-8 col-sm-8 col-md-8 input-lg" type="search" ng-model="search.FirstName"/>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-6 form-group row">
+                        <label class="col-lg-4 col-sm-4 col-md-4">Last Name</label>
+                        <input class="col-lg-8 col-sm-8 col-md-8 input-lg" type="search" ng-model="search.LastName" />
+                    </div>
+                </div>
+            </div>
+            <div class="container searchPanelArea">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-md-6 form-group row">
+                        <label class="col-lg-4 col-sm-4 col-md-4">Address</label>
+                        <input class="col-lg-8 col-sm-8 col-md-8 input-lg" type="search" ng-model="search.Address" />
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-6 form-group row">
+                        <label class="col-lg-4 col-sm-4 col-md-4">Phone</label>
+                        <input class="col-lg-8 col-sm-8 col-md-8 input-lg" type="search" ng-model="search.Phone" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="form-control btn btn-info">
+                    <span class="glyphicon glyphicon-search" ></span>
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="dataPanel" ng-if="!isLoading">
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -10,8 +44,8 @@
                 </tr>
             </thead>
             <tbody class="text-info">
-                <tr id="addEmployeeRow"><td colspan="2" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
-                <tr ng-repeat="person in persons" ng-click="showDetailsInModal(person)">
+                <tr class="addRow"><td colspan="2" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
+                <tr class="dataRow" ng-repeat="person in persons" ng-click="showDetailsInModal(person)">
                     <td>{{person.FirstName + " " + person.LastName}}</td>
                     <td ng-if="mode == 'employeeMode'">{{person.Position}}</td>
                     <td ng-if="mode == 'customerMode'">{{person.AccountNumber}}</td>

@@ -8,15 +8,28 @@
         $scope.orders = [];
         $scope.pagination = {};
         $scope.isLoading = true;
+        $scope.search = {};
         activate();
 
         function activate() {
+            console.log($scope.search);
             orderAjaxService.getOrders(1)
                 .then(function (response) {
                     initData(response);
+                    
                 }, function errorCallback(error) {
                     console.error(error);
                 });
+        }
+
+        $scope.searchForResults = function (search) {
+            console.log($scope.search);
+            //orderAjaxService.getOrders(1, search)
+            //    .then(function (response) {
+            //        initData(response);
+            //    }, function errorCallback(error) {
+            //        console.error(error);
+            //    });
         }
 
         $scope.getOrders = function (page) {

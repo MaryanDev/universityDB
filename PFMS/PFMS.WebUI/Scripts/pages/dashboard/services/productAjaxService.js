@@ -12,10 +12,11 @@
             deleteProduct: deleteProductAjax
         }
 
-        function getProductsAjax() {
+        function getProductsAjax(search) {
             var promise = $http({
-                method: "GET",
-                url: "/Product/GetProducts"
+                method: "POST",
+                url: "/Product/GetProducts",
+                data: { searchModel: search }
             });
 
             return promise;

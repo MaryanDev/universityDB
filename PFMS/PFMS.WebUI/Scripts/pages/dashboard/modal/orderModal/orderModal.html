@@ -39,7 +39,8 @@
         <!--<div class="form-group row">
             <label class="col-lg-4">Total price</label>
             <div class="col-lg-8 text-center">
-                <label>{{order.product.Cost * order.quantity}}</label>
+                <label ng-if="mode == 'edit/deleteMode'">{{(order.Quantity * matchingProducts[0].Cost) === NaN ? order.TotalPrice : matchingProducts[0].Cost}}</label>
+                <label ng-if="mode == 'createMode'">{{(order.Quantity * matchingProducts[0].Cost) === NaN ? '0' : order.Quantity * matchingProducts[0].Cost}}</label>
             </div>
         </div>-->
         <div class="form-group row text-center" ng-if="mode == 'createMode'">

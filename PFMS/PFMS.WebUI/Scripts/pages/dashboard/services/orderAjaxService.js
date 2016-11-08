@@ -9,14 +9,16 @@
             getOrders: getOrdersAjax,
             findCustomersByName: findCustomersByNameAjax,
             findProductsByTitle: findProductsByTitleAjax,
-            createOrder: createOrderAjax
+            createOrder: createOrderAjax,
+            updateOrder: updateOrderAjax,
+            deleteOrder: deleteOrderAjax
         }
 
-        function getOrdersAjax(page) {
+        function getOrdersAjax(page, search) {
             var promise = $http({
-                method: "GET",
+                method: "POST",
                 url: "/Order/GetOrders",
-                params: { page: page }
+                data: { searchModel: search, page: page }
             });
 
             return promise;
@@ -47,6 +49,26 @@
                 method: "POST",
                 url: "/Order/CreateOrder",
                 data: { orderToCreate: order }
+            });
+
+            return promise;
+        }
+
+        function updateOrderAjax(order) {
+            var promise = $http({
+                method: "POST",
+                url: "/Order/UpdateOrder",
+                data: { orderToUpdate: order }
+            });
+
+            return promise;
+        }
+
+        function deleteOrderAjax(order) {
+            var promise = $http({
+                method: "POST",
+                url: "/Order/DeleteOrder",
+                data: { orderToDelete: order }
             });
 
             return promise;

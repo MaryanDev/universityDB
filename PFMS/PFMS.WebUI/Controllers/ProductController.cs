@@ -1,4 +1,5 @@
 ﻿using PFMS.Entities;
+using PFMS.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace PFMS.WebUI.Controllers
             this._unit = new Repositories.Concrete.UoW.UnitOfWork(new Entities.PintingFactoryDBEntities());
         }
 
-        [HttpGet]
-        public JsonResult GetProducts()
+        [HttpPost]
+        public JsonResult GetProducts(SearchProductModel searchModel)
         {
-            var result = _unit.ProductRepo.Get().Select(p => new
+            Func<Product, bool> criteria = prod => prod.Title.ToLower().Contains(searchModel.Title.ToLower()) &&
+                            (int)prod.Cost >= searchModel.MinCost && prod.Cost <= searchModel.MaxCost;
+            var result = _unit.ProductRepo.Get(criteria).Select(p => new
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -44,7 +47,7 @@ namespace PFMS.WebUI.Controllers
 
         [HttpPost]
         public ActionResult DeleteProduct(Product productToDelete)
-        {   
+        {
             _unit.ProductRepo.Delete(productToDelete);
             _unit.Save();
 
@@ -69,7 +72,7 @@ namespace PFMS.WebUI.Controllers
             {
                 return null;
             }
-            
+
         }
     }
 }

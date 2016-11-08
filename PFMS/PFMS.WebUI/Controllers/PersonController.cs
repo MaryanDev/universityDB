@@ -1,6 +1,7 @@
 ﻿using PFMS.Entities;
 using PFMS.Entities.DTO;
 using PFMS.Repositories.Concrete.UoW;
+using PFMS.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,15 +30,27 @@ namespace PFMS.WebUI.Controllers
         }
         #endregion
 
+        [HttpPost]
         #region Json Employee Methods
-        public JsonResult GetEmployeesInfo(int page = 1, int? personId = null)
+        public JsonResult GetEmployeesInfo(SearchPersonModel searchModel, int page = 1, int? personId = null)
         {
             IEnumerable<EmpInfoDTO> result;
-            int count;
-            if(personId == null)
+            if (!searchModel.IsModelEmpty())
             {
-                result = _unit.EmployeeRepo.GetSimpleEmpInfo().Skip((page - 1) * pageSize).Take(pageSize);
-                count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(), pageSize);
+                personId = null;
+            }
+            int count;
+            if (personId == null)
+            {
+                Func<Employee, bool> criteria = emp =>
+                    emp.Person.Address.ToLower().Contains(searchModel.Address.ToLower()) &&
+                    emp.Person.FirstName.ToLower().Contains(searchModel.FirstName.ToLower()) &&
+                    emp.Person.LastName.ToLower().Contains(searchModel.LastName.ToLower()) &&
+                    emp.Person.PhoneNumber.ToLower().Contains(searchModel.Phone.ToLower());
+
+                result = _unit.EmployeeRepo.GetSimpleEmpInfo(criteria)
+                    .Skip((page - 1) * pageSize).Take(pageSize);
+                count = GetCountOfPages(_unit.EmployeeRepo.GetCountOfRecords(criteria), pageSize);
             }
             else
             {
@@ -123,15 +136,27 @@ namespace PFMS.WebUI.Controllers
         }
         #endregion
 
+        [HttpPost]
         #region Json Customers Methods
-        public JsonResult GetCustomersInfo(int page = 1, int? personId = null)
+        public JsonResult GetCustomersInfo(SearchPersonModel searchModel, int page = 1, int? personId = null)
         {
             IEnumerable<CustomerInfoDTO> result;
+            if (!searchModel.IsModelEmpty())
+            {
+                personId = null;
+            }
             int count;
             if (personId == null)
             {
-                result = _unit.CustomerRepo.GetSimpleCustomerInfo().Skip((page - 1) * pageSize).Take(pageSize);
-                count = GetCountOfPages(_unit.CustomerRepo.GetCountOfRecords(), pageSize);
+                Func<Customer, bool> criteria = cust =>
+                    cust.Person.Address.ToLower().Contains(searchModel.Address.ToLower()) &&
+                    cust.Person.FirstName.ToLower().Contains(searchModel.FirstName.ToLower()) &&
+                    cust.Person.LastName.ToLower().Contains(searchModel.LastName.ToLower()) &&
+                    cust.Person.PhoneNumber.ToLower().Contains(searchModel.Phone.ToLower());
+
+                result = _unit.CustomerRepo.GetSimpleCustomerInfo(criteria)
+                    .Skip((page - 1) * pageSize).Take(pageSize);
+                count = GetCountOfPages(_unit.CustomerRepo.GetCountOfRecords(criteria), pageSize);
             }
             else
             {

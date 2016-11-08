@@ -70,7 +70,8 @@ textarea {
 }
 
 #menu, #content {
-    background-color: white;
+    /*background-color: white;*/
+
     margin: 5px;
     border-radius: 0px;
 }
@@ -152,6 +153,13 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     background-color: mediumturquoise;
 }
 
+.searchPanelArea{
+    margin-bottom: 15px;
+}
+
+#serachPanel{
+    font-size: 13pt;
+}
 /*ANIMATION WHIRPOOL*/
 .kart-loader *, .kart-loader *:after, .kart-loader *:before {
 	box-sizing: border-box;

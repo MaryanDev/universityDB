@@ -20,11 +20,11 @@
             updateCustomer: updateCustomerAjax
         };
 
-        function getEmployeesAjax(page, id) {
+        function getEmployeesAjax(page, id, search) {
             var promise = $http({
-                method: "GET",
+                method: "POST",
                 url: "/Person/GetEmployeesInfo",
-                params: { page: page, personId: id }
+                data: { searchModel: search, page: page, personId: id }
             });
 
             return promise;
@@ -79,11 +79,11 @@
             return promise;
         };
 
-        function getCustomersAjax(page, id) {
+        function getCustomersAjax(page, id, search) {
             var promise = $http({
-                method: "GET",
+                method: "POST",
                 url: "/Person/GetCustomersInfo",
-                params: { page: page, personId: id }
+                data: { searchModel: search, page: page, personId: id }
             });
 
             return promise;

@@ -24,7 +24,7 @@
                     $scope.matchingCustomers = response.data;
                 }, function errorCallback(error) {
                     console.error(error);
-                })
+                });
         }
 
         $scope.findMatchingProducts = function (title) {

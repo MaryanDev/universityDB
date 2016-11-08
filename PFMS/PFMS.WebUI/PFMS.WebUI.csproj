@@ -1009,6 +1009,8 @@
     <Compile Include="Infrastructure\Authentification\PrintingFactoryUserManager.cs" />
     <Compile Include="Infrastructure\AutofacConfig.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SearchCustomerModel.cs" />
+    <Compile Include="Models\SearchPersonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@
         $scope.isLoading = true;
         $scope.mode = mode;
         $scope.personId;
+        $scope.search = {};
         console.log(mode);
 
         $scope.persons;
@@ -35,6 +36,28 @@
                 //todo
             }
         };
+
+        $scope.searchForResults = function (search) {
+            $scope.personId = null;
+            if ($scope.mode == "employeeMode") {
+                personAjaxService.getEmployees(1, $scope.personId, search)
+                    .then(function (response) {
+                        initData(response);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    });
+            }
+
+            if ($scope.mode == "customerMode") {
+                //todo calll customers methods
+                personAjaxService.getCustomers(1, $scope.personId, search)
+                    .then(function (response) {
+                        initData(response);
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    });
+            }
+        }
 
         $scope.showDetailsInModal = function (person) {
             var modalInstance = popUpModalService.openPersonDetails(person.Id, $scope.mode);

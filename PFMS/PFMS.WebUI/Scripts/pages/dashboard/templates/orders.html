@@ -1,6 +1,26 @@
 ﻿<div class="panel panel-body" style="min-height: 100px;border-radius:0px;">
     <loading-animation ng-if="isLoading"></loading-animation>
-    <div ng-if="!isLoading" style="font-size:15pt;">
+    <div id="searchPanel" class="text-info">
+        <form class="navbar-form" ng-submit="searchForResults(search)">
+            <div class="row form-group">
+                <div class="col-lg-6 row">
+                    <label class="col-lg-4">Customer name</label>
+                    <input class="col-lg-8 input-lg" type="text" ng-model="search.CustomerName" ng-change="console.log(search)"/>
+                </div>
+                <div class="col-lg-6 row">
+                    <label class="col-lg-4">Product title</label>
+                    <input class="col-lg-8 input-lg" type="text" ng-model="search.ProductTitle" />
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="form-control btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="dataPanel" ng-if="!isLoading" style="font-size:15pt;">
         <table class="table">
             <thead>
                 <tr>
@@ -12,12 +32,12 @@
                 </tr>
             </thead>
             <tbody class="text-info">
-                <tr id="addOrderRow">
+                <tr class="addRow">
                     <td colspan="5" ng-click="showAddDialog()" class="text-center">
                         <span class="glyphicon glyphicon-plus">Add</span>
                     </td>
                 </tr>
-                <tr ng-repeat="order in orders" ng-click="showDetailsInModal(order)">
+                <tr class="dataRow" ng-repeat="order in orders" ng-click="showDetailsInModal(order)">
                     <td>{{order.Id}}</td>
                     <td>{{order.CustomersFirstName + ' ' + order.CustomersLastName}}</td>
                     <td>{{order.Product}}</td>

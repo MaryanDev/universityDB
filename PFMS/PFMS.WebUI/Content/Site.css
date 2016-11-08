@@ -81,9 +81,14 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     border-radius: 2px;
 }
 
-#addEmployeeRow td:hover, #addProductRow td:hover, #addOrderRow td:hover{
+/*#addEmployeeRow td:hover, #addProductRow td:hover, #addOrderRow td:hover{
     background-color:lightgray;
     color: lawngreen;
+}*/
+
+.addRow:hover{
+    background-color: lawngreen;
+    color: white;
 }
 
 #addProductRow{
@@ -135,9 +140,9 @@ span[class="glyphicon glyphicon-pencil"]:hover {
 
 #productWrapper{
     /*padding: 50px;*/
-    height: 75px;
+    /*height: 75px;*/
     font-size: 16pt;
-    background-color:white;
+    /*background-color:white;*/
 }
 #productWrapper #orders{
     float:right;
@@ -157,8 +162,25 @@ span[class="glyphicon glyphicon-pencil"]:hover {
     margin-bottom: 15px;
 }
 
-#serachPanel{
+#searchPanel{
     font-size: 13pt;
+    border-bottom: 2px solid gray;
+    padding:5px;
+}
+
+#searchPanel:hover{
+    background-color: lightgray;
+    color:white;
+}
+
+.dataRow:hover{
+    background-color:dodgerblue;
+    color: white;
+}
+
+.dataPanel{
+    font-size: 15pt;
+    margin-top:5%;
 }
 /*ANIMATION WHIRPOOL*/
 .kart-loader *, .kart-loader *:after, .kart-loader *:before {

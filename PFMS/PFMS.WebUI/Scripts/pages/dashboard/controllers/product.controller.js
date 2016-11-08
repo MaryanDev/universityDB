@@ -7,6 +7,7 @@
     function productsController($scope, productAjaxService, popUpModalService) {
         $scope.products = [];
         $scope.isLoading = true;
+        $scope.search = {};
         activate();
 
         function activate() {
@@ -18,6 +19,16 @@
                     console.error(error);
                 });
         };
+
+        $scope.searchForResults = function (search) {
+            productAjaxService.getProducts(search)
+                .then(function (response) {
+                    $scope.products = response.data;
+                    $scope.isLoading = false;
+                }, function errorCalback(error) {
+                    console.error(error);
+                });
+        }
 
         $scope.showDetailsInModal = function (product) {
             popUpModalService.openProductDetails(product, "edit/deleteMode");

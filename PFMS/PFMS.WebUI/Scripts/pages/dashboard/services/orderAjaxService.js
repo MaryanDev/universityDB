@@ -14,11 +14,11 @@
             deleteOrder: deleteOrderAjax
         }
 
-        function getOrdersAjax(page) {
+        function getOrdersAjax(page, search) {
             var promise = $http({
-                method: "GET",
+                method: "POST",
                 url: "/Order/GetOrders",
-                params: { page: page }
+                data: { searchModel: search, page: page }
             });
 
             return promise;

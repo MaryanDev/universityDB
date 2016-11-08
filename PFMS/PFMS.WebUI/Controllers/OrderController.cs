@@ -1,6 +1,7 @@
 ﻿using PFMS.Entities;
 using PFMS.Entities.DTO;
 using PFMS.Repositories.Concrete.UoW;
+using PFMS.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,18 @@ namespace PFMS.WebUI.Controllers
             _unit = new UnitOfWork(new PintingFactoryDBEntities());
         }
 
-        [HttpGet]
-        public JsonResult GetOrders(int page = 1)
+        [HttpPost]
+        public JsonResult GetOrders(SearchOrderModel searchModel, int page = 1)
         {
-            var orders = _unit.OrderRepo.GetFullOrdersInfo().Skip((page - 1) * pageSize).Take(pageSize);
-            var count = GetCountOfPages(_unit.OrderRepo.GetCountOfRecords(), pageSize);
+            Func<Order, bool> criteria = null;
+            if (searchModel != null)
+            {
+                criteria = order => (order.Customer.Person.FirstName + " " + order.Customer.Person.LastName).ToLower()
+                         .Contains(searchModel.CustomerName.ToLower()) && order.Product.Title.ToLower().Contains(searchModel.ProductTitle.ToLower());
+            }
+
+            var orders = _unit.OrderRepo.GetFullOrdersInfo(criteria).Skip((page - 1) * pageSize).Take(pageSize);
+            var count = GetCountOfPages(_unit.OrderRepo.GetCountOfRecords(criteria), pageSize);
             return Json(new { allPages = count, orders = orders, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
 

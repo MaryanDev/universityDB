@@ -72,7 +72,7 @@
         };
 
         function vaalidateCost(cost) {
-            if (cost === undefined || cost === null || cost < 0) {
+            if (cost === undefined || cost === null || cost <= 0) {
                 return false;
             }
             else {

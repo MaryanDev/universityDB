@@ -10,6 +10,7 @@
         $scope.order = {};
         $scope.errorMessage;
         $scope.mode = mode;
+        $scope.validation = {}
 
         $scope.closeModal = function () {
             $uibModalInstance.close(false);
@@ -22,6 +23,16 @@
                 }, function errorCallback(error) {
                     console.error(error);
                 })
+        }
+
+        $scope.validateQuantity = function () {
+            $scope.validation.isQuantityValid = validationService.validateCost($scope.order.Quantity);
+        }
+
+        activate();
+
+        function activate()  {
+            $scope.validateQuantity();
         }
 
         $scope.findMatchingProducts = function (title) {

@@ -10,13 +10,19 @@
         $scope.matchingCustomers = [];
         $scope.matchingProducts = [];
         $scope.errorMessage;
+        $scope.validation = {};
 
-        activate();
+        $scope.validateQuantity = function () {
+            $scope.validation.isQuantityValid = validationService.validateCost($scope.order.Quantity);
+        }
 
         function activate() {
+            $scope.validateQuantity();
             console.log($scope.order);
             $scope.order.customerName = $scope.order.CustomersFirstName + " " + $scope.order.CustomersLastName;
         }
+
+        activate();
 
         $scope.findMatchingCustomers = function (name) {
             orderAjaxService.findCustomersByName(name)

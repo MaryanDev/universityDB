@@ -30,7 +30,7 @@
                     <label>Type</label>
                 </div>
                 <div class="col-lg-8">
-                    <select class="form-control input-lg text-info" ng-model="machine.Type">
+                    <select class="form-control input-lg text-info" ng-model="machine.MachineType">
                         <option ng-repeat="type in types">{{type.TypeTitle}}</option>
                     </select>
                 </div>
@@ -42,9 +42,12 @@
                 <div class="col-lg-8">
                     <input type="search" list="matchingEmployees" class="form-control input-lg" ng-model="machine.EmployeeInCharge" ng-change="findMatchingEmployees(machine.EmployeeInCharge)"/>
                     <datalist id="matchingEmployees">
-                        <option ng-repeat="employee in matchingEmployees"></option>
+                        <option ng-repeat="employee in matchingEmployees">{{employee.FirstName + " " + employee.LastName}}</option>
                     </datalist>
                 </div>
+            </div>
+            <div class="form-group row text-center" style="font-size: 15pt" ng-if="errorMessage">
+                <span class="text-danger">{{errorMessage}}</span>
             </div>
 
             <div class="row form-group" ng-if="mode=='edit/deleteMode'">

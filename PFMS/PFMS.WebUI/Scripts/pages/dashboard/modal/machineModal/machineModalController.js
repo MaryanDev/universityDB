@@ -10,6 +10,7 @@
         $scope.mode = mode;
         $scope.types = types;
         $scope.matchingEmployees = [];
+        $scope.errorMessage = "";
 
         activate();
 
@@ -29,11 +30,11 @@
 
         $scope.findMatchingEmployees = function (name) {
             machinesAjaxService.findEnployeesByName(name)
-                .success(function (response) {
+                .then(function (response) {
                     console.log(response);
                     $scope.matchingEmployees = response.data;
-                }).
-                error(function errorCallback(error) {
+                },
+                function errorCallback(error) {
                     console.error(error);
                 })
         }
@@ -55,7 +56,24 @@
             }, function () {
                 return;
             })
+        }
 
+        $scope.updateMachine = function (machine) {
+            var modalInstance = popUpModalService.openConfirm(machine.Model, "updateMode");
+
+            modalInstance.result.then(function () {
+                machinesAjaxService.updateMachine(machine)
+                    .success(function (response) {
+                        popUpModalService.openNotification(machine.Model, "updateMode").result.then(function () {
+                            $scope.closeModal();
+                            $scope.errorMessage = "";
+                            location.assign("/Dashboard/Main/#machines");
+                        })
+                    })
+                    .error(function () {
+                        $scope.errorMessage = "The employee or type was not found, please select right info";
+                    })
+            })
         }
     }
 })(angular);

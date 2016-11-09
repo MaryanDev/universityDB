@@ -10,6 +10,7 @@
             getFullMachineInfo: getFulMachineInfoAjax,
             getMachinesTypes: getMachinesTypesAjax,
             findEnployeesByName: findEmplyeesByNameAjax,
+            updateMachine: updateMachineAjax,
             deleteMachine: deleteMachineAjax
         }
 
@@ -57,6 +58,16 @@
                 method: "POST",
                 url: "/Machine/DeleteMachine",
                 data: { machineId: machineId }
+            });
+
+            return promise;
+        }
+
+        function updateMachineAjax(machine) {
+            var promise = $http({
+                method: "POST",
+                url: "/Machine/UpdateMachine",
+                data: { machineToUpdate: machine }
             });
 
             return promise;

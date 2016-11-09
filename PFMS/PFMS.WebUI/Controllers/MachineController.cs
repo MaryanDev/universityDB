@@ -60,6 +60,33 @@ namespace PFMS.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateMachine(PrintingMachineDTO machineToUpdate)
+        {
+            try
+            {
+                var employeeId = _unit.EmployeeRepo.GetSingle(emp => (emp.Person.FirstName + " " + emp.Person.LastName) == machineToUpdate.EmployeeInCharge).PersonId;
+                var typeId = _unit.MachineTypeRepo.GetSingle(mt => mt.TypeTitle == machineToUpdate.MachineType).Id;
+
+                _unit.MachineRepo.Update(new PrintingMachine
+                {
+                    Id = machineToUpdate.Id,
+                    Model = machineToUpdate.Model,
+                    EmployeeInChargeId = employeeId,
+                    Price = machineToUpdate.Price,
+                    MachineTypeId = typeId
+                });
+                _unit.Save();
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch
+            {
+                //return Json("The customer or product was not found, please select right info", JsonRequestBehavior.AllowGet);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "The employee or type was not found, please select right info");
+            }
+        }
+
+        [HttpPost]
         public ActionResult DeleteMachine(int machineId)
         {
             _unit.MachineRepo.Delete(_unit.MachineRepo.GetSingle(m => m.Id == machineId));

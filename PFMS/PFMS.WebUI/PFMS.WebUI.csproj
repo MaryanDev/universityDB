@@ -1014,6 +1014,7 @@
     <Compile Include="Infrastructure\AutofacConfig.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SearchCustomerModel.cs" />
+    <Compile Include="Models\SearchMachineModel.cs" />
     <Compile Include="Models\SearchOrderModel.cs" />
     <Compile Include="Models\SearchPersonModel.cs" />
     <Compile Include="Models\SearchProductModel.cs" />

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PFMS.Repositories.Concrete
 {
-    public class SqlPrintingMachineRepository : BaseRepository<PrintingMachine>, IPrintingMachineRepository
+    public class SqlMachineTypeRepository : BaseRepository<TypesOfMachine>, IMachineTypeRepository
     {
-        public SqlPrintingMachineRepository(PintingFactoryDBEntities context) : base(context)
+        public SqlMachineTypeRepository(PintingFactoryDBEntities context) : base(context)
         {
 
         }

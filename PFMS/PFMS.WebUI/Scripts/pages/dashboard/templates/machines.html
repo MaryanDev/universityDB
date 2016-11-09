@@ -2,21 +2,48 @@
     <loading-animation ng-if="isLoading"></loading-animation>
     <div id="searchPanel" class="text-info">
         <form class="navbar-form" ng-submit="searchForResults(search)">
+            <div class="row searchPanelArea">
+                <div class="col-lg-6 form-group row">
+                    <label class="col-lg-3">Model</label>
+                    <input type="text" class="input-lg col-lg-9" ng-model="search.Model"/> 
+                </div>
+                <div class="col-lg-6 form-group row">
+                    <label class="col-lg-3">Type</label>
+                    <select class="input-lg form-control-static col-lg-9 text-info" ng-model="search.Type">
+                        <option>{{""}}</option>
+                        <option ng-repeat="type in types">
+                            {{type.TypeTitle}}
+                        </option> 
+                    </select>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="form-control btn btn-info">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Search
+                </button>
+            </div>
         </form>
     </div>
     <div class="dataPanel" ng-if="!isLoading">
         <table class="table table-responsive">
             <thead>
                 <tr>
+                    <th>Id</th>
+                    <th>Model</th>
+                    <th>Type</th>
                 </tr>
             </thead>
             <tbody class="text-info">
-                <tr class="addRow"><td colspan="2" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
-                <tr class="dataRow" ng-repeat="person in persons" ng-click="showDetailsInModal(machine)">
+                <tr class="addRow"><td colspan="3" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
+                <tr class="dataRow" ng-repeat="machine in machines" ng-click="showDetailsInModal(machine)">
+                    <td>{{machine.Id}}</td>
+                    <td>{{machine.Model}}</td>
+                    <td>{{machine.Type}}</td>
                 </tr>
             </tbody>
         </table>
-        <<!--div class="text-center">
+        <!--div class="text-center">
             <ul class="pagination pagination-lg">
                 <li ng-repeat="page in pagination.allPages track by $index"><a ng-click="getPersons($index + 1)">{{$index + 1}}</a></li>
             </ul>

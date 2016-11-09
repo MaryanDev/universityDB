@@ -53,6 +53,10 @@
                     templateUrl: "/Scripts/pages/dashboard/templates/orders.html",
                     controller: "ordersController"
                 })
+                .when("/machines", {
+                    templateUrl: "/Scripts/pages/dashboard/templates/machines.html",
+                    controller: "machinesController"
+                })
                 .otherwise({ redirectTo: "/employees" });
         });
 })(angular);

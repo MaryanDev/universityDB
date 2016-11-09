@@ -1,0 +1,25 @@
+﻿<div id="content" class="panel panel-body" style="min-height:100px;">
+    <loading-animation ng-if="isLoading"></loading-animation>
+    <div id="searchPanel" class="text-info">
+        <form class="navbar-form" ng-submit="searchForResults(search)">
+        </form>
+    </div>
+    <div class="dataPanel" ng-if="!isLoading">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody class="text-info">
+                <tr class="addRow"><td colspan="2" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
+                <tr class="dataRow" ng-repeat="person in persons" ng-click="showDetailsInModal(machine)">
+                </tr>
+            </tbody>
+        </table>
+        <<!--div class="text-center">
+            <ul class="pagination pagination-lg">
+                <li ng-repeat="page in pagination.allPages track by $index"><a ng-click="getPersons($index + 1)">{{$index + 1}}</a></li>
+            </ul>
+        </div>-->
+    </div>
+</div>

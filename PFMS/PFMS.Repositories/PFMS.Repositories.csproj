@@ -63,6 +63,7 @@
     <Compile Include="Concrete\SqlOrderRepository.cs" />
     <Compile Include="Concrete\SqlPersonRepository.cs" />
     <Compile Include="Concrete\SqlPostionsRepository.cs" />
+    <Compile Include="Concrete\SqlPrintingMachineRepository.cs" />
     <Compile Include="Concrete\SqlProductsRepository.cs" />
     <Compile Include="Concrete\SqlProductsToMachinesRepository.cs" />
     <Compile Include="Concrete\UoW\UnitOfWork.cs" />

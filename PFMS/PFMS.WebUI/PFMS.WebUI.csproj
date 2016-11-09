@@ -961,6 +961,7 @@
     <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\app.Module.js" />
+    <Content Include="Scripts\pages\dashboard\controllers\machinesController.js" />
     <Content Include="Scripts\pages\dashboard\controllers\ordersController.js" />
     <Content Include="Scripts\pages\dashboard\controllers\person.controller.js" />
     <Content Include="Scripts\pages\dashboard\controllers\product.controller.js" />
@@ -973,6 +974,7 @@
     <Content Include="Scripts\pages\dashboard\modal\orderModal\orderModalController.js" />
     <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\productModal\productModal.html" />
+    <Content Include="Scripts\pages\dashboard\services\machinesAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\services\orderAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\services\personAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\modal\confirmModal\confirmModal.controller.js" />
@@ -983,6 +985,7 @@
     <Content Include="Scripts\pages\dashboard\services\popUpModalService.js" />
     <Content Include="Scripts\pages\dashboard\config\routeConfig.js" />
     <Content Include="Scripts\pages\dashboard\services\productAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\templates\machines.html" />
     <Content Include="Scripts\pages\dashboard\templates\orders.html" />
     <Content Include="Scripts\pages\dashboard\templates\persons.html" />
     <Content Include="Scripts\pages\dashboard\templates\products.html" />
@@ -998,6 +1001,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\MachineController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\ProductController.cs" />

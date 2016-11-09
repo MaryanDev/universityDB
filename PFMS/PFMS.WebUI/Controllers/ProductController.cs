@@ -17,18 +17,20 @@ namespace PFMS.WebUI.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetProducts(SearchProductModel searchModel)
+        public JsonResult GetProducts(SearchProductModel searchModel, int page = 1)
         {
             Func<Product, bool> criteria = prod => prod.Title.ToLower().Contains(searchModel.Title.ToLower()) &&
                             (int)prod.Cost >= searchModel.MinCost && prod.Cost <= searchModel.MaxCost;
-            var result = _unit.ProductRepo.Get(criteria).Select(p => new
+            var result = _unit.ProductRepo.Get(criteria).Skip((page - 1) * pageSize).Take(pageSize).Select(p => new
             {
                 Id = p.Id,
                 Title = p.Title,
                 Cost = p.Cost,
                 Orders = _unit.OrderRepo.GetCountOfRecords(o => o.ProductId == p.Id)
             });
-            return Json(result, JsonRequestBehavior.AllowGet);
+
+            int count = GetCountOfPages(_unit.ProductRepo.GetCountOfRecords(criteria), pageSize);
+            return Json(new { products = result, allPages = count, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult UpdateProduct(Product productToUpdate)

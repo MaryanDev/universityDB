@@ -19,17 +19,20 @@ namespace PFMS.WebUI.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetSimpleMachineInfo(SearchMachineModel searchModel)
+        public JsonResult GetSimpleMachineInfo(SearchMachineModel searchModel, int page = 1)
         {
             searchModel.Type = searchModel.Type.Trim();
-            var machines = _unit.MachineRepo.Get(m => m.Model.ToLower().Contains(searchModel.Model.ToLower()) && m.TypesOfMachine.TypeTitle.ToLower().Contains(searchModel.Type.ToLower())).Select(m => new
+            Func<PrintingMachine, bool> criteria = m => m.Model.ToLower().Contains(searchModel.Model.ToLower()) && m.TypesOfMachine.TypeTitle.ToLower().Contains(searchModel.Type.ToLower());
+            var machines = _unit.MachineRepo.Get(criteria).
+                Skip((page - 1) * pageSize).Take(pageSize).Select(m => new
             {
                 Id = m.Id,
                 Model = m.Model,
                 Type = m.TypesOfMachine.TypeTitle
             });
+            int count = GetCountOfPages(_unit.MachineRepo.GetCountOfRecords(criteria), pageSize);
 
-            return Json(machines);
+            return Json(new { machines = machines, allPages = count, currentPage = page });
         }
 
         [HttpGet]

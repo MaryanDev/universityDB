@@ -6,6 +6,7 @@
     function machinesController($scope, machinesAjaxService, popUpModalService) {
         $scope.search = {};
         $scope.machines = [];
+        $scope.pagination = {};
         $scope.types = [];
         $scope.isLoading = true;
 
@@ -15,7 +16,9 @@
             //$scope.search = {id: 1}
             machinesAjaxService.getMachines()
                 .success(function (response) {
-                    $scope.machines = response;
+                    $scope.machines = response.machines;
+                    $scope.pagination.allPages = new Array(response.allPages);
+                    $scope.pagination.currentPage = response.currentPage;
                     $scope.isLoading = false;
                 })
                 .error(function (error) {
@@ -27,6 +30,19 @@
                 }, function errorCallback(error) {
                     console.error(error);
                 })
+        }
+
+        $scope.getMachines = function (page) {
+            machinesAjaxService.getMachines($scope.search, page)
+                .success(function (response) {
+                    $scope.machines = response.machines;
+                    $scope.pagination.allPages = new Array(response.allPages);
+                    $scope.pagination.currentPage = response.currentPage;
+                    $scope.isLoading = false;
+                })
+                .error(function (error) {
+                    console.error(error);
+                });
         }
 
         $scope.showAddDialog = function () {

@@ -15,11 +15,11 @@
             deleteMachine: deleteMachineAjax
         }
 
-        function getMachinesAjax(search) {
+        function getMachinesAjax(search, page) {
             var promise = $http({
                 method: "POST",
                 url: "/Machine/GetSimpleMachineInfo",
-                data: { searchModel: search }
+                data: { searchModel: search, page: page }
             });
 
             return promise;

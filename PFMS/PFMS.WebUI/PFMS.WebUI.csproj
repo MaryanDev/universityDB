@@ -157,6 +157,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard .css" />
+    <Content Include="Content\images\177111.jpg" />
+    <Content Include="Content\images\407111.jpg" />
+    <Content Include="Content\images\books2.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

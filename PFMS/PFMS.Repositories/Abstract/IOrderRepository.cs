@@ -10,6 +10,6 @@ namespace PFMS.Repositories.Abstract
 {
     public interface IOrderRepository
     {
-        IEnumerable<OrderFullInfoDTO> GetFullOrdersInfo(Func<Order, bool> criteria = null);
+        IEnumerable<OrderFullInfoDTO> GetFullOrdersInfo(/*Func<Order, bool> criteria = null*/string name, string product);
     }
 }

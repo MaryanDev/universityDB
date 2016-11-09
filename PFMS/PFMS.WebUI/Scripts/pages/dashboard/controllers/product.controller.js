@@ -14,10 +14,7 @@
         function activate() {
             productAjaxService.getProducts()
                 .then(function (response) {
-                    $scope.products = response.data.products;
-                    $scope.pagination.allPages = new Array(response.data.allPages);
-                    $scope.pagination.currentPage = response.data.currentPage;
-                    $scope.isLoading = false;
+                    initData(response);
                 }, function errorCalback(error) {
                     console.error(error);
                 });
@@ -26,10 +23,7 @@
         $scope.getProducts = function (page) {
             productAjaxService.getProducts($scope.search, page)
                 .then(function (response) {
-                    $scope.products = response.data.products;
-                    $scope.pagination.allPages = new Array(response.data.allPages);
-                    $scope.pagination.currentPage = response.data.currentPage;
-                    $scope.isLoading = false;
+                    initData(response);
                 }, function errorCalback(error) {
                     console.error(error);
                 });
@@ -38,11 +32,17 @@
         $scope.searchForResults = function (search) {
             productAjaxService.getProducts(search)
                 .then(function (response) {
-                    $scope.products = response.data;
-                    $scope.isLoading = false;
+                    initData(response);
                 }, function errorCalback(error) {
                     console.error(error);
                 });
+        }
+
+        function initData(response) {
+            $scope.products = response.data.products;
+            $scope.pagination.allPages = new Array(response.data.allPages);
+            $scope.pagination.currentPage = response.data.currentPage;
+            $scope.isLoading = false;
         }
 
         $scope.showDetailsInModal = function (product) {

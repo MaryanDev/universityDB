@@ -16,10 +16,7 @@
             //$scope.search = {id: 1}
             machinesAjaxService.getMachines()
                 .success(function (response) {
-                    $scope.machines = response.machines;
-                    $scope.pagination.allPages = new Array(response.allPages);
-                    $scope.pagination.currentPage = response.currentPage;
-                    $scope.isLoading = false;
+                    initData(response);
                 })
                 .error(function (error) {
                     console.error(error);
@@ -35,10 +32,7 @@
         $scope.getMachines = function (page) {
             machinesAjaxService.getMachines($scope.search, page)
                 .success(function (response) {
-                    $scope.machines = response.machines;
-                    $scope.pagination.allPages = new Array(response.allPages);
-                    $scope.pagination.currentPage = response.currentPage;
-                    $scope.isLoading = false;
+                    initData(response);
                 })
                 .error(function (error) {
                     console.error(error);
@@ -56,12 +50,18 @@
         $scope.searchForResults = function (search) {
             machinesAjaxService.getMachines(search)
                 .success(function (response) {
-                    $scope.machines = response;
-                    //$scope.isLoading = false;
+                    initData(response);
                 })
                 .error(function (error) {
                     console.error(error);
                 });
+        }
+
+        function initData(response) {
+            $scope.machines = response.machines;
+            $scope.pagination.allPages = new Array(response.allPages);
+            $scope.pagination.currentPage = response.currentPage;
+            $scope.isLoading = false;
         }
     }
 })(angular);

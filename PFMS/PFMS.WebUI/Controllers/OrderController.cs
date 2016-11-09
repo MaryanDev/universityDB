@@ -21,15 +21,9 @@ namespace PFMS.WebUI.Controllers
         [HttpPost]
         public JsonResult GetOrders(SearchOrderModel searchModel, int page = 1)
         {
-            Func<Order, bool> criteria = null;
-            if (searchModel != null)
-            {
-                criteria = order => (order.Customer.Person.FirstName + " " + order.Customer.Person.LastName).ToLower()
-                         .Contains(searchModel.CustomerName.ToLower()) && order.Product.Title.ToLower().Contains(searchModel.ProductTitle.ToLower());
-            }
-
-            var orders = _unit.OrderRepo.GetFullOrdersInfo(criteria).Skip((page - 1) * pageSize).Take(pageSize);
-            var count = GetCountOfPages(_unit.OrderRepo.GetCountOfRecords(criteria), pageSize);
+            var orders = _unit.OrderRepo.GetFullOrdersInfo(searchModel.CustomerName.ToLower(), searchModel.ProductTitle.ToLower())
+                                                            .Skip((page - 1) * pageSize).Take(pageSize);
+            var count = GetCountOfPages(_unit.OrderRepo.GetFullOrdersInfo(searchModel.CustomerName.ToLower(), searchModel.ProductTitle.ToLower()).Count(), pageSize);
             return Json(new { allPages = count, orders = orders, currentPage = page }, JsonRequestBehavior.AllowGet);
         }
 

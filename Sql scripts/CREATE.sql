@@ -214,7 +214,8 @@ FOREIGN KEY (EmployeeInChargeId) REFERENCES Employees(PersonId);
 
 ALTER TABLE MachinesForRepair 
 ADD CONSTRAINT FK_MachinesForRepairToMachine
-FOREIGN KEY (MachineId) REFERENCES PrintingMachines(Id);
+FOREIGN KEY (MachineId) REFERENCES PrintingMachines(Id)
+ON DELETE CASCADE
 
 ALTER TABLE Employees
 ADD CONSTRAINT FK_EmpToPerson

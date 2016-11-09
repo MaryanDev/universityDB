@@ -13,7 +13,8 @@
             openProductDetails: openProductDetailsModal,
             openCreateProductForm: openCreateProductFormModal,
             openCreateOrderForm: openCreateOrderFormModal,
-            openOrderDetails: openOrderDetailsModal
+            openOrderDetails: openOrderDetailsModal,
+            openMachineForm: openMachineFormModal
         };
 
         return service;
@@ -160,6 +161,28 @@
 
             return modalInstance;
         };
+
+        function openMachineFormModal(machineId, mode, types) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/machineModal/machineModal.html",
+                controller: "machineModalController",
+                size: "lg",
+                resolve: {
+                    machineId: function(){
+                        return machineId;
+                    },
+                    mode: function () {
+                        return mode;
+                    },
+                    types: function () {
+                        return types;
+                    }
+                }
+            });
+
+            return modalInstance;
+        }
     }
 
 })(angular);

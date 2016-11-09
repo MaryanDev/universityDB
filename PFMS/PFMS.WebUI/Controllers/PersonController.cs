@@ -134,6 +134,21 @@ namespace PFMS.WebUI.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+
+        [HttpGet]
+        public JsonResult GetEmployeesByName(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                var matchingResult = _unit.EmployeeRepo.GetSimpleEmpInfo(emp => (emp.Person.FirstName + " " + emp.Person.LastName).ToLower().Contains(name.ToLower()));
+                return Json(matchingResult, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+        }
         #endregion
 
         [HttpPost]

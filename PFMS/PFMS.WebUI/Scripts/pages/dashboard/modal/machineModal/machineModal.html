@@ -1,0 +1,67 @@
+﻿<div>
+    <div class="modal-header text-info text-center">
+        <div class="row">
+            <h3 class="col-lg-10">Machine Details</h3>
+            <span id="closeModal" ng-click="closeModal()" class="col-lg-2 glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
+    <div class="modal-body text-info">
+        <form  style="font-size: 15pt;">
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Model</label>
+                </div>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control input-lg"  ng-model="machine.Model" />
+                    <!--<span class="text-danger" ng-if="!validation.isTitleValid">Invalid title</span>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Price</label>
+                </div>
+                <div class="col-lg-8">
+                    <input type="number" class="form-control input-lg" ng-model="machine.Price" />
+                    <!--<span class="text-danger" ng-if="!validation.isCostValid">Invalid cost</span>-->
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Type</label>
+                </div>
+                <div class="col-lg-8">
+                    <select class="form-control input-lg text-info" ng-model="machine.MachineType">
+                        <option ng-repeat="type in types">{{type.TypeTitle}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4 text-center">
+                    <label>Employee</label>
+                </div>
+                <div class="col-lg-8">
+                    <input type="search" list="matchingEmployees" class="form-control input-lg" ng-model="machine.EmployeeInCharge" ng-change="findMatchingEmployees(machine.EmployeeInCharge)"/>
+                    <datalist id="matchingEmployees">
+                        <option ng-repeat="employee in matchingEmployees">{{employee.FirstName + " " + employee.LastName}}</option>
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-group row text-center" style="font-size: 15pt" ng-if="errorMessage">
+                <span class="text-danger">{{errorMessage}}</span>
+            </div>
+
+            <div class="row form-group" ng-if="mode=='edit/deleteMode'">
+                <div class="col-lg-8 text-right">
+                    <input type="submit" class="btn btn-lg btn-info form-control input-lg" value="Update" ng-click="updateMachine(machine)" />
+                </div>
+                <div class="col-lg-3">
+                    <input type="button" class="btn btn-lg btn-danger form-control input-lg" value="Delete" ng-click="deleteMachine(machine)" />
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="form-group row text-center" ng-if="mode == 'createMode'">
+                <input type="submit" value="Create" ng-click="createMachine(machine)"  class="form-control input-lg btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

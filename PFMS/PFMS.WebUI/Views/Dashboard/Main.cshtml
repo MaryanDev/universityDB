@@ -15,6 +15,7 @@
     <script src="~/Scripts/pages/dashboard/services/validationService.js"></script>
     <script src="~/Scripts/pages/dashboard/services/popUpModalService.js"></script>
     <script src="~/Scripts/pages/dashboard/services/orderAjaxService.js"></script>
+    <script src="~/Scripts/pages/dashboard/services/machinesAjaxService.js"></script>
     <script src="~/Scripts/pages/dashboard/modal/notificationModal/notificationModal.controller.js"></script>
     <script src="~/Scripts/pages/dashboard/modal/confirmModal/confirmModal.controller.js"></script>
     <script src="~/Scripts/pages/dashboard/modal/personModal/personModal.controller.js"></script>
@@ -22,34 +23,41 @@
     <script src="~/Scripts/pages/dashboard/modal/orderModal/orderModalController.js"></script>
     <script src="~/Scripts/pages/dashboard/modal/personModal/createPersonModal.controller.js"></script>
     <script src="~/Scripts/pages/dashboard/modal/orderModal/createOrderController.js"></script>
+    <script src="~/Scripts/pages/dashboard/modal/machineModal/machineModalController.js"></script>
     @*<script src="~/Scripts/pages/dashboard/dashboard.controller.js"></script>*@
     <script src="~/Scripts/pages/dashboard/controllers/person.controller.js"></script>
     <script src="~/Scripts/pages/dashboard/controllers/product.controller.js"></script>
     <script src="~/Scripts/pages/dashboard/controllers/ordersController.js"></script>
+    <script src="~/Scripts/pages/dashboard/controllers/machinesController.js"></script>
 }
 
-<div id="dashboard" class="container">
-    <div class="row">
-        <div class="col-lg-4 col-md-4">
-            <div id="menu" class="panel panel-body">
-                <ul class="nav nav-pills nav-stacked">
-                    <li>
-                        <a href="#employees" class="navbar-link">Employees</a>
-                    </li>
-                    <li>
-                        <a href="#customers" class="navbar-link">Customers</a>
-                    </li>
-                    <li>
-                        <a href="#products" class="navbar-link">Products</a>
-                    </li>
-                    <li>
-                        <a href="#orders" class="navbar-link">Orders</a>
-                    </li>
-                </ul>
+<div id="dashboard">
+    <div class="body-content container" id="mainCont">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div id="menu" class="panel panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="#employees" class="navbar-link">Employees</a>
+                        </li>
+                        <li>
+                            <a href="#customers" class="navbar-link">Customers</a>
+                        </li>
+                        <li>
+                            <a href="#products" class="navbar-link">Products</a>
+                        </li>
+                        <li>
+                            <a href="#orders" class="navbar-link">Orders</a>
+                        </li>
+                        <li>
+                            <a href="#machines" class="navbar-link">Machines</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-8 col-md-8">
-            <ng-view></ng-view>
+            <div class="col-lg-8 col-md-8">
+                <ng-view></ng-view>
+            </div>
         </div>
     </div>
 </div>

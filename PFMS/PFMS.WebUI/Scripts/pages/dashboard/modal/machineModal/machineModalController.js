@@ -37,5 +37,25 @@
                     console.error(error);
                 })
         }
+
+        $scope.deleteMachine = function (machine) {
+            var modalInstance = popUpModalService.openConfirm(machine.Model, "deleteMode");
+
+            modalInstance.result.then(function () {
+                machinesAjaxService.deleteMachine(machine.Id)
+                                .success(function (response) {
+                                    popUpModalService.openNotification(machine.Model, "deleteMode").result.then(function () {
+                                        $scope.closeModal();
+                                        location.assign("/Dashboard/Main/#machines");
+                                    })
+                                })
+                                .error(function (error) {
+                                    console.error(error);
+                                })
+            }, function () {
+                return;
+            })
+
+        }
     }
 })(angular);

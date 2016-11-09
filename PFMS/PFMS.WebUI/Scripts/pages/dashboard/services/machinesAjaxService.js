@@ -9,7 +9,8 @@
             getMachines: getMachinesAjax,
             getFullMachineInfo: getFulMachineInfoAjax,
             getMachinesTypes: getMachinesTypesAjax,
-            findEnployeesByName: findEmplyeesByNameAjax
+            findEnployeesByName: findEmplyeesByNameAjax,
+            deleteMachine: deleteMachineAjax
         }
 
         function getMachinesAjax(search) {
@@ -46,6 +47,16 @@
                 method: "GET",
                 url: "/Person/GetEmployeesByName",
                 params: { name: name }
+            });
+
+            return promise;
+        }
+
+        function deleteMachineAjax(machineId) {
+            var promise = $http({
+                method: "POST",
+                url: "/Machine/DeleteMachine",
+                data: { machineId: machineId }
             });
 
             return promise;

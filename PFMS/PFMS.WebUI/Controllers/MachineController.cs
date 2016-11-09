@@ -5,6 +5,7 @@ using PFMS.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -56,6 +57,14 @@ namespace PFMS.WebUI.Controllers
             }).SingleOrDefault();
 
             return Json(info, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMachine(int machineId)
+        {
+            _unit.MachineRepo.Delete(_unit.MachineRepo.GetSingle(m => m.Id == machineId));
+            _unit.Save();
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
 }

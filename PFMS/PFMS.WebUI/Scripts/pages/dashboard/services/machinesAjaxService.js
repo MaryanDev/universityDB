@@ -10,6 +10,7 @@
             getFullMachineInfo: getFulMachineInfoAjax,
             getMachinesTypes: getMachinesTypesAjax,
             findEnployeesByName: findEmplyeesByNameAjax,
+            createMachine: createMachineAjax,
             updateMachine: updateMachineAjax,
             deleteMachine: deleteMachineAjax
         }
@@ -68,6 +69,16 @@
                 method: "POST",
                 url: "/Machine/UpdateMachine",
                 data: { machineToUpdate: machine }
+            });
+
+            return promise;
+        }
+
+        function createMachineAjax(machine) {
+            var promise = $http({
+                method: "POST",
+                url: "/Machine/CreateMachine",
+                data: { machineToCreate: machine }
             });
 
             return promise;

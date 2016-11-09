@@ -15,13 +15,15 @@
         activate();
 
         function activate() {
-            machinesAjaxService.getFullMachineInfo($scope.machineId)
-                .then(function (response) {
-                    console.log(response);
-                    $scope.machine = response.data;
-                }, function errorCallback(error) {
-                    console.error(error);
-                });
+            if ($scope.mode == "edit/deleteMode") {
+                machinesAjaxService.getFullMachineInfo($scope.machineId)
+                    .then(function (response) {
+                        console.log(response);
+                        $scope.machine = response.data;
+                    }, function errorCallback(error) {
+                        console.error(error);
+                    });
+            }
         }
 
         $scope.closeModal = function () {
@@ -37,6 +39,24 @@
                 function errorCallback(error) {
                     console.error(error);
                 })
+        }
+
+        $scope.createMachine = function (machine) {
+            var modalInstance = popUpModalService.openConfirm(machine.Model, "createMode");
+
+            modalInstance.result.then(function () {
+                machinesAjaxService.createMachine(machine)
+                    .success(function (response) {
+                        popUpModalService.openNotification(machine.Model, "createMode").result.then(function () {
+                            $scope.closeModal();
+                            $scope.errorMessage = "";
+                            location.assign("/Dashboard/Main/#machines");
+                        })
+                    })
+                    .error(function () {
+                        $scope.errorMessage = "The employee or type was not found, please select right info";
+                    })
+            })
         }
 
         $scope.deleteMachine = function (machine) {

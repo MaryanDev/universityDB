@@ -30,7 +30,7 @@
         }
 
         $scope.showAddDialog = function () {
-
+            popUpModalService.openMachineForm(null, "createMode", $scope.types);
         }
 
         $scope.showDetailsInModal = function (machine) {

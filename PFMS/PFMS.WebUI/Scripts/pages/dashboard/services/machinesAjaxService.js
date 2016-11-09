@@ -7,7 +7,9 @@
     function machinesAjaxService($http) {
         var service = {
             getMachines: getMachinesAjax,
-            getMachinesTypes: getMachinesTypesAjax
+            getFullMachineInfo: getFulMachineInfoAjax,
+            getMachinesTypes: getMachinesTypesAjax,
+            findEnployeesByName: findEmplyeesByNameAjax
         }
 
         function getMachinesAjax(search) {
@@ -20,10 +22,30 @@
             return promise;
         }
 
+        function getFulMachineInfoAjax(id) {
+            var promise = $http({
+                method: "GET",
+                url: "/Machine/GetFullMachineInfo",
+                params: { machineId: id }
+            });
+
+            return promise;
+        }
+
         function getMachinesTypesAjax() {
             var promise = $http({
                 method: "GET",
                 url: "/Machine/GetMachinesTypes"
+            });
+
+            return promise;
+        }
+
+        function findEmplyeesByNameAjax(name) {
+            var promise = $http({
+                method: "GET",
+                url: "/Person/GetEmployeesByName",
+                params: { name: name }
             });
 
             return promise;

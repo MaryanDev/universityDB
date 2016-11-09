@@ -1,9 +1,9 @@
 ﻿(function (angular) {
     angular.module("appModule")
         .controller("machinesController", machinesController);
-    machinesController.$inject = ["$scope", "machinesAjaxService"];
+    machinesController.$inject = ["$scope", "machinesAjaxService", "popUpModalService"];
 
-    function machinesController($scope, machinesAjaxService) {
+    function machinesController($scope, machinesAjaxService, popUpModalService) {
         $scope.search = {};
         $scope.machines = [];
         $scope.types = [];
@@ -34,7 +34,7 @@
         }
 
         $scope.showDetailsInModal = function (machine) {
-
+            popUpModalService.openMachineForm(machine.Id, "edit/deleteMode", $scope.types);
         }
 
         $scope.searchForResults = function (search) {

@@ -1,4 +1,5 @@
 ﻿using PFMS.Entities;
+using PFMS.Entities.DTO;
 using PFMS.Repositories.Concrete.UoW;
 using PFMS.WebUI.Models;
 using System;
@@ -40,6 +41,21 @@ namespace PFMS.WebUI.Controllers
             });
 
             return Json(types, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetFullMachineInfo(int machineId)
+        {
+            var info = _unit.MachineRepo.Get(m => m.Id == machineId).Select(m => new PrintingMachineDTO
+            {
+                Id = m.Id,
+                Model = m.Model,
+                MachineType = m.TypesOfMachine.TypeTitle,
+                EmployeeInCharge = m.Employee.Person.FirstName + " " + m.Employee.Person.LastName,
+                Price = m.Price
+            }).SingleOrDefault();
+
+            return Json(info, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -967,6 +967,8 @@
     <Content Include="Scripts\pages\dashboard\controllers\product.controller.js" />
     <Content Include="Scripts\pages\dashboard\directives\loadingAnimation.html" />
     <Content Include="Scripts\pages\dashboard\directives\loadingAnimation.js" />
+    <Content Include="Scripts\pages\dashboard\modal\machineModal\machineModal.html" />
+    <Content Include="Scripts\pages\dashboard\modal\machineModal\machineModalController.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\orderModal\orderModal.html" />

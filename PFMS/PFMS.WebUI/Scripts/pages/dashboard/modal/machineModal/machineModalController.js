@@ -117,5 +117,9 @@
                     })
             })
         }
+
+        $scope.sentMachineToRepair = function (machine) {
+            popUpModalService.openMachineOnRepairForm(null, "createMode", machine);
+        }
     }
 })(angular);

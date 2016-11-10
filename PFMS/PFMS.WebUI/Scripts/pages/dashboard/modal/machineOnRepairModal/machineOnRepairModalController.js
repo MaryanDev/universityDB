@@ -2,26 +2,31 @@
     angular.module("appModule")
         .controller("machineOnRepairModalController", machineOnRepairModalController);
 
-    machineOnRepairModalController.$inject = ["$scope", "validationService", "popUpModalService", "$uibModalInstance", "repairAjaxService", "machineId", "mode"];
+    machineOnRepairModalController.$inject = ["$scope", "validationService", "popUpModalService", "$uibModalInstance", "repairAjaxService", "machineId", "mode", "machine"];
 
-    function machineOnRepairModalController($scope, validationService, popUpModalService, $uibModalInstance, repairAjaxService, machineId, mode) {
+    function machineOnRepairModalController($scope, validationService, popUpModalService, $uibModalInstance, repairAjaxService, machineId, mode, machine) {
         $scope.machineId = machineId;
-        $scope.machineOnRepair = {};
+        $scope.machineOnRepair = machine || {};
         $scope.mode = mode;
         $scope.isLoading = true;
 
         activate();
 
         function activate() {
-            repairAjaxService.getFullMachineOnRepairInfo($scope.machineId)
-                .then(function (response) {
-                    $scope.machineOnRepair = response.data;
-                    $scope.machineOnRepair.RepairStartDate = new Date(response.data.RepairStartDate);
-                    $scope.machineOnRepair.RepairFinishDate = response.data.RepairFinishDate === null ? null : new Date(response.data.RepairFinishDate);
-                    $scope.isLoading = false;
-                }, function errorCallback(error) {
-                    console.error(error);
-                });
+            if ($scope.mode == "edit/deleteMode") {
+                repairAjaxService.getFullMachineOnRepairInfo($scope.machineId)
+                    .then(function (response) {
+                        $scope.machineOnRepair = response.data;
+                        $scope.machineOnRepair.RepairStartDate = new Date(response.data.RepairStartDate);
+                        $scope.machineOnRepair.RepairFinishDate = response.data.RepairFinishDate === null ? null : new Date(response.data.RepairFinishDate);
+                        $scope.isLoading = false;
+                    }, function errorCallback(error) {
+                        console.error(error);
+                    });
+            }
+            else if ($scope.mode == "createMode") {
+                $scope.isLoading = false;
+            }
         }
 
         $scope.closeModal = function(){
@@ -53,6 +58,22 @@
                         popUpModalService.openNotification($scope.machineOnRepair.Model, "deleteMode").result.then(function () {
                             $scope.closeModal();
                             location.assign("/Dashboard/Main/#repair");
+                        })
+                    })
+            }, function () {
+                return;
+            })
+        }
+
+        $scope.createRepair = function (machineOnRepair) {
+            var modalInstance = popUpModalService.openConfirm($scope.machineOnRepair.Model, "createMode");
+
+            modalInstance.result.then(function () {
+                repairAjaxService.createRepair(machineOnRepair)
+                    .success(function (response) {
+                        popUpModalService.openNotification($scope.machineOnRepair.Model, "createMode").result.then(function () {
+                            location.assign("/Dashboard/Main/#repair");
+                            $scope.closeModal();
                         })
                     })
             }, function () {

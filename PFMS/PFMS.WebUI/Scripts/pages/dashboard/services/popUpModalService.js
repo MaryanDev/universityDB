@@ -185,7 +185,7 @@
             return modalInstance;
         }
 
-        function openMachineOnRepairFormModal(machineId, mode) {
+        function openMachineOnRepairFormModal(machineId, mode, machine) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: "/Scripts/pages/dashboard/modal/machineOnRepairModal/machineOnRepairModal.html",
@@ -197,6 +197,9 @@
                     },
                     mode: function () {
                         return mode;
+                    },
+                    machine: function () {
+                        return machine;
                     }
                 }
             })

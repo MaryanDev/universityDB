@@ -41,7 +41,7 @@
         }
 
         $scope.showDetailsInModal = function (machineOnRepair) {
-            popUpModalService.openMachineOnRepairForm(machineOnRepair.Id, "edit/deleteMode");
+            popUpModalService.openMachineOnRepairForm(machineOnRepair.Id, "edit/deleteMode", null);
         }
 
         $scope.getMachinesOnRepair = function (page) {

@@ -47,6 +47,9 @@
                     </datalist>
                 </div>
             </div>
+            <div class="form-group text-left" ng-if="mode=='edit/deleteMode' && !machine.OnRepair">
+                <button class="btn-link btn-lg btn-default" ng-click="sentMachineToRepair(machine)">Send to repair</button>
+            </div>
             <div class="form-group row text-center" style="font-size: 15pt" ng-if="errorMessage">
                 <span class="text-danger">{{errorMessage}}</span>
             </div>

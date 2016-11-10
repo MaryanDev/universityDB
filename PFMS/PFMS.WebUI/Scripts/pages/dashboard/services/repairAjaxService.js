@@ -9,7 +9,8 @@
             getMachinesOnRepair: getMachinesOnRepairAjax,
             getFullMachineOnRepairInfo: getFullMachineOnRepairInfoAjax,
             updateMachineOnRepair: updateMachineOnRepairAjax,
-            endRepair: endRepairAjax
+            endRepair: endRepairAjax,
+            createRepair: createRepairAjax
         };
 
         function getMachinesOnRepairAjax(search, page) {
@@ -47,6 +48,16 @@
                 method: "POST",
                 url: "/MachineOnRepair/EndRepair",
                 data: { machineOnRepairId: repairId }
+            });
+
+            return promise;
+        }
+
+        function createRepairAjax(machineOnRepair) {
+            var promise = $http({
+                method: "POST",
+                url: "/MachineOnRepair/CreateRepair",
+                data: { machineOnRepairToCreate: machineOnRepair }
             });
 
             return promise;

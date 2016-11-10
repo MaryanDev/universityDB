@@ -86,5 +86,31 @@ namespace PFMS.WebUI.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+
+        [HttpPost]
+        public ActionResult CreateRepair(MachineOnRepairFullInfoDTO machineOnRepairToCreate)
+        {
+            var machineId = _unit.MachineRepo.GetSingle(m => m.Id == machineOnRepairToCreate.Id).Id;
+
+            DateTime? finishDate;
+            if (string.IsNullOrEmpty(machineOnRepairToCreate.RepairFinishDate))
+            {
+                finishDate = null;
+            }
+            else
+            {
+                finishDate = Convert.ToDateTime(machineOnRepairToCreate.RepairFinishDate);
+            }
+            _unit.RepairRepo.Insert(new MachinesForRepair
+            {
+                MachineId = machineId,
+                CostOfRepair = machineOnRepairToCreate.RepairCost,
+                RepairStartDate = Convert.ToDateTime(machineOnRepairToCreate.RepairStartDate),
+                RepairFinishDate = finishDate
+            });
+
+            _unit.Save();
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
     }
 }

@@ -9,6 +9,32 @@
         $scope.machineOnRepair = machine || {};
         $scope.mode = mode;
         $scope.isLoading = true;
+        $scope.validation = {}
+
+        $scope.validateCost = function () {
+            $scope.validation.isCostValid = validationService.validateCost($scope.machineOnRepair.RepairCost);
+            validateForm();
+        }
+
+        $scope.validateDate = function () {
+            if ($scope.machineOnRepair.RepairFinishDate !== null && $scope.machineOnRepair.RepairFinishDate !== undefined) {
+                $scope.validation.isDateValid = $scope.machineOnRepair.RepairFinishDate < $scope.machineOnRepair.RepairStartDate ? false : true;
+            }
+            else {
+                $scope.validation.isDateValid = true;
+            }
+
+            validateForm();
+        }
+
+        function initialValidation() {
+            $scope.validateCost();
+            $scope.validateDate();
+        }
+
+        function validateForm() {
+            $scope.validation.isFormValid = $scope.validation.isDateValid && $scope.validation.isCostValid;
+        }
 
         activate();
 
@@ -20,6 +46,8 @@
                         $scope.machineOnRepair.RepairStartDate = new Date(response.data.RepairStartDate);
                         $scope.machineOnRepair.RepairFinishDate = response.data.RepairFinishDate === null ? null : new Date(response.data.RepairFinishDate);
                         $scope.isLoading = false;
+
+                        initialValidation();
                     }, function errorCallback(error) {
                         console.error(error);
                     });

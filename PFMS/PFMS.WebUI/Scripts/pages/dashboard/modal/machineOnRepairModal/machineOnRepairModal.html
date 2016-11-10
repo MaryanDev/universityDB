@@ -23,27 +23,27 @@
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Start date of repair</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="date" class="form-control input-lg" ng-model="machineOnRepair.RepairStartDate" required />
-                    <!--<span class="text-danger" ng-if="!validation.isPhoneValid">Invalid phone number</span>-->
+                    <input type="date" class="form-control input-lg" ng-class="{'alert-danger': !validation.isDateValid }"  ng-model="machineOnRepair.RepairStartDate" ng-change="validateDate()" required />
+                    <span class="text-danger" ng-if="!validation.isDateValid">Invalid Date</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Finish date of repair</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="date" class="form-control input-lg" ng-model="machineOnRepair.RepairFinishDate" />
-                    <!--<span class="text-danger" ng-if="!validation.isAddressValid">Invalid address</span>-->
+                    <input type="date" class="form-control input-lg" ng-class="{'alert-danger': !validation.isDateValid }"  ng-model="machineOnRepair.RepairFinishDate" ng-change="validateDate()"/>
+                    <span class="text-danger" ng-if="!validation.isDateValid">Invalid Date</span>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="text-info col-lg-4 col-md-4">Cost of repair</label>
                 <div class="col-lg-8 col-md-8">
-                    <input type="number" class="form-control input-lg" ng-model="machineOnRepair.RepairCost"  required />
-                    <!--<span class="text-danger" ng-if="!validation.isDateOfBirthValid">Invalid date of birth</span>-->
+                    <input type="number" class="form-control input-lg" ng-class="{'alert-danger': !validation.isCostValid }" ng-model="machineOnRepair.RepairCost" ng-change="validateCost()"  required />
+                    <span class="text-danger" ng-if="!validation.isCostValid">Invalid cost</span>
                 </div>
             </div>
             <div class="form-group row" ng-if="mode == 'edit/deleteMode'">
                 <div class="col-lg-8 col-sm-12">
-                    <input type="submit" value="Update" ng-click="updateRepair(machineOnRepair)" class="form-control input-lg btn btn-info" />
+                    <input type="submit" value="Update" ng-disabled="!validation.isFormValid" ng-click="updateRepair(machineOnRepair)" class="form-control input-lg btn btn-info" />
                 </div>
                 <div class="col-lg-3 col-sm-12">
                     <input type="button" class="btn btn-lg btn-danger" ng-click="endRepair(machineOnRepair.Id)" value="End repair">
@@ -51,7 +51,7 @@
                 <div class="col-lg-1"></div>
             </div>
             <div class="form-group row text-center" ng-if="mode == 'createMode'">
-                <input type="submit" value="Create" ng-click="createRepair(machineOnRepair)" class="form-control input-lg btn btn-success" />
+                <input type="submit" value="Create" ng-disabled="!validation.isFormValid" ng-click="createRepair(machineOnRepair)" class="form-control input-lg btn btn-success" />
             </div>
         </form>
     </div>

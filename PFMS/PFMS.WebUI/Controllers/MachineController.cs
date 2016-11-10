@@ -23,13 +23,15 @@ namespace PFMS.WebUI.Controllers
         {
             searchModel.Type = searchModel.Type.Trim();
             Func<PrintingMachine, bool> criteria = m => m.Model.ToLower().Contains(searchModel.Model.ToLower()) && m.TypesOfMachine.TypeTitle.ToLower().Contains(searchModel.Type.ToLower());
+
             var machines = _unit.MachineRepo.Get(criteria).
                 Skip((page - 1) * pageSize).Take(pageSize).Select(m => new
-            {
-                Id = m.Id,
-                Model = m.Model,
-                Type = m.TypesOfMachine.TypeTitle
-            });
+                {
+                    Id = m.Id,
+                    Model = m.Model,
+                    Type = m.TypesOfMachine.TypeTitle,
+                    OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) != null ? (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate == null) || (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate > DateTime.Now) ? true : false : false
+                });
             int count = GetCountOfPages(_unit.MachineRepo.GetCountOfRecords(criteria), pageSize);
 
             return Json(new { machines = machines, allPages = count, currentPage = page });
@@ -56,7 +58,8 @@ namespace PFMS.WebUI.Controllers
                 Model = m.Model,
                 MachineType = m.TypesOfMachine.TypeTitle,
                 EmployeeInCharge = m.Employee.Person.FirstName + " " + m.Employee.Person.LastName,
-                Price = m.Price
+                Price = m.Price,
+                OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) != null ? (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate == null) || (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate > DateTime.Now) ? true : false : false
             }).SingleOrDefault();
 
             return Json(info, JsonRequestBehavior.AllowGet);

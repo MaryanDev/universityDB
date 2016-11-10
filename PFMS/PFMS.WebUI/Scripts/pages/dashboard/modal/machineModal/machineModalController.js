@@ -11,15 +11,37 @@
         $scope.types = types;
         $scope.matchingEmployees = [];
         $scope.errorMessage = "";
+        $scope.validation = {};
+
+        $scope.validateModel = function () {
+            $scope.validation.isModelValid = validationService.validateModel($scope.machine.Model);
+            validateForm();
+        }
+
+        $scope.validatePrice = function () {
+            $scope.validation.isPriceValid = validationService.validateCost($scope.machine.Price);
+            validateForm();
+        }
+
+        function validateForm() {
+            $scope.validation.isFormValid = $scope.validation.isModelValid && $scope.validation.isPriceValid;
+        }
+
+        function initialValidation() {
+            $scope.validateModel();
+            $scope.validatePrice();
+        }
 
         activate();
 
         function activate() {
+            
             if ($scope.mode == "edit/deleteMode") {
                 machinesAjaxService.getFullMachineInfo($scope.machineId)
                     .then(function (response) {
                         console.log(response);
                         $scope.machine = response.data;
+                        initialValidation();
                     }, function errorCallback(error) {
                         console.error(error);
                     });
@@ -94,6 +116,10 @@
                         $scope.errorMessage = "The employee or type was not found, please select right info";
                     })
             })
+        }
+
+        $scope.sentMachineToRepair = function (machine) {
+            popUpModalService.openMachineOnRepairForm(null, "createMode", machine);
         }
     }
 })(angular);

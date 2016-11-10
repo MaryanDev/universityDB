@@ -6,14 +6,15 @@
         </div>
     </div>
     <div class="modal-body text-info">
+        <h3 ng-if="machine.OnRepair" class="text-danger text-center">On Repair</h3>
         <form  style="font-size: 15pt;">
             <div class="form-group row">
                 <div class="col-lg-4 text-center">
                     <label>Model</label>
                 </div>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control input-lg"  ng-model="machine.Model" />
-                    <!--<span class="text-danger" ng-if="!validation.isTitleValid">Invalid title</span>-->
+                    <input type="text" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isModelValid }"  ng-model="machine.Model" ng-change="validateModel()" />
+                    <span class="text-danger" ng-if="!validation.isModelValid">Invalid machine model</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -21,8 +22,8 @@
                     <label>Price</label>
                 </div>
                 <div class="col-lg-8">
-                    <input type="number" class="form-control input-lg" ng-model="machine.Price" />
-                    <!--<span class="text-danger" ng-if="!validation.isCostValid">Invalid cost</span>-->
+                    <input type="number" class="form-control input-lg" ng-class="{ 'alert-danger': !validation.isPriceValid }" ng-model="machine.Price" ng-change="validatePrice()" />
+                    <span class="text-danger" ng-if="!validation.isPriceValid">Invalid price</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -46,13 +47,16 @@
                     </datalist>
                 </div>
             </div>
+            <div class="form-group text-left" ng-if="mode=='edit/deleteMode' && !machine.OnRepair">
+                <button class="btn-link btn-lg btn-default" ng-click="sentMachineToRepair(machine)">Send to repair</button>
+            </div>
             <div class="form-group row text-center" style="font-size: 15pt" ng-if="errorMessage">
                 <span class="text-danger">{{errorMessage}}</span>
             </div>
 
             <div class="row form-group" ng-if="mode=='edit/deleteMode'">
                 <div class="col-lg-8 text-right">
-                    <input type="submit" class="btn btn-lg btn-info form-control input-lg" value="Update" ng-click="updateMachine(machine)" />
+                    <input type="submit" class="btn btn-lg btn-info form-control input-lg" value="Update" ng-disabled="!validation.isFormValid" ng-click="updateMachine(machine)" />
                 </div>
                 <div class="col-lg-3">
                     <input type="button" class="btn btn-lg btn-danger form-control input-lg" value="Delete" ng-click="deleteMachine(machine)" />
@@ -60,7 +64,7 @@
                 <div class="col-lg-1"></div>
             </div>
             <div class="form-group row text-center" ng-if="mode == 'createMode'">
-                <input type="submit" value="Create" ng-click="createMachine(machine)"  class="form-control input-lg btn btn-success" />
+                <input type="submit" value="Create" ng-disabled="!validation.isFormValid" ng-click="createMachine(machine)"  class="form-control input-lg btn btn-success" />
             </div>
         </form>
     </div>

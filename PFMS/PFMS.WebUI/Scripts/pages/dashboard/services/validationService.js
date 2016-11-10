@@ -10,8 +10,18 @@
             validateAddress: validateAddress,
             validateAccountNumber: validateAccountNumber,
             validateTitle: validateTitle,
-            validateCost: vaalidateCost
+            validateCost: vaalidateCost,
+            validateModel: validateModel
         };
+
+        function validateModel(model) {
+            if (model === undefined || model === null || model.length < 2 || model.length > 100) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         function validateName(name) {
             var regExp = /^[A-Za-zА-Яа-яІі]+$/;

@@ -36,7 +36,7 @@
             </thead>
             <tbody class="text-info">
                 <tr class="addRow"><td colspan="3" ng-click="showAddDialog()" class="text-center"><span class="glyphicon glyphicon-plus">Add</span></td></tr>
-                <tr class="dataRow" ng-repeat="machine in machines" ng-click="showDetailsInModal(machine)">
+                <tr class="dataRow" ng-repeat="machine in machines" ng-click="showDetailsInModal(machine)" ng-class="{ 'alert-danger' : machine.OnRepair == true }">
                     <td>{{machine.Id}}</td>
                     <td>{{machine.Model}}</td>
                     <td>{{machine.Type}}</td>

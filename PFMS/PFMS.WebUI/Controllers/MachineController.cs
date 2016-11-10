@@ -29,7 +29,7 @@ namespace PFMS.WebUI.Controllers
                     Id = m.Id,
                     Model = m.Model,
                     Type = m.TypesOfMachine.TypeTitle,
-                    OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) == null ? false : true
+                    OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) != null ? (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate == null) ? true : false : false
                 });
             int count = GetCountOfPages(_unit.MachineRepo.GetCountOfRecords(criteria), pageSize);
 
@@ -58,7 +58,7 @@ namespace PFMS.WebUI.Controllers
                 MachineType = m.TypesOfMachine.TypeTitle,
                 EmployeeInCharge = m.Employee.Person.FirstName + " " + m.Employee.Person.LastName,
                 Price = m.Price,
-                OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) == null ? false : true
+                OnRepair = _unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id) != null ? (_unit.RepairRepo.GetSingle(mr => mr.MachineId == m.Id).RepairFinishDate == null) ? true : false : false
             }).SingleOrDefault();
 
             return Json(info, JsonRequestBehavior.AllowGet);

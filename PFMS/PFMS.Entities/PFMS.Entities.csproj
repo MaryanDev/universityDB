@@ -60,6 +60,7 @@
     <Compile Include="DTO\CustomerInfoDTO.cs" />
     <Compile Include="DTO\EmpFullInfoDTO.cs" />
     <Compile Include="DTO\EmpInfoDTO.cs" />
+    <Compile Include="DTO\MachineOnRepairFullInfoDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\OrderFullInfoDTO.cs" />
     <Compile Include="DTO\PrintingMachineDTO.cs" />

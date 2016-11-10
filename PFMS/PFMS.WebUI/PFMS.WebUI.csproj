@@ -968,10 +968,13 @@
     <Content Include="Scripts\pages\dashboard\controllers\ordersController.js" />
     <Content Include="Scripts\pages\dashboard\controllers\person.controller.js" />
     <Content Include="Scripts\pages\dashboard\controllers\product.controller.js" />
+    <Content Include="Scripts\pages\dashboard\controllers\repairController.js" />
     <Content Include="Scripts\pages\dashboard\directives\loadingAnimation.html" />
     <Content Include="Scripts\pages\dashboard\directives\loadingAnimation.js" />
     <Content Include="Scripts\pages\dashboard\modal\machineModal\machineModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\machineModal\machineModalController.js" />
+    <Content Include="Scripts\pages\dashboard\modal\machineOnRepairModal\machineOnRepairModal.html" />
+    <Content Include="Scripts\pages\dashboard\modal\machineOnRepairModal\machineOnRepairModalController.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.controller.js" />
     <Content Include="Scripts\pages\dashboard\modal\notificationModal\notificationModal.html" />
     <Content Include="Scripts\pages\dashboard\modal\orderModal\orderModal.html" />
@@ -990,11 +993,13 @@
     <Content Include="Scripts\pages\dashboard\services\popUpModalService.js" />
     <Content Include="Scripts\pages\dashboard\config\routeConfig.js" />
     <Content Include="Scripts\pages\dashboard\services\productAjaxService.js" />
+    <Content Include="Scripts\pages\dashboard\services\repairAjaxService.js" />
     <Content Include="Scripts\pages\dashboard\templates\machines.html" />
     <Content Include="Scripts\pages\dashboard\templates\orders.html" />
     <Content Include="Scripts\pages\dashboard\templates\persons.html" />
     <Content Include="Scripts\pages\dashboard\templates\products.html" />
     <Content Include="Scripts\pages\dashboard\services\validationService.js" />
+    <Content Include="Scripts\pages\dashboard\templates\repair.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -1007,6 +1012,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\MachineController.cs" />
+    <Compile Include="Controllers\MachineOnRepairController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -1045,6 +1051,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\angular\NewFolder1\" />
+    <Folder Include="Views\MachineOnRepair\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFMS.Entities\PFMS.Entities.csproj">

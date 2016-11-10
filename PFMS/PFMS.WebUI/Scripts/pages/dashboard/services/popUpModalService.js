@@ -14,7 +14,8 @@
             openCreateProductForm: openCreateProductFormModal,
             openCreateOrderForm: openCreateOrderFormModal,
             openOrderDetails: openOrderDetailsModal,
-            openMachineForm: openMachineFormModal
+            openMachineForm: openMachineFormModal,
+            openMachineOnRepairForm: openMachineOnRepairFormModal
         };
 
         return service;
@@ -182,6 +183,23 @@
             });
 
             return modalInstance;
+        }
+
+        function openMachineOnRepairFormModal(machineId, mode) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "/Scripts/pages/dashboard/modal/machineOnRepairModal/machineOnRepairModal.html",
+                controller: "machineOnRepairModalController",
+                size: "lg",
+                resolve: {
+                    machineId: function () {
+                        return machineId;
+                    },
+                    mode: function () {
+                        return mode;
+                    }
+                }
+            })
         }
     }
 
